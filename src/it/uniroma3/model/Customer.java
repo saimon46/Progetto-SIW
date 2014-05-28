@@ -77,6 +77,7 @@ public class Customer {
 		return lastName;
 	}
 
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
@@ -112,4 +113,13 @@ public class Customer {
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
 }
