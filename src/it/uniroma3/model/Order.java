@@ -27,7 +27,7 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "orders")
+	@OneToMany
 	private List<OrderLine> orderLines;
 
     public Order (Date creationTime, Customer customer) {
