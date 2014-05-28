@@ -34,6 +34,13 @@ public class CustomerFacade {
         List<Customer> customers = em.createQuery(cq).getResultList();
 		return customers;
 	}
+	
+	public List<Order> getAllOrders(Customer customer) {
+		Query q = em.createQuery("SELECT c.orders FROM Customer c WHERE c.email = :email");
+		q.setParameter("email", customer.getEmail());
+		List<Order> orders = q.getResultList();
+		return orders;
+	}
 
 	public void updateCustomer(Customer customer) {
         em.merge(customer);
