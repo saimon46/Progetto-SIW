@@ -24,6 +24,16 @@ public class Customer {
 	@OneToOne
 	private Address address;
 	
+	private String email;
+	
+	private String phoneNumber;
+	
+	@Temporal (TemporalType.DATE)
+	private Date dateOfBirth;
+	
+	@Temporal (TemporalType.DATE)
+	private Date registrationDate;
+	
 	@OneToMany(mappedBy = "customer")
 	private List<Order> orders;
 	
@@ -41,6 +51,10 @@ public class Customer {
 		this.registrationDate = registrationDate;
 		this.address = address;
 		this.orders = new ArrayList<Order>();
+	}
+	
+	public boolean verificaPassword(String password) {
+		return this.password.equals(password);
 	}
 	
 	// ***** Getters and setters *****
@@ -96,14 +110,4 @@ public class Customer {
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-
-	private String email;
-	
-	private String phoneNumber;
-	
-	@Temporal (TemporalType.DATE)
-	private Date dateOfBirth;
-	
-	@Temporal (TemporalType.DATE)
-	private Date registrationDate;
 }

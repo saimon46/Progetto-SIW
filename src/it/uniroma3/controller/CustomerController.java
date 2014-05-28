@@ -11,7 +11,10 @@ import it.uniroma3.model.Order;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
+@SessionScoped
 @ManagedBean
 public class CustomerController {
 	
@@ -38,7 +41,27 @@ public class CustomerController {
 
 	public String listOrders() {
 		this.orders = customerFacade.getAllOrders(customer);
-		return "products"; 
+		return "products";
+	}
+	
+	public String loginCustomer() {
+		try{
+			Customer customer = customerFacade.getCustomerByEmail(email);
+			if (customer.verificaPassword(this.password)) {
+				setCustomer(customer);
+				return "customerPage";
+			}
+			else 
+				return "index";
+		}
+		catch (Exception e) {
+			return "index";
+		}
+	}
+	
+	public String logoutCustomer() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "index";
 	}
 
 	public Long getId() {
