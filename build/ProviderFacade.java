@@ -19,28 +19,28 @@ public class ProviderFacade {
 		return provider;
 	}
 	
-	public Provider getProvider(Long id) {
-	    Provider provider = em.find(Provider.class, id);
-		return provider;
+	public Product getProduct(Long id) {
+	    Product product = em.find(Product.class, id);
+		return product;
 	}
 	
-	public List<Provider> getAllProvider() {
-        CriteriaQuery<Provider> cq = em.getCriteriaBuilder().createQuery(Provider.class);
-        cq.select(cq.from(Provider.class));
-        List<Provider> providers = em.createQuery(cq).getResultList();
-		return providers;
+	public List<Product> getAllProducts() {
+        CriteriaQuery<Product> cq = em.getCriteriaBuilder().createQuery(Product.class);
+        cq.select(cq.from(Product.class));
+        List<Product> products = em.createQuery(cq).getResultList();
+		return products;
 	}
 
-	public void updateProvider(Provider provider) {
-        em.merge(provider);
+	public void updateProduct(Product product) {
+        em.merge(product);
 	}
 	
-    private void deleteProvider(Provider provider) {
-        em.remove(provider);
+    private void deleteProduct(Product product) {
+        em.remove(product);
     }
 
 	public void deleteProduct(Long id) {
-        Provider provider = em.find(Provider.class, id);
-        deleteProvider(provider);
+        Product product = em.find(Product.class, id);
+        deleteProduct(product);
 	}
 }

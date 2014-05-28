@@ -3,8 +3,6 @@ package it.uniroma3.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 @Stateless
 public class OrderLineFacade {
@@ -18,28 +16,21 @@ public class OrderLineFacade {
 		return orderLine;
 	}
 	
-	public OrderLine getProduct(Long id) {
-	    OrderLine product = em.find(OrderLine.class, id);
-		return product;
-	}
-	
-	public List<OrderLine> getAllProducts() {
-        CriteriaQuery<OrderLine> cq = em.getCriteriaBuilder().createQuery(OrderLine.class);
-        cq.select(cq.from(OrderLine.class));
-        List<OrderLine> products = em.createQuery(cq).getResultList();
-		return products;
+	public OrderLine getOrderLine(Long id) {
+	    OrderLine orderLine = em.find(OrderLine.class, id);
+		return orderLine;
 	}
 
-	public void updateProduct(OrderLine product) {
-        em.merge(product);
+	public void updateOrderLine(OrderLine orderLine) {
+        em.merge(orderLine);
 	}
 	
-    private void deleteProduct(OrderLine product) {
-        em.remove(product);
+    private void deleteOrderLine(OrderLine orderLine) {
+        em.remove(orderLine);
     }
 
 	public void deleteProduct(Long id) {
-        OrderLine product = em.find(OrderLine.class, id);
-        deleteProduct(product);
+        OrderLine orderLine = em.find(OrderLine.class, id);
+        deleteOrderLine(orderLine);
 	}
 }
