@@ -9,7 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.Date;
 import java.util.List;
 
-@Stateless
+@Stateless(name="customerFacade")
 public class CustomerFacade {
 	
     @PersistenceContext(unitName = "siw-project")

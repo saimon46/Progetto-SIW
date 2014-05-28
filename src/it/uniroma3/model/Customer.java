@@ -21,11 +21,10 @@ public class Customer {
 	@Column(nullable = false)
 	private String password;
 	
-	@OneToOne
-	private Address address;
-	
+	@Column
 	private String email;
 	
+	@Column
 	private String phoneNumber;
 	
 	@Temporal (TemporalType.DATE)
@@ -33,6 +32,9 @@ public class Customer {
 	
 	@Temporal (TemporalType.DATE)
 	private Date registrationDate;
+	
+	@OneToOne
+	private Address address;
 	
 	@OneToMany(mappedBy = "customer")
 	private List<Order> orders;

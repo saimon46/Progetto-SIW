@@ -22,7 +22,7 @@ public class ProductController {
 	private Product product;
 	private List<Product> products;
 	
-	@EJB
+	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
 	
 	public String createProduct() {

@@ -38,11 +38,11 @@
 		</td>
 	</tr>
 	<tr>
-		<td><center>
+		<td>
 			<div>
 		<h:commandButton value="Accedi"  action="#{customerController.loginCustomer}"/>
 			</div>
-		</center></td>
+		</td>
 	</tr>
 	<tr>
 		<td>
