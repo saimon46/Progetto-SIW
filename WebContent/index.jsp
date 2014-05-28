@@ -7,20 +7,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>SIW-JEE-ES2</title>
+<title>Negozio Online</title>
 </head>
 <body>
 	<f:view>
-		<h1>SIW-JEE-ES2</h1>
+		<h1>Negozio di acquisti online</h1>
+		<h3>Benvenuto Visitatore</h3>
 		<ul>
-			<li><a href='<c:url value="/faces/newProduct.jsp" />'>Insert
-					a new product</a></li>
+			<li><a href='<c:url value="/faces/loginCustomer.jsp" />'>Login Utente</a></li>
+			<li><a href='<c:url value="/faces/loginAdministrator.jsp" />'>Login Amministratore</a></li>
 			<li><h:form>
 					<h:commandLink action="#{productController.listProducts}"
-						value="List all Products" />
+						value="Visualizza il catalogo dei Prodotti" />
 				</h:form></li>
 		</ul>
-	</f:view>
+	</f:view>				
 </body>
 </html>
 
