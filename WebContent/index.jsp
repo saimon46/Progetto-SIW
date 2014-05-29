@@ -14,7 +14,7 @@
 <f:view>
 <h1>Negozio di acquisti online</h1>
 <h3>Benvenuto Visitatore</h3>
-<h:form>
+<h:form id="loginCustomer">
 <table border="2">
 	<tr>
 		<td><h2> Login UTENTE</h2></td>
@@ -30,7 +30,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Password: <h:inputText value="#{customerController.password}" 
+			<div>Password: <h:inputSecret value="#{customerController.password}" 
                      required="true"
                      requiredMessage="La password e' obbligatoria!"
                      id="password"/> <h:message for="password" />
@@ -40,7 +40,9 @@
 	<tr>
 		<td>
 			<div>
-		<h:commandButton value="Accedi"  action="#{customerController.loginCustomer}"/>
+		<h:commandButton id="accedi" value="Accedi"
+			action="#{customerController.loginCustomer}"/>
+			<h:message for="accedi" styleClass="error"/>
 			</div>
 		</td>
 	</tr>

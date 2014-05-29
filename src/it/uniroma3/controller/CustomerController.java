@@ -9,6 +9,7 @@ import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -43,16 +44,22 @@ public class CustomerController {
 	}
 	
 	public String loginCustomer() {
+		
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
 			if (customer.verificaPassword(this.password)) {
 				setCustomer(customer);
 				return "customerPage";
 			}
-			else 
+			else{
+				// Password Errata
+				FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato!"));
 				return "index";
+			}
 		}
 		catch (Exception e) {
+			// Cliente non trovato
+			FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato!"));
 			return "index";
 		}
 	}
