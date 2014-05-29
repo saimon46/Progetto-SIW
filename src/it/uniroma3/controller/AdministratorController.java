@@ -17,7 +17,7 @@ public class AdministratorController {
 	private String password;
 	private Administrator administrator;
 	
-	@EJB(beanName="administatorFacade")
+	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
 	
 	public String createAdministrator() {

@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-@Stateless
+@Stateless(name="administratorFacade")
 public class AdministratorFacade {
 	
     @PersistenceContext(unitName = "siw-project")
