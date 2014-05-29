@@ -34,17 +34,25 @@ public class AdministratorController {
 			}
 			else{
 				// Password Errata
-				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accedi", new FacesMessage("Login Errato!"));
+				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Pass errata!"));
 				return "loginAdministrator";
 			}
 		}
 		catch (Exception e) {
-			// Cliente non trovato
-			FacesContext.getCurrentInstance().addMessage("loginAdministrator:accedi", new FacesMessage("Login Errato!"));
+			// Amministratore non trovato
+			FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato!"));
 			return "loginAdministrator";
 		}
 	}
 	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
 	public String logoutAdministrator() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";

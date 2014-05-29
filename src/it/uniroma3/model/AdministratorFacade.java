@@ -17,9 +17,9 @@ public class AdministratorFacade {
 		return administrator;
 	}
 	
-	public Administrator getAdministratorByNickname(String nickName) {
-		Query q = em.createQuery("SELECT a FROM Administrator a WHERE a.nickName = :nickName");
-		q.setParameter("nickName", nickName);
+	public Administrator getAdministratorByNickname(String nickname) {
+		Query q = em.createQuery("SELECT a FROM Administrator a WHERE a.nickname = :nickname");
+		q.setParameter("nickname", nickname);
 		Administrator administrator = (Administrator) q.getSingleResult();
 		return administrator;
 	}
