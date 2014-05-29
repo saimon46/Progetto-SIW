@@ -11,7 +11,6 @@ import it.uniroma3.model.Order;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -35,7 +34,7 @@ public class CustomerController {
 	
 	public String createCustomer() {
 		this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);
-		return "customer";
+		return "index";
 	}
 
 	public String listOrders() {
@@ -44,7 +43,6 @@ public class CustomerController {
 	}
 	
 	public String loginCustomer() {
-		
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
 			if (customer.verificaPassword(this.password)) {

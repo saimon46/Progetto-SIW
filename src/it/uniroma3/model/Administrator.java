@@ -19,6 +19,10 @@ public class Administrator {
 		this.password = password;
 	}
 	
+	public boolean verificaPassword(String password) {
+		return this.password.equals(password);
+	}
+	
 	// ***** Getters and setters *****
 	
 	public Long getId() {
@@ -40,5 +44,4 @@ public class Administrator {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }
