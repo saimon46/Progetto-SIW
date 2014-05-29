@@ -17,7 +17,7 @@ public class AdministratorController {
 	private String password;
 	private Administrator administrator;
 	
-	@EJB(beanName="customerFacade")
+	@EJB(beanName="administatorFacade")
 	private AdministratorFacade administratorFacade;
 	
 	public String createAdministrator() {
@@ -34,7 +34,7 @@ public class AdministratorController {
 			}
 			else{
 				// Password Errata
-				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Pass errata!"));
+				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato!"));
 				return "loginAdministrator";
 			}
 		}
