@@ -3,6 +3,8 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" uri="http://myfaces.apache.org/tomahawk" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,6 @@
 <title>Nuovo Utente</title>
 </head>
 <body>
-
 <f:view>
 <h:form id="registrationCustomer">
 <table border="2">
@@ -55,7 +56,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Data di Nascita: <h:inputText value="#{customerController.dateOfBirth}" 
+			<div>Data di Nascita: <t:inputDate value="#{customerController.dateOfBirth}" 
                      required="true"
                      requiredMessage="*"
                      id="dateOfBirth"/> <h:message for="dateOfBirth" />
@@ -73,7 +74,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Via/Piazza: <h:inputText value="#{customerController.address.street}" 
+			<div>Via/Piazza: <h:inputText value="#{customerController.street}" 
                      required="true"
                      requiredMessage="*"
                      id="address_street"/> <h:message for="address_street" />
@@ -82,7 +83,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>CAP: <h:inputText value="#{customerController.address.zipcode}" 
+			<div>CAP: <h:inputText value="#{customerController.zipcode}" 
                      required="true"
                      requiredMessage="*"
                      id="address_zipcode"/> <h:message for="address_zipcode" />
@@ -91,7 +92,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Citta': <h:inputText value="#{customerController.address.city}" 
+			<div>Citta': <h:inputText value="#{customerController.city}" 
                      required="true"
                      requiredMessage="*"
                      id="address_city"/> <h:message for="address_city" />
@@ -100,7 +101,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Provincia: <h:inputText value="#{customerController.address.country}" 
+			<div>Provincia: <h:inputText value="#{customerController.country}" 
                      required="true"
                      requiredMessage="*"
                      id="address_country"/> <h:message for="address_country" />
@@ -109,7 +110,7 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Nazione: <h:inputText value="#{customerController.address.state}" 
+			<div>Nazione: <h:inputText value="#{customerController.state}" 
                      required="true"
                      requiredMessage="*"
                      id="address_state"/> <h:message for="address_state" />
@@ -119,9 +120,9 @@
 	<tr>
 		<td>
 			<div>
-		<h:commandButton id="registrati" value="Registrati"
+		<h:commandButton id="signinCustomer" value="Registrati"
 			action="#{customerController.createCustomer}"/>
-			<h:message for="registrati" styleClass="error"/>
+			<h:message for="signinCustomer" styleClass="error"/>
 			</div>
 		</td>
 	</tr>

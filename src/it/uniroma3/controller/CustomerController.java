@@ -3,8 +3,6 @@ package it.uniroma3.controller;
 import java.util.Date;
 import java.util.List;
 
-import it.uniroma3.model.Address;
-import it.uniroma3.model.AddressFacade;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
@@ -19,27 +17,30 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class CustomerController {
 	
-	private String firstName;
-	private String lastName;
-	private String password;
-	private Address address;
-	private String email;
-	private String phoneNumber;
-	private Date dateOfBirth;
-	private Date registrationDate;
+	private String firstName, lastName, password, email, phoneNumber, street, city, state, zipcode, country;
+	private Date dateOfBirth, registrationDate;
 	private List<Order> orders;
+	
 	private Customer customer;
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
 	
 	public String createCustomer() {
-		/*Genera automaticamente la data di oggi */
-		this.registrationDate = new Date();
-
-		this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);
-		FacesContext.getCurrentInstance().addMessage("registrationCustomer:registrati", new FacesMessage("Registrazione avvenuta con successo!"));
-		return "customerPage";
+		try{
+			/*Genera automaticamente la data di oggi */
+			this.registrationDate = new Date();
+			this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
+			FacesContext.getCurrentInstance().addMessage("customerPage", new FacesMessage("Registrazione avvenuta con successo!"));
+			return "customerPage";
+		}catch(Exception e){
+			/*Utente già registrato*/
+			this.resetCustomer();
+			FacesContext.getCurrentInstance().addMessage("registrationCustomer:signinCustomer", new FacesMessage("Utente già registrato!"));
+			return "customerRegistration";
+		}
+		
+		
 	}
 
 	public String listOrders() {
@@ -71,6 +72,21 @@ public class CustomerController {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
 	}
+	
+	private void resetCustomer(){
+		this.firstName = null;
+		this.lastName = null;
+		this.password = null;
+		this.email = null;
+		this.phoneNumber = null;
+		this.street = null;
+		this.city = null;
+		this.state = null;
+		this.zipcode = null;
+		this.country = null;
+		this.dateOfBirth = null;
+		this.registrationDate = null;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -94,14 +110,6 @@ public class CustomerController {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getEmail() {
@@ -130,6 +138,46 @@ public class CustomerController {
 
 	public Date getRegistrationDate() {
 		return registrationDate;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public void setRegistrationDate(Date registrationDate) {

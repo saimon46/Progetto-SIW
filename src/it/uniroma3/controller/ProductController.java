@@ -14,10 +14,8 @@ public class ProductController {
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
-	private String name;
+	private String name, description, code;
 	private Float price;
-	private String description;
-	private String code;
 	private int quantity; //quantità di magazzino
 	private Product product;
 	private List<Product> products;

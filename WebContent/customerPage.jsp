@@ -8,7 +8,7 @@
 </head>
 <body>
 <f:view>
-<h:message for="registrationCustomer" styleClass="error"/>
+<h:message for="customerPage" styleClass="error"/>
 <h4>Log-In Effettuato come: ${customerController.customer.firstName} ${customerController.customer.lastName}</h4>
 <h3>Utente: Funzionalità</h3>
 
