@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.uniroma3.model.Address;
+import it.uniroma3.model.AddressFacade;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
@@ -33,8 +34,12 @@ public class CustomerController {
 	private CustomerFacade customerFacade;
 	
 	public String createCustomer() {
+		/*Genera automaticamente la data di oggi */
+		this.registrationDate = new Date();
+		
 		this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);
-		return "index";
+		FacesContext.getCurrentInstance().addMessage("registrationCustomer:registrati", new FacesMessage("Registrazione avvenuta con successo!"));
+		return "customerPage";
 	}
 
 	public String listOrders() {
