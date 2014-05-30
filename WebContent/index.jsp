@@ -17,7 +17,9 @@
 <h:form id="loginCustomer">
 <table border="2">
 	<tr>
-		<td><h2> Login UTENTE</h2></td>
+		<td>
+			<div><h2> Login UTENTE</h2></div>
+			<div><h4>oppure <a href='<c:url value="/faces/customerRegistration.jsp" />'>Registrati</a></h4></div></td>		 
 	</tr>
 	<tr>	
 		<td>

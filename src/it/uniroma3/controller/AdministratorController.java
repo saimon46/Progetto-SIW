@@ -25,11 +25,6 @@ public class AdministratorController {
 		return "administratorPage";
 	}
 	
-	public String createCustomer() {
-		.createAdministrator(nickname, password);
-		return "administratorPage";
-	}
-	
 	public String loginAdministrator() {
 		try{
 			Administrator administrator = administratorFacade.getAdministratorByNickname(nickname);
