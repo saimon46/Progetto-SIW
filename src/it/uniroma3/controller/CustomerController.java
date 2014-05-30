@@ -34,7 +34,12 @@ public class CustomerController {
 	
 	public String createCustomer() {
 		this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);
-		return "index";
+		return "customerPage";
+	}
+	
+	public String createCustomerByAdmin() {
+		customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);
+		return "administratorPage";
 	}
 
 	public String listOrders() {
