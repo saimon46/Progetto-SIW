@@ -8,24 +8,35 @@ import it.uniroma3.model.ProductFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
+@SessionScoped
 public class ProductController {
 	
-	@ManagedProperty(value="#{param.id}")
+	@ManagedProperty(value="#{sessionScope['id']}")
 	private Long id;
+	
 	private String name, description, code;
 	private Float price;
 	private int quantity; //quantità di magazzino
 	private Product product;
 	private List<Product> products;
 	
-	@EJB
+	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
 	
 	public String createProduct() {
 		this.product = productFacade.createProduct(name, code, price, description, quantity);
 		return "product";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String listProducts() {
@@ -41,14 +52,6 @@ public class ProductController {
 	public String findProduct(Long id) {
 		this.product = productFacade.getProduct(id);
 		return "product";
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {

@@ -59,10 +59,10 @@
 </h:form>
 
 	<ul>
-			<li><h:form>
-					<h:commandLink action="#{productController.listProducts}"
-						value="Visualizza il catalogo dei Prodotti" />
-				</h:form></li>
+			<h:form>
+				<h:commandButton action="#{productController.listProducts}"
+					value="Visualizza il catalogo dei Prodotti" />
+			</h:form>
 	</ul>	
 </f:view>		
 </body>

@@ -25,13 +25,19 @@
 	
 	<tr>
 		<td>
-		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 2</a></li></ul>
+		<ul><li><a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a></li></ul>
 		</td>
 	</tr>
 	
 	<tr>
 		<td>
 		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 3</a></li></ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 4</a></li></ul>
 		</td>
 	</tr>
 	

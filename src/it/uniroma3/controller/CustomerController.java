@@ -38,8 +38,6 @@ public class CustomerController {
 			FacesContext.getCurrentInstance().addMessage("registrationCustomer:signinCustomer", new FacesMessage("Utente già registrato!"));
 			return "customerRegistration";
 		}
-		
-		
 	}
 
 	public String listOrders() {

@@ -1,12 +1,14 @@
 package it.uniroma3.model;
 
 import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
+
 import java.util.List;
 
-@Stateless
+@Stateless(name="productFacade")
 public class ProductFacade {
 	
     @PersistenceContext(unitName = "siw-project")
