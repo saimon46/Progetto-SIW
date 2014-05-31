@@ -26,7 +26,7 @@
                      converterMessage="Il prezzo deve essere un numero!"
                      id="price"/> <h:message for="price" />
 	</div>
-	<div>Quantità: <h:inputText value="#{productController.quantity}" 
+	<div>Quantita': <h:inputText value="#{productController.quantity}" 
                      required="true"
                      requiredMessage="La quantita' e' obbligatoria!"
                      converterMessage="La quantita' deve essere un numero!"
@@ -39,10 +39,8 @@
                      
 	</div>
 	<div>
-		<h:commandButton value="Submit"  action="#{productController.createProduct}"/>
+		<h:commandButton value="Salva"  action="#{productController.createProduct}"/>
 	</div>
-	<h:commandLink action="#{productController.listProducts}"
-						value="Lista Prodotti" />
 </h:form>
 </f:view>
 </body>

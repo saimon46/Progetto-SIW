@@ -8,17 +8,42 @@
 </head>
 <body>
 <f:view>
+<h:form>
 <h:message for="customerPage" styleClass="error"/>
 <h4>Log-In Effettuato come: ${customerController.customer.firstName} ${customerController.customer.lastName}</h4>
-<h3>Utente: Funzionalità</h3>
-
-<h4>.....Da implementare.....</h4>
-
-<div>
+</h:form>
+<br>
+<h:form>
+<table border="2">
+	<tr>
+		<td>
+			<h4> ${customerController.customer.firstName}, cosa vuoi fare? </h4>
+		</td>		 
+	</tr>
+	
+	<tr>
+		<td>
+		<ul><li><h:commandLink action="#{productController.listProducts}"
+						value="Controlla i Prodotti in Negozio" /></li></ul>
+		</td>
+	</tr>	
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/customerInfo.jsp" />'>Verifica i miei dati</a></li></ul>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 3</a></li></ul>
+		</td>
+	</tr>
+</table>
+<br>
+</h:form>
 <h:form>
 	<h:commandButton value="Logout"  action="#{customerController.logoutCustomer}"/>
 </h:form>
-</div>
 </f:view>
 </body>
 </html>

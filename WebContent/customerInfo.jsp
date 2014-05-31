@@ -19,9 +19,7 @@
 <div>Data di Nascita: ${customerController.customer.dateOfBirth}</div>
 <div>Data di Registrazione: ${customerController.customer.registrationDate}</div>
 <div>
-<h:form>
-	<h:commandButton value="Logout"  action="#{customerController.logoutCustomer}"/>
-</h:form>
+<br><br><a href='<c:url value="/faces/customerPage.jsp" />'>Torna Indietro</a>
 </div>
 </f:view>
 </body>

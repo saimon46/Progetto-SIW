@@ -58,7 +58,7 @@
 		<td>
 			<div>Data di Nascita: <t:inputDate value="#{customerController.dateOfBirth}" 
                      required="true"
-                     requiredMessage="*"
+					 requiredMessage="*"
                      id="dateOfBirth"/> <h:message for="dateOfBirth" />
 			</div>
 		</td>

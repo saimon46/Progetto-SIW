@@ -31,8 +31,7 @@ public class CustomerController {
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = new Date();
 			this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
-			FacesContext.getCurrentInstance().addMessage("customerPage", new FacesMessage("Registrazione avvenuta con successo!"));
-			return "customerPage";
+			return "registrationDone";
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();

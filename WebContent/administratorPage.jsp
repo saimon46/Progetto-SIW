@@ -8,8 +8,43 @@
 </head>
 <body>
 <f:view>
-<h1>Benvenuto ${administratorController.administrator.nickname}</h1>
-<h2>Login Eseguito!</h2>
+<h1>Amministratore collegato: ${administratorController.administrator.nickname}</h1>
+
+<h:form>
+<table border="2">
+	<tr>
+		<td>
+			<h4> Operazioni d'amministrazione disponibili </h4>
+		</td>		 
+	</tr>
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/newProduct.jsp" />'>Inserisci Nuovo Prodotto nel DB</a></li></ul>
+		</td>
+	</tr>	
+	
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 2</a></li></ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 3</a></li></ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		<ul><li><h:commandLink action="#{productController.listProducts}"
+						value="Controlla i Prodotti in Negozio" /></li></ul>
+		</td>
+	</tr>
+</table>
+<br>
+</h:form>
+
 <div>
 <h:form>
 	<h:commandButton value="Logout"  action="#{administratorController.logoutAdministrator}"/>
