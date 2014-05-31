@@ -27,7 +27,7 @@
 			</div>
 		</td>
 	</tr>
-	<tr>	
+	<tr>
 		<td>
 			<div>Cognome: <h:inputText value="#{administratorController.lastName}" 
                      required="true"
@@ -47,10 +47,10 @@
 	</tr>
 	<tr>	
 		<td>
-			<div>Password: <h:inputSecret value="#{administratorController.password}" 
+			<div>Password: <h:inputSecret value="#{administratorController.passwordCustomer}" 
                      required="true"
                      requiredMessage="*"
-                     id="password"/> <h:message for="password" />
+                     id="passwordCustomer"/> <h:message for="passwordCustomer" />
 			</div>
 		</td>
 	</tr>

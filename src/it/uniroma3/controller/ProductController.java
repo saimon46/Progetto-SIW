@@ -11,10 +11,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@SessionScoped
 public class ProductController {
 	
-	@ManagedProperty(value="#{sessionScope['id']}")
+	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
 	private String name, description, code;

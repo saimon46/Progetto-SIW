@@ -57,13 +57,12 @@
 	</tr>	
 </table>
 </h:form>
-
 	<ul>
 			<h:form>
 				<h:commandButton action="#{productController.listProducts}"
 					value="Visualizza il catalogo dei Prodotti" />
 			</h:form>
-	</ul>	
+	</ul>
 </f:view>		
 </body>
 </html>

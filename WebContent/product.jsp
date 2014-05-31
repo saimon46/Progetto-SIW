@@ -1,5 +1,7 @@
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,10 @@
 <div>Descrizione: ${productController.product.description}</div>
 
 <br><br><br>
-<a href='<c:url value="/faces/products.jsp" />'>Vai alla Lista dei Prodotti</a>
+<h:form>
+	<h:commandButton action="#{productController.listProducts}"
+					value="Ritorna al catalogo dei Prodotti" />
+</h:form>
 		
 </f:view>
 </body>

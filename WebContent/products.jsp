@@ -24,6 +24,10 @@
 	</c:forEach>
 </table>
 </h:form>
+
+<br>
+<a href='<c:url value="/faces/index.jsp" />'>Vai all'Index</a>
+
 </f:view>
 </body>
 </html>
