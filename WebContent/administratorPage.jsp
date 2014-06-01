@@ -25,7 +25,15 @@
 	
 	<tr>
 		<td>
-		<ul><li><a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a></li></ul>
+		<ul><li>
+		<a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a>
+		</li></ul>
+		<ul><li>
+		<h:form>
+		<h:commandLink action="#{customerController.listCustomers}"
+					value="Lista degli Utenti Registrati" />
+		</h:form>
+		</li></ul>
 		</td>
 	</tr>
 	
@@ -43,8 +51,8 @@
 	
 	<tr>
 		<td>
-		<ul><li><h:commandLink action="#{productController.listProducts}"
-						value="Controlla i Prodotti in Negozio" /></li></ul>
+		<ul><li><h:commandLink action="#{productController.listProducts}" 
+				value="Controlla i Prodotti in Negozio" /></li></ul>
 		</td>
 	</tr>
 </table>

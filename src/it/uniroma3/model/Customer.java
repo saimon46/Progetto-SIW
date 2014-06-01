@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(name = "findAllCustomers", query = "SELECT c FROM Customer c")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

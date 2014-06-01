@@ -20,6 +20,7 @@ public class CustomerController {
 	private String firstName, lastName, password, email, phoneNumber, street, city, state, zipcode, country;
 	private Date dateOfBirth, registrationDate;
 	private List<Order> orders;
+	private List<Customer> customers; //Tutti gli utenti registrati
 	
 	private Customer customer;
 	
@@ -84,7 +85,22 @@ public class CustomerController {
 		this.dateOfBirth = null;
 		this.registrationDate = null;
 	}
-
+	
+	public String listCustomers() {
+		this.customers = customerFacade.getAllCustomers();
+		return "allCustomers";
+	}
+	
+	public String findCustomer() {
+		this.customer = customerFacade.getCustomer(email);
+		return "allCustomers";
+	}
+	
+	public String findProduct(String email) {
+		this.customer = customerFacade.getCustomer(email);
+		return "allCustomers";
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -135,6 +151,15 @@ public class CustomerController {
 
 	public Date getRegistrationDate() {
 		return registrationDate;
+	}
+
+	
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
 	}
 
 	public String getStreet() {
