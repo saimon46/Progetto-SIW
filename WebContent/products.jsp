@@ -26,7 +26,8 @@
 </h:form>
 
 <br>
-<a href='<c:url value="/faces/index.jsp" />'>Vai all'Index</a>
+
+<a href='<c:url value="/faces/index.jsp" />'>Vai alla HomePage</a>
 
 </f:view>
 </body>

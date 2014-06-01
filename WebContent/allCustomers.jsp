@@ -16,11 +16,9 @@
 		<th>E-mail</th><th>Nome</th><th>Cognome</th><th>Telefono</th><th>Data Registrazione</th>
 	</tr>
 	<c:forEach var="customer" items="#{customerController.customers}">
-		<tr><td>
-		<h:commandLink action="#{customerController.findCustomer}" value="#{customer.email}">
-			<f:param name="id" value="#{customer.id}" />
-		</h:commandLink>
-		</td><td>${customer.firstName}</td><td>${customer.lastName}</td><td>${customer.phoneNumber}</td><td>${customer.registrationDate}</td></tr>
+	<tr>
+	   <td>${customer.email}</td><td>${customer.firstName}</td><td>${customer.lastName}</td><td>${customer.phoneNumber}</td><td>${customer.registrationDate}</td>
+	</tr>
 	</c:forEach>
 </table>
 </h:form>

@@ -66,6 +66,13 @@ public class CustomerController {
 		}
 	}
 	
+	public boolean isLogged() {
+		if (this.customer != null)
+			return true;
+		else
+			return false;
+	}
+	
 	public String logoutCustomer() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
@@ -93,12 +100,12 @@ public class CustomerController {
 	
 	public String findCustomer() {
 		this.customer = customerFacade.getCustomer(email);
-		return "allCustomers";
+		return "customerInfo";
 	}
 	
-	public String findProduct(String email) {
+	public String findCustomer(String email) {
 		this.customer = customerFacade.getCustomer(email);
-		return "allCustomers";
+		return "customerInfo";
 	}
 	
 	public String getFirstName() {
