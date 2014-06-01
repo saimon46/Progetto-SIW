@@ -87,6 +87,17 @@ public class AdministratorController {
 		this.registrationDate = null;
 	}
 	
+	public boolean isLogged() {
+		if (this.administrator != null)
+			return true;
+		else
+			return false;
+	}
+	
+	public String logoutAdministrator() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "index";
+	}
 	
 	public void setPassword(String password) {
 		this.password = password;
@@ -94,11 +105,6 @@ public class AdministratorController {
 	
 	public String getPassword() {
 		return password;
-	}
-
-	public String logoutAdministrator() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "index";
 	}
 
 	public String getNickname() {
