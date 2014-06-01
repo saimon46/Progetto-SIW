@@ -16,17 +16,17 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class CustomerController {
-	
+
 	private String firstName, lastName, password, email, phoneNumber, street, city, state, zipcode, country;
 	private Date dateOfBirth, registrationDate;
 	private List<Order> orders;
 	private List<Customer> customers; //Tutti gli utenti registrati
-	
+
 	private Customer customer;
-	
+
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
-	
+
 	public String createCustomer() {
 		try{
 			/*Genera automaticamente la data di oggi */
@@ -45,7 +45,7 @@ public class CustomerController {
 		this.orders = customerFacade.getAllOrders(customer);
 		return "products";
 	}
-	
+
 	public String loginCustomer() {
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
@@ -65,12 +65,19 @@ public class CustomerController {
 			return "index";
 		}
 	}
-	
+
+	public boolean isLogged() {
+		if (this.customer != null)
+			return true;
+		else
+			return false;
+	}
+
 	public String logoutCustomer() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
 	}
-	
+
 	private void resetCustomer(){
 		this.firstName = null;
 		this.lastName = null;
@@ -85,22 +92,22 @@ public class CustomerController {
 		this.dateOfBirth = null;
 		this.registrationDate = null;
 	}
-	
+
 	public String listCustomers() {
 		this.customers = customerFacade.getAllCustomers();
 		return "allCustomers";
 	}
-	
+
 	public String findCustomer() {
 		this.customer = customerFacade.getCustomer(email);
-		return "allCustomers";
+		return "customerInfo";
 	}
-	
-	public String findProduct(String email) {
+
+	public String findCustomer(String email) {
 		this.customer = customerFacade.getCustomer(email);
-		return "allCustomers";
+		return "customerInfo";
 	}
-	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -153,7 +160,7 @@ public class CustomerController {
 		return registrationDate;
 	}
 
-	
+
 	public List<Customer> getCustomers() {
 		return customers;
 	}

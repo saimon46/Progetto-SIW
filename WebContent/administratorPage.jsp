@@ -22,33 +22,31 @@
 		<ul><li><a href='<c:url value="/faces/newProduct.jsp" />'>Inserisci Nuovo Prodotto nel DB</a></li></ul>
 		</td>
 	</tr>	
-	
+
 	<tr>
 		<td>
 		<ul><li>
 		<a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a>
 		</li></ul>
 		<ul><li>
-		<h:form>
 		<h:commandLink action="#{customerController.listCustomers}"
 					value="Lista degli Utenti Registrati" />
-		</h:form>
 		</li></ul>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>
 		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 3</a></li></ul>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>
 		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 4</a></li></ul>
 		</td>
 	</tr>
-	
+
 	<tr>
 		<td>
 		<ul><li><h:commandLink action="#{productController.listProducts}" 
