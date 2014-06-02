@@ -12,14 +12,21 @@
 <f:view>
 <jsp:include page="header.jsp"/>
 
-<h2>Dettagli Completi</h2>
+
+<h3>Ordine Aperto correttamente!</h3>
+
+
+<h2>Dettagli Preliminari</h2>
 <div>ID Ordine: ${orderController.order.id}</div>
 <div>Data Creazione: ${orderController.order.creationTime}</div>
-<div>Data Completamento: ${orderController.order.completedTime}</div>
-<div>Data Spedizione: ${orderController.order.processedTime}</div>
 
-
-<h2>Qui vanno stampate le righe ordine.....</h2>
+<h4>Nella lista dei prodotti in negozio, clicca sui nomi dei prodotti desiderati per aggiungerli
+		al tuo ordine</h4>
+		
+		<h:form>
+		<h:commandButton action="#{productController.listProducts}"
+			value="Lista dei Prodotti in Negozio" />
+		</h:form>
 
 </f:view>
 </body>
