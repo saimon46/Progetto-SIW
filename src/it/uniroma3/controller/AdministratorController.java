@@ -67,7 +67,7 @@ public class AdministratorController {
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();
-			FacesContext.getCurrentInstance().addMessage("registrationCustomerByAdmin:signinCustomerByAdmin", new FacesMessage("Utente già registrato!"));
+			FacesContext.getCurrentInstance().addMessage("registrationCustomer:signinCustomer", new FacesMessage("Utente già registrato!"));
 			return "customerRegistrationByAdmin";
 		}
 	}

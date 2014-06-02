@@ -9,6 +9,7 @@
 </head>
 <body>
 <f:view>
+<jsp:include page="header.jsp"/>
 <h1>Catalogo Prodotti:</h1>
 <h:form>
 <table>

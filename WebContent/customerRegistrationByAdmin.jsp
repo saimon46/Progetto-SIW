@@ -13,6 +13,7 @@
 </head>
 <body>
 <f:view>
+<jsp:include page="header.jsp"/>
 <h:form id="registrationCustomerByAdmin">
 <table border="2">
 	<tr>
@@ -120,8 +121,8 @@
 	<tr>
 		<td>
 			<div>
-		<h:commandButton id="signinCustomerByAdmin" value="Registra"
-			action="#{administratorController.createCustomer}"/>
+			<h:commandButton id="signinCustomerByAdmin" value="Registra"
+				action="#{administratorController.createCustomer}"/>
 			<h:message for="signinCustomerByAdmin" styleClass="error"/>
 			</div>
 		</td>

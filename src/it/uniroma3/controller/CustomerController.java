@@ -65,22 +65,14 @@ public class CustomerController {
 			return "index";
 		}
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e02124798f79bdd91538b5cbe9f82fc0f621774a
 	public boolean isLogged() {
 		if (this.customer != null)
 			return true;
 		else
 			return false;
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e02124798f79bdd91538b5cbe9f82fc0f621774a
 	public String logoutCustomer() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
@@ -110,11 +102,7 @@ public class CustomerController {
 		this.customer = customerFacade.getCustomer(email);
 		return "customerInfo";
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e02124798f79bdd91538b5cbe9f82fc0f621774a
 	public String findCustomer(String email) {
 		this.customer = customerFacade.getCustomer(email);
 		return "customerInfo";

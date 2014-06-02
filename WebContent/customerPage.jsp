@@ -8,9 +8,9 @@
 </head>
 <body>
 <f:view>
+<jsp:include page="header.jsp"/>
 <h:form>
 <h:message for="customerPage" styleClass="error"/>
-<h4>Log-In Effettuato come: ${customerController.customer.firstName} ${customerController.customer.lastName}</h4>
 </h:form>
 <br>
 <h:form>

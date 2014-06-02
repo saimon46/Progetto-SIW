@@ -8,7 +8,8 @@
 </head>
 <body>
 <f:view>
-<h1>Amministratore collegato: ${administratorController.administrator.nickname}</h1>
+
+<jsp:include page="header.jsp"/>
 
 <h:form>
 <table border="2">
@@ -26,7 +27,7 @@
 	<tr>
 		<td>
 		<ul><li>
-		<a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a>
+		<a href='<c:url value="/faces/customerRegistration.jsp" />'>Registra un Nuovo Utente</a>
 		</li></ul>
 		<ul><li>
 		<h:commandLink action="#{customerController.listCustomers}"

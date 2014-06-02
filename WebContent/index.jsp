@@ -10,8 +10,8 @@
 <title>Negozio Online</title>
 </head>
 <body>
-
 <f:view>
+<jsp:include page="header.jsp"/>
 <h1>Negozio di acquisti online</h1>
 <h3>Benvenuto Visitatore</h3>
 <h:form id="loginCustomer">

@@ -120,9 +120,18 @@
 	<tr>
 		<td>
 			<div>
-		<h:commandButton id="signinCustomer" value="Registrati"
-			action="#{customerController.createCustomer}"/>
-			<h:message for="signinCustomer" styleClass="error"/>
+			<c:choose>
+				<c:when test="${administratorController.administrator != null}">
+					<h:commandButton id="signinCustomer" value="Registra"
+						action="#{administratorController.createCustomer}"/>
+					<h:message for="signinCustomer" styleClass="error"/>
+				</c:when>
+				<c:otherwise>
+					<h:commandButton id="signinCustomer" value="Registrati"
+						action="#{customerController.createCustomer}"/>
+					<h:message for="signinCustomer" styleClass="error"/>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</td>
 	</tr>

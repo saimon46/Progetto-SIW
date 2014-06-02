@@ -9,6 +9,7 @@
 </head>
 <body>
 <f:view>
+<jsp:include page="header.jsp"/>
 <h:form>
     <div>Nome: <h:inputText value="#{productController.name}" 
                      required="true"
