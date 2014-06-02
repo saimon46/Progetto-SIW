@@ -8,10 +8,12 @@ import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
+@SessionScoped
 public class OrderController {
 	
 	@ManagedProperty(value="#{param.id}")
@@ -31,8 +33,7 @@ public class OrderController {
 	
 	public String createOrder() {
 		this.order = orderFacade.createOrder(new Date(), this.currentCustomer);
-		/*Il ritorno è alla pagina dei prodotti, con un messaggio nascosto stampato in alto*/
-		return "order"; 
+		return "orderJustOpened"; 
 	}
 	
 	public Long getId() {

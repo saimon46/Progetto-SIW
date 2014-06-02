@@ -9,7 +9,7 @@
 <body>
 <f:view>
 <jsp:include page="header.jsp"/>
-<h1>Ciao ${customerController.currentCustomer.firstName} ${customerController.customer.lastName}</h1>
+<h1>Ciao ${customerController.currentCustomer.firstName} ${customerController.currentCustomer.lastName}</h1>
 <h2>Queste sono le informazioni associate al tuo account:</h2>
 <div>Via/Piazza: ${customerController.currentCustomer.address.street}</div>
 <div>Città: ${customerController.currentCustomer.address.city}</div>

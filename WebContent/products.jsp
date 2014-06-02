@@ -10,15 +10,6 @@
 <body>
 <f:view>
 <jsp:include page="header.jsp"/>
-
-<c:if test="${orderController.order != null}">
-<p>
-	<h3>Nuovo ordine aperto correttamente!</h3>
-	<h4>Segue la lista dei prodotti, clicca sui nomi dei prodotti desiderati per aggiungerli
-			al tuo ordine</h4>
-<p>
-</c:if>
-
 <h1>Catalogo Prodotti:</h1>
 <h:form>
 <table>
@@ -36,6 +27,11 @@
 </h:form>
 
 <br>
+<c:if test="${orderController.order != null}">
+<p>
+	<a href='<c:url value="/faces/orderJustOpened.jsp" />'>Torna all'ordine</a>
+<p>
+</c:if>
 
 <a href='<c:url value="/faces/index.jsp" />'>Vai alla HomePage</a>
 
