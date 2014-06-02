@@ -13,13 +13,18 @@
 <jsp:include page="header.jsp"/>
 
 <h2>Dettagli Completi</h2>
-<div>ID Ordine: ${orderController.order.id}</div>
-<div>Data Creazione: ${orderController.order.creationTime}</div>
-<div>Data Completamento: ${orderController.order.completedTime}</div>
-<div>Data Spedizione: ${orderController.order.processedTime}</div>
+<div>ID Ordine: ${orderController.currentOrder.id}</div>
+<div>Data Creazione: ${orderController.currentOrder.creationTime}</div>
+<div>Data Completamento: ${orderController.currentOrder.completedTime}</div>
+<div>Data Spedizione: ${orderController.currentOrder.processedTime}</div>
 
 
 <h2>Qui vanno stampate le righe ordine.....</h2>
+
+<h:form>
+	<h:commandButton action="#{productController.listProducts}"
+		value="Lista dei Prodotti in Negozio" />
+</h:form>
 
 </f:view>
 </body>

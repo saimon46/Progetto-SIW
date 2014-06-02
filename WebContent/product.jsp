@@ -18,6 +18,13 @@
 <div>Quantità: ${productController.product.quantity}</div>
 <div>Descrizione: ${productController.product.description}</div>
 
+<c:if test="${orderController.currentOrder != null}">
+<p>
+	<h:commandButton action="#{productController.listProducts}"
+					value="Aggiungi all'ordine corrente"/>
+<p>
+</c:if>
+
 <br><br><br>
 <h:form>
 	<h:commandButton action="#{productController.listProducts}"

@@ -10,18 +10,16 @@
 <body>
 <f:view>
 <jsp:include page="header.jsp"/>
-<h1>Catalogo Prodotti:</h1>
+<h1>Lista ordini:</h1>
 <h:form>
 <table>
 	<tr>
-		<th>Nome</th><th>Prezzo</th><th>Quantità</th>
+		<th>ID</th><th>Chiuso</th><th>Evaso</th>
 	</tr>
-	<c:forEach var="product" items="#{productController.products}">
+	<c:forEach var="order" items="#{orderController.orders}">
 		<tr><td>
-		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
-			<f:param name="id" value="#{product.id}" />
-		</h:commandLink>
-		</td><td>${product.price}</td><td>${product.quantity}</td></tr>
+		${order.id}
+		</td><td>${order.chiuso}</td><td>${order.evaso}</td></tr>
 	</c:forEach>
 </table>
 </h:form>

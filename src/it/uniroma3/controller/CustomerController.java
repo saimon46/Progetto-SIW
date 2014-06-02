@@ -42,8 +42,8 @@ public class CustomerController {
 	}
 
 	public String listOrders() {
-		this.orders = customerFacade.getAllOrders(currentCustomer);
-		return "products";
+		this.orders = currentCustomer.getOrders();
+		return "customerOrders";
 	}
 
 	public String loginCustomer() {
