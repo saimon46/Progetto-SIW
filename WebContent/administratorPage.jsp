@@ -57,12 +57,6 @@
 </table>
 <br>
 </h:form>
-
-<div>
-<h:form>
-	<h:commandButton value="Logout"  action="#{administratorController.logoutAdministrator}"/>
-</h:form>
-</div>
 </f:view>
 </body>
 </html>

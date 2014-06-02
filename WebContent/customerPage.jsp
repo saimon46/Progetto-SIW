@@ -41,9 +41,6 @@
 </table>
 <br>
 </h:form>
-<h:form>
-	<h:commandButton value="Logout"  action="#{customerController.logoutCustomer}"/>
-</h:form>
 </f:view>
 </body>
 </html>

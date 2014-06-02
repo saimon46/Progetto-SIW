@@ -63,7 +63,7 @@ public class AdministratorController {
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = new Date();
 			this.customer = customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
-			return "registrationDoneByAdmin";
+			return "registrationDone";
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();
