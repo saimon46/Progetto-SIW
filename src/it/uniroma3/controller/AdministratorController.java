@@ -4,7 +4,6 @@ import java.util.Date;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
-import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 
 import javax.ejb.EJB;
@@ -23,7 +22,7 @@ public class AdministratorController {
 	
 	private String nickname;
 	private String password;
-	private Administrator administrator;
+	private Administrator currentAdministrator;
 	
 	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
@@ -32,15 +31,16 @@ public class AdministratorController {
 	private CustomerFacade customerFacade;
 	
 	public String createAdministrator() {
-		this.administrator = administratorFacade.createAdministrator(nickname, password);
+		this.currentAdministrator = administratorFacade.createAdministrator(nickname, password);
 		return "administratorPage";
 	}
 	
 	public String loginAdministrator() {
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().remove("currentCustomer");
 		try{
 			Administrator administrator = administratorFacade.getAdministratorByNickname(nickname);
 			if (administrator.verificaPassword(this.password)) {
-				setAdministrator(administrator);
+				setCurrentAdministrator(administrator);
 				return "administratorPage";
 			}
 			else{
@@ -61,6 +61,7 @@ public class AdministratorController {
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = new Date();
 			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
+			this.resetCustomer();
 			return "registrationDoneByAdmin";
 		}catch(Exception e){
 			/*Utente già registrato*/
@@ -106,12 +107,12 @@ public class AdministratorController {
 		this.nickname = nickname;
 	}
 
-	public Administrator getAdministrator() {
-		return administrator;
+	public Administrator getCurrentAdministrator() {
+		return currentAdministrator;
 	}
 
-	public void setAdministrator(Administrator administrator) {
-		this.administrator = administrator;
+	public void setCurrentAdministrator(Administrator administrator) {
+		this.currentAdministrator = administrator;
 	}
 
 	//Seguono i Getters e Setters dei dati del nuovo customer

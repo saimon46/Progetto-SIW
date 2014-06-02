@@ -8,16 +8,17 @@
 </head>
 <body>
 <f:view>
-<h1>Ciao ${customerController.customer.firstName} ${customerController.customer.lastName}</h1>
+<jsp:include page="header.jsp"/>
+<h1>Ciao ${customerController.currentCustomer.firstName} ${customerController.customer.lastName}</h1>
 <h2>Queste sono le informazioni associate al tuo account:</h2>
-<div>Via/Piazza: ${customerController.customer.address.street}</div>
-<div>Città: ${customerController.customer.address.city}</div>
-<div>Provincia: ${customerController.customer.address.country}</div>
-<div>Stato: ${customerController.customer.address.state}</div>
-<div>CAP: ${customerController.customer.address.zipcode}</div>
-<div>Numero di Telefono: ${customerController.customer.phoneNumber}</div>
-<div>Data di Nascita: ${customerController.customer.dateOfBirth}</div>
-<div>Data di Registrazione: ${customerController.customer.registrationDate}</div>
+<div>Via/Piazza: ${customerController.currentCustomer.address.street}</div>
+<div>Città: ${customerController.currentCustomer.address.city}</div>
+<div>Provincia: ${customerController.currentCustomer.address.country}</div>
+<div>Stato: ${customerController.currentCustomer.address.state}</div>
+<div>CAP: ${customerController.currentCustomer.address.zipcode}</div>
+<div>Numero di Telefono: ${customerController.currentCustomer.phoneNumber}</div>
+<div>Data di Nascita: ${customerController.currentCustomer.dateOfBirth}</div>
+<div>Data di Registrazione: ${customerController.currentCustomer.registrationDate}</div>
 <div>
 <br><br><a href='<c:url value="/faces/customerPage.jsp" />'>Torna Indietro</a>
 </div>

@@ -11,8 +11,8 @@
 </head>
 <body>
 <f:view>
-<jsp:include page="header.jsp"/>
 <h1>Negozio di acquisti online</h1>
+<jsp:include page="header.jsp"/>
 <h3>Benvenuto Visitatore</h3>
 <h:form id="loginCustomer">
 <table border="2">

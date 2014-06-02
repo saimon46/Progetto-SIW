@@ -17,7 +17,7 @@
 <table border="2">
 	<tr>
 		<td>
-			<h4> ${customerController.customer.firstName}, cosa vuoi fare? </h4>
+			<h4> ${customerController.currentCustomer.firstName}, cosa vuoi fare? </h4>
 		</td>		 
 	</tr>
 	

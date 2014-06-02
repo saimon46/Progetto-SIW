@@ -17,7 +17,7 @@
 	
 	<!--  Aggiungere qui un Timestop -->
 	<c:choose>
-		<c:when test="${administratorController.administrator != null}">
+		<c:when test="${administratorController.currentAdministrator != null}">
 			<meta http-equiv="refresh" content="0; url=faces/administratorPage.jsp" />
 		</c:when>
 		<c:otherwise>

@@ -22,7 +22,7 @@ public class CustomerController {
 	private List<Order> orders;
 	private List<Customer> customers; //Tutti gli utenti registrati
 
-	private Customer customer;
+	private Customer currentCustomer;
 
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
@@ -31,7 +31,7 @@ public class CustomerController {
 		try{
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = new Date();
-			this.customer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
+			this.currentCustomer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
 			return "registrationDone";
 		}catch(Exception e){
 			/*Utente già registrato*/
@@ -42,15 +42,16 @@ public class CustomerController {
 	}
 
 	public String listOrders() {
-		this.orders = customerFacade.getAllOrders(customer);
+		this.orders = customerFacade.getAllOrders(currentCustomer);
 		return "products";
 	}
 
 	public String loginCustomer() {
+		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().remove("currentAdministrator");
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
 			if (customer.verificaPassword(this.password)) {
-				setCustomer(customer);
+				setCurrentCustomer(customer);
 				return "customerPage";
 			}
 			else{
@@ -92,12 +93,12 @@ public class CustomerController {
 	}
 
 	public String findCustomer() {
-		this.customer = customerFacade.getCustomer(email);
+		this.currentCustomer = customerFacade.getCustomer(email);
 		return "customerInfo";
 	}
 
 	public String findCustomer(String email) {
-		this.customer = customerFacade.getCustomer(email);
+		this.currentCustomer = customerFacade.getCustomer(email);
 		return "customerInfo";
 	}
 
@@ -214,11 +215,11 @@ public class CustomerController {
 		this.orders = orders;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Customer getCurrentCustomer() {
+		return currentCustomer;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCurrentCustomer(Customer customer) {
+		this.currentCustomer = customer;
 	}
 }

@@ -4,11 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import it.uniroma3.model.Customer;
-import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
-import it.uniroma3.model.Product;
-import it.uniroma3.model.ProductFacade;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +21,7 @@ public class OrderController {
 	private Date creationTime, completedTime, processedTime;
 	private Order order;
 	
-	@ManagedProperty (value="#{sessionScope['customerController'].customer}")
+	@ManagedProperty (value="#{sessionScope['customerController'].currentCustomer}")
 	private Customer currentCustomer;
 	
 	private List<Order> orders;
@@ -35,7 +32,7 @@ public class OrderController {
 	public String createOrder() {
 		this.order = orderFacade.createOrder(new Date(), this.currentCustomer);
 		/*Il ritorno è alla pagina dei prodotti, con un messaggio nascosto stampato in alto*/
-		return "products"; 
+		return "order"; 
 	}
 	
 	public Long getId() {
@@ -101,11 +98,11 @@ public class OrderController {
 		this.order = order;
 	}
 
-	public Customer getcurrentCstomer() {
+	public Customer getCurrentCustomer() {
 		return currentCustomer;
 	}
 
-	public void setcurrentCustomer(Customer customer) {
+	public void setCurrentCustomer(Customer customer) {
 		this.currentCustomer = customer;
 	}
 

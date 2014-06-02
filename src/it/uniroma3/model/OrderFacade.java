@@ -3,13 +3,12 @@ package it.uniroma3.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.Date;
 import java.util.List;
 
-@Stateless
+@Stateless(name="orderFacade")
 public class OrderFacade {
 	
     @PersistenceContext(unitName = "siw-project")

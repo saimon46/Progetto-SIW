@@ -27,7 +27,7 @@
 	<tr>
 		<td>
 		<ul><li>
-		<a href='<c:url value="/faces/customerRegistration.jsp" />'>Registra un Nuovo Utente</a>
+		<a href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra un Nuovo Utente</a>
 		</li></ul>
 		<ul><li>
 		<h:commandLink action="#{customerController.listCustomers}"

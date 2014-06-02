@@ -34,7 +34,7 @@ public class Order {
 	@OneToMany
 	private List<OrderLine> orderLines;
 
-    public Order (Date creationTime, Customer customer) {
+	public Order (Date creationTime, Customer customer) {
     	this.creationTime = creationTime;
     	this.customer = customer;
     	this.chiuso = false; //Alla creazione, l'ordine è ancora aperto
@@ -76,5 +76,21 @@ public class Order {
 
 	public void setProcessedTime(Date processedTime) {
 		this.processedTime = processedTime;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
+	}
+
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
 	}
 }
