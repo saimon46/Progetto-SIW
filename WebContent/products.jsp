@@ -29,7 +29,9 @@
 <br>
 <c:if test="${orderController.order != null}">
 <p>
-	<a href='<c:url value="/faces/orderJustOpened.jsp" />'>Torna all'ordine</a>
+<h3><a href='<c:url value="/faces/orderJustOpened.jsp" />'>
+		<c:out value="Torna all'ordine"/>
+</a></h3>
 <p>
 </c:if>
 
