@@ -36,7 +36,7 @@ public class AdministratorController {
 	}
 	
 	public String loginAdministrator() {
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().remove("currentCustomer");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("customerController");
 		try{
 			Administrator administrator = administratorFacade.getAdministratorByNickname(nickname);
 			if (administrator.verificaPassword(this.password)) {

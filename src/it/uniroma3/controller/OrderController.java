@@ -19,11 +19,10 @@ public class OrderController {
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
-	private boolean chiuso;
-	private Date creationTime, completedTime, processedTime;
-	private Order order;
+	@ManagedProperty(value="#{sessionScope['currentOrder']}")
+	private Order currentOrder;
 	
-	@ManagedProperty (value="#{sessionScope['customerController'].currentCustomer}")
+	@ManagedProperty(value="#{sessionScope['customerController'].currentCustomer}")
 	private Customer currentCustomer;
 	
 	private List<Order> orders;
@@ -32,7 +31,7 @@ public class OrderController {
 	private OrderFacade orderFacade;
 	
 	public String createOrder() {
-		this.order = orderFacade.createOrder(new Date(), this.currentCustomer);
+		this.currentOrder = orderFacade.createOrder(new Date(), this.currentCustomer);
 		return "orderJustOpened"; 
 	}
 	
@@ -50,53 +49,21 @@ public class OrderController {
 	}
 
 	public String findOrder() {
-		this.order = orderFacade.getOrder(id);
+		this.currentOrder = orderFacade.getOrder(id);
 		return "order";
 	}
 	
 	public String findOrder(Long id) {
-		this.order = orderFacade.getOrder(id);
+		this.currentOrder = orderFacade.getOrder(id);
 		return "order";
 	}
 
-	public boolean isChiuso() {
-		return chiuso;
+	public Order getCurrentOrder() {
+		return currentOrder;
 	}
 
-	public void setChiuso(boolean chiuso) {
-		this.chiuso = chiuso;
-	}
-
-	public Date getCreationTime() {
-		return creationTime;
-	}
-
-	public void setCreationTime(Date creationTime) {
-		this.creationTime = creationTime;
-	}
-
-	public Date getCompletedTime() {
-		return completedTime;
-	}
-
-	public void setCompletedTime(Date completedTime) {
-		this.completedTime = completedTime;
-	}
-
-	public Date getProcessedTime() {
-		return processedTime;
-	}
-
-	public void setProcessedTime(Date processedTime) {
-		this.processedTime = processedTime;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setCurrentOrder(Order order) {
+		this.currentOrder = order;
 	}
 
 	public Customer getCurrentCustomer() {

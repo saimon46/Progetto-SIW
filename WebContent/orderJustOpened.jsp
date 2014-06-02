@@ -17,8 +17,8 @@
 
 
 <h2>Dettagli Preliminari</h2>
-<div>ID Ordine: ${orderController.order.id}</div>
-<div>Data Creazione: ${orderController.order.creationTime}</div>
+<div>ID Ordine: ${orderController.currentOrder.id}</div>
+<div>Data Creazione: ${orderController.currentOrder.creationTime}</div>
 
 <h4>Nella lista dei prodotti in negozio, clicca sui nomi dei prodotti desiderati per aggiungerli
 		al tuo ordine</h4>
@@ -27,7 +27,7 @@
 		<h:commandButton action="#{productController.listProducts}"
 			value="Lista dei Prodotti in Negozio" />
 		</h:form>
-
+		
 </f:view>
 </body>
 </html>
