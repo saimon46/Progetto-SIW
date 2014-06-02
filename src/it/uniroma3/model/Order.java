@@ -17,6 +17,9 @@ public class Order {
 	private boolean chiuso; //Stato chiuso dell'ordine
 	
 	@Column
+	private boolean evaso; //Stato chiuso dell'ordine
+	
+	@Column
 	@Temporal (TemporalType.DATE)
 	private Date creationTime; //data di creazione dell'ordine
 	
@@ -50,8 +53,16 @@ public class Order {
 		return chiuso;
 	}
 
-	public void setChiuso(boolean chiuso) {
-		this.chiuso = chiuso;
+	public void setChiuso() {
+		this.chiuso = true;
+	}
+	
+	public boolean isEvaso() {
+		return evaso;
+	}
+
+	public void setEvaso() {
+		this.evaso = true;
 	}
 
 	public Date getCreationTime() {
