@@ -47,7 +47,7 @@ public class CustomerController {
 	}
 
 	public String loginCustomer() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("administatorController");
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("administratorController");
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
 			if (customer.verificaPassword(this.password)) {

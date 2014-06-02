@@ -17,10 +17,16 @@
 <div>Data Creazione: ${orderController.order.creationTime}</div>
 <div>Data Completamento: ${orderController.order.completedTime}</div>
 <div>Data Spedizione: ${orderController.order.processedTime}</div>
+<div>Evasione: ${orderController.order.evaso}</div>
 
 
 <h2>Qui vanno stampate le righe ordine.....</h2>
 
+<h:form>
+	<h:commandButton action="#{productController.listProducts}"
+		value="Lista dei Prodotti in Negozio" />
+</h:form>
+		
 </f:view>
 </body>
 </html>

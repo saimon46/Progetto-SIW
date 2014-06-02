@@ -35,8 +35,16 @@
 	
 	<tr>
 		<td>
-		<ul><li><h:commandLink action="#{orderController.createOrder}"
-						value="Creazione Nuovo ORDINE" /></li></ul>
+	<c:choose>
+		<c:when test="${customerController.lastOrder == null}">
+				<h:commandLink action="#{orderController.createOrder}"
+					value="APRI un Nuovo ORDINE" />
+		</c:when>
+		<c:otherwise>
+			<h:commandLink action="#{orderController.openLastOrder}"
+					value="VAI all'ultimo ordine aperto" />
+		</c:otherwise>
+	</c:choose>
 		</td>
 	</tr>
 </table>
