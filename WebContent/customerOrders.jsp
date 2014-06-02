@@ -16,7 +16,7 @@
 	<tr>
 		<th>ID</th><th>Chiuso</th><th>Evaso</th>
 	</tr>
-	<c:forEach var="order" items="#{orderController.orders}">
+	<c:forEach var="order" items="#{customerController.orders}">
 		<tr><td>
 		${order.id}
 		</td><td>${order.chiuso}</td><td>${order.evaso}</td></tr>

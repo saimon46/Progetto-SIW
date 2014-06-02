@@ -14,7 +14,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
-@SessionScoped
 public class OrderController {
 	
 	@ManagedProperty(value="#{param.id}")
