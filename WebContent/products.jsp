@@ -10,6 +10,15 @@
 <body>
 <f:view>
 <jsp:include page="header.jsp"/>
+
+<c:if test="${orderController.order != null}">
+<p>
+	<h3>Nuovo ordine aperto correttamente!</h3>
+	<h4>Segue la lista dei prodotti, clicca sui nomi dei prodotti desiderati per aggiungerli
+			al tuo ordine</h4>
+<p>
+</c:if>
+
 <h1>Catalogo Prodotti:</h1>
 <h:form>
 <table>

@@ -8,7 +8,6 @@ import it.uniroma3.model.ProductFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 public class ProductController {

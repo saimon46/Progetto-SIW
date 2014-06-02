@@ -30,8 +30,6 @@ public class AdministratorController {
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
-
-	private Customer customer;
 	
 	public String createAdministrator() {
 		this.administrator = administratorFacade.createAdministrator(nickname, password);
@@ -62,8 +60,8 @@ public class AdministratorController {
 		try{
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = new Date();
-			this.customer = customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
-			return "registrationDone";
+			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
+			return "registrationDoneByAdmin";
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();
@@ -86,14 +84,7 @@ public class AdministratorController {
 		this.dateOfBirth = null;
 		this.registrationDate = null;
 	}
-	
-	public boolean isLogged() {
-		if (this.administrator != null)
-			return true;
-		else
-			return false;
-	}
-	
+		
 	public String logoutAdministrator() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
@@ -220,15 +211,4 @@ public class AdministratorController {
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
-	
-	
 }
