@@ -66,13 +66,6 @@ public class CustomerController {
 		}
 	}
 
-	public boolean isLogged() {
-		if (this.customer != null)
-			return true;
-		else
-			return false;
-	}
-
 	public String logoutCustomer() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
