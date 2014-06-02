@@ -2,6 +2,7 @@ package it.uniroma3.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
@@ -26,6 +27,8 @@ public class CustomerController {
 
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
+	
+	private Set<String> mappa;
 
 	public String createCustomer() {
 		try{
@@ -47,7 +50,8 @@ public class CustomerController {
 	}
 
 	public String loginCustomer() {
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().remove("currentAdministrator");
+		this.mappa = FacesContext.getCurrentInstance().getExternalContext().getSessionMap().keySet();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("administatorController");
 		try{
 			Customer customer = customerFacade.getCustomerByEmail(email);
 			if (customer.verificaPassword(this.password)) {
@@ -221,5 +225,13 @@ public class CustomerController {
 
 	public void setCurrentCustomer(Customer customer) {
 		this.currentCustomer = customer;
+	}
+	
+	public Set<String> getMappa() {
+		return mappa;
+	}
+
+	public void setMappa(Set<String> mappa) {
+		this.mappa = mappa;
 	}
 }
