@@ -37,7 +37,7 @@ public class Customer {
 	@OneToOne
 	private Address address;
 	
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
 	private List<Order> orders;
 	
 	public Customer () {
@@ -60,6 +60,10 @@ public class Customer {
 		return this.password.equals(password);
 	}
 	
+	public void addOrder(Order order) {
+		this.orders.add(order);
+	}
+		
 	// ***** Getters and setters *****
 	
 	public Long getId() {
@@ -122,5 +126,12 @@ public class Customer {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 }

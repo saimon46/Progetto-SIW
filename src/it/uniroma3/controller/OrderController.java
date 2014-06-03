@@ -11,15 +11,15 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
-@SessionScoped
 public class OrderController {
 	
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
-	@ManagedProperty(value="#{sessionScope['currentOrder']}")
+	@ManagedProperty(value="#{currentOrder}")
 	private Order currentOrder;
 	
 	@ManagedProperty(value="#{sessionScope['customerController'].currentCustomer}")
@@ -32,7 +32,9 @@ public class OrderController {
 	
 	public String createOrder() {
 		this.currentOrder = orderFacade.createOrder(new Date(), this.currentCustomer);
-		return "orderJustOpened"; 
+		this.currentCustomer.addOrder(this.currentOrder);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
+		return "order";
 	}
 	
 	public Long getId() {

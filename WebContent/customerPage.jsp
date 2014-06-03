@@ -32,7 +32,6 @@
 		<ul><li><a href='<c:url value="/faces/customerInfo.jsp" />'>Verifica i miei dati Utente</a></li></ul>
 		</td>
 	</tr>	
-	
 	<tr>
 		<td>
 	<c:choose>
@@ -45,6 +44,12 @@
 					value="VAI all'ultimo ordine aperto" />
 		</c:otherwise>
 	</c:choose>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<ul><li><h:commandLink action="#{customerController.listOrders}"
+						value="Lista ORDINI" /></li></ul>
 		</td>
 	</tr>
 </table>
