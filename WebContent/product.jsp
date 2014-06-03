@@ -27,8 +27,19 @@
 
 <c:if test="${orderController.currentOrder != null}">
 <p>
+<h:form>
 	<h:commandButton action="#{productController.listProducts}"
 					value="Aggiungi all'ordine corrente"/>
+</h:form>
+<p>
+</c:if>
+
+<c:if test="${administratorController.currentAdministrator != null}">
+<p>
+<h:form>
+<h:commandButton action="#{administratorController.modifyProduct}"
+					value="Modifica" />
+</h:form>
 <p>
 </c:if>
 

@@ -18,6 +18,7 @@
 			<h4> Operazioni d'amministrazione disponibili </h4>
 		</td>		 
 	</tr>
+	
 	<tr>
 		<td>
 		<ul><li>
@@ -25,7 +26,7 @@
 					value="Inserisci un Nuovo Prodotto" />
 		</li></ul>
 		</td>
-	</tr>	
+	</tr>
 
 	<tr>
 		<td>
@@ -42,12 +43,6 @@
 		<h:commandLink action="#{customerController.listCustomers}"
 					value="Lista degli Utenti Registrati" />
 		</li></ul>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 4</a></li></ul>
 		</td>
 	</tr>
 

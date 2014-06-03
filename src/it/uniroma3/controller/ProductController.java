@@ -8,8 +8,10 @@ import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 public class ProductController {
@@ -38,9 +40,14 @@ public class ProductController {
 	}
 	
 	public String addProvider() {
-		this.provider = providerFacade.getProvider(this.productName);
-		this.product.addProvider(this.provider);
-		return "modifyProduct";
+		try{
+			this.provider = providerFacade.getProvider(this.productName);
+			this.product.addProvider(this.provider);
+			return "modifyProduct";
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage("addProviderMenu:addProvider", new FacesMessage("Questo fornitore e' gia' associato!"));
+			return "modifyProduct";
+		}
 	}
 
 	public Long getId() {

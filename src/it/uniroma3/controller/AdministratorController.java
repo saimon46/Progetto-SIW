@@ -5,13 +5,16 @@ import java.util.List;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
+import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
+import it.uniroma3.model.Product;
 import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -27,6 +30,9 @@ public class AdministratorController {
 	private String password;
 	private Administrator currentAdministrator;
 	private List<Provider> providers;
+	
+	@ManagedProperty(value="#{sessionScope['productController'].product}")
+	private Product currentProduct;
 
 	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
@@ -101,6 +107,11 @@ public class AdministratorController {
 	public String newProduct() {
 		this.providers = providerFacade.getAllProvider();
 		return "newProduct";
+	}
+	
+	public String modifyProduct() {
+		this.providers = providerFacade.getAllProvider();
+		return "modifyProduct";
 	}
 	
 	public void setPassword(String password) {
@@ -232,5 +243,13 @@ public class AdministratorController {
 
 	public void setProviders(List<Provider> providers) {
 		this.providers = providers;
+	}
+	
+	public Product getCurrentProduct() {
+		return currentProduct;
+	}
+
+	public void setCurrentProduct(Product currentProduct) {
+		this.currentProduct = currentProduct;
 	}
 }

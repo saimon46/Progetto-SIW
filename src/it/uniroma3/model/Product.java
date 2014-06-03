@@ -39,6 +39,7 @@ import javax.persistence.*;
         this.price = price;
         this.description = description;
         this.code = code;
+        this.quantity = quantity;
         this.providers = new ArrayList<Provider>();
         this.providers.add(provider);
 	}
