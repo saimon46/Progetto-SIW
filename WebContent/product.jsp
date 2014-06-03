@@ -18,7 +18,7 @@
 <div>Quantità: ${productController.product.quantity}</div>
 <div>Descrizione: ${productController.product.description}</div>
 <table>
-	<tr><td>Fornitori:<td>
+	<tr><td>Fornitore/i:<td>
 	<c:forEach var="provider" items="#{productController.product.providers}">
 		<td>${provider.name}</td>
 	</c:forEach>

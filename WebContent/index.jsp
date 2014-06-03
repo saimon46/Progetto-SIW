@@ -12,9 +12,9 @@
 <body>
 <f:view>
 <h1>Negozio di acquisti online</h1>
-<h3>Benvenuto Visitatore</h3>
 <c:choose>
 	<c:when test="${administratorController.currentAdministrator == null && customerController.currentCustomer == null}">
+	<h3>Benvenuto Visitatore</h3>
 		<h:form id="loginCustomer">
 		<table border="2">
 			<tr>

@@ -22,11 +22,17 @@
 		<td>
 		<ul><li>
 		<h:commandLink action="#{administratorController.newProduct}"
-					value="Inserisci Nuovo Prodotto nel DB" />
+					value="Inserisci un Nuovo Prodotto" />
 		</li></ul>
 		</td>
 	</tr>	
 
+	<tr>
+		<td>
+		<ul><li><a href='<c:url value="/faces/newProvider.jsp" />'>Inserisci un Nuovo Fornitore</a></li></ul>
+		</td>
+	</tr>
+	
 	<tr>
 		<td>
 		<ul><li>
@@ -36,12 +42,6 @@
 		<h:commandLink action="#{customerController.listCustomers}"
 					value="Lista degli Utenti Registrati" />
 		</li></ul>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<ul><li><a href='<c:url value="/faces/xxx.jsp" />'>Operazione 3</a></li></ul>
 		</td>
 	</tr>
 

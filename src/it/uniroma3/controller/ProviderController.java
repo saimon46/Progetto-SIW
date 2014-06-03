@@ -27,15 +27,8 @@ public class ProviderController {
 	private ProviderFacade providerFacade;
 	
 	public String createProvider() {
-		try{
-			this.provider = providerFacade.createProvider(name, phoneNumber, email, vatin, street, city, state, zipcode, country);
-			return "providerAdded";
-		}catch(Exception e){
-			/*Eccezione del DB*/
-			this.resetProvider();
-			FacesContext.getCurrentInstance().addMessage("addingProvider:addProvider", new FacesMessage("Errore salvataggio!"));
-			return "addingProvider";
-		}
+		this.provider = providerFacade.createProvider(name, phoneNumber, email, vatin, street, city, state, zipcode, country);
+		return "providerInfo";
 	}
 	
 	private void resetProvider() {

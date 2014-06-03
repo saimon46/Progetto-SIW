@@ -16,7 +16,7 @@ public class Provider {
 	private String name;
 	
 	@Column
-	private String phonenumber;
+	private String phoneNumber;
 	
 	@Column
 	private String email;
@@ -35,7 +35,7 @@ public class Provider {
 	
 	public Provider(String name, String phonenumber, String email, String vatin, Address address){
 		this.name = name;
-		this.phonenumber = phonenumber;
+		this.phoneNumber = phonenumber;
 		this.email = email;
 		this.vatin = vatin;
 		this.address = address;
@@ -56,12 +56,12 @@ public class Provider {
 		this.name = name;
 	}
 
-	public String getPhonenumber() {
-		return phonenumber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setPhoneNumber(String phonenumber) {
+		this.phoneNumber = phonenumber;
 	}
 
 	public String getEmail() {
@@ -124,6 +124,6 @@ public class Provider {
 	@Override
 	public String toString() {
 		return "Provider [id=" + id + ", name=" + name + ", phonenumber="
-				+ phonenumber + ", email=" + email + ", vatin=" + vatin + "]";
+				+ phoneNumber + ", email=" + email + ", vatin=" + vatin + "]";
 	}
 }

@@ -9,14 +9,6 @@ import javax.persistence.*;
 	@NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
 	public class Product {
         
-	public List<Provider> getProviders() {
-			return providers;
-		}
-
-		public void setProviders(List<Provider> providers) {
-			this.providers = providers;
-		}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -100,7 +92,15 @@ import javax.persistence.*;
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public List<Provider> getProviders() {
+		return providers;
+	}
 
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
+	}
+	
 	public boolean equals(Object obj) {
         Product product = (Product)obj;
         return this.getCode().equals(product.getCode());

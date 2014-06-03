@@ -41,11 +41,15 @@
     				rows="5" /> 
 	</div>
 	<div>Fornitore:
-         <h:selectOneMenu value="#{productController.productName}">
+         <h:selectOneMenu value="#{productController.productName}"
+         		required="true" 
+         		requiredMessage="Devi associarlo ad un fornitore!"
+         		id="providerName" >
          	<c:forEach var="provider" items="#{administratorController.providers}">
 				<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
 			</c:forEach>
          </h:selectOneMenu>
+          	<h:message for="providerName" />
 	</div>
 	
 	<div>

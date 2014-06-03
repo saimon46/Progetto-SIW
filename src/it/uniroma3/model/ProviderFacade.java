@@ -14,10 +14,10 @@ public class ProviderFacade {
     @PersistenceContext(unitName = "siw-project")
     private EntityManager em;
     
-	public Provider createProvider(String name, String phonenumber, String email, String vatin, String street, String city, String state, String zipcode, String country) {
+	public Provider createProvider(String name, String phoneNumber, String email, String vatin, String street, String city, String state, String zipcode, String country) {
 		Address address = new Address(street, city, state, zipcode, country);
 		em.persist(address);
-		Provider provider = new Provider(name, phonenumber, email, vatin, address);
+		Provider provider = new Provider(name, phoneNumber, email, vatin, address);
 		em.persist(provider);
 		return provider;
 	}

@@ -127,7 +127,6 @@ public class AdministratorController {
 		this.currentAdministrator = administrator;
 	}
 	
-	
 
 	//Seguono i Getters e Setters dei dati del nuovo customer
 	
