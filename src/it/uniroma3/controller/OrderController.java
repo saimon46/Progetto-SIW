@@ -8,7 +8,6 @@ import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;

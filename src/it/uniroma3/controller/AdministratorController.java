@@ -1,6 +1,5 @@
 package it.uniroma3.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class AdministratorController {
 	private String password;
 	private Administrator currentAdministrator;
 	private List<Provider> providers;
-	
+
 	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
 	
@@ -100,7 +99,6 @@ public class AdministratorController {
 	}
 	
 	public String newProduct() {
-		this.providers = new ArrayList<Provider>();
 		this.providers = providerFacade.getAllProvider();
 		return "newProduct";
 	}
@@ -225,5 +223,13 @@ public class AdministratorController {
 
 	public void setRegistrationDate(Date registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+	
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
 	}
 }

@@ -36,6 +36,12 @@ public class ProductController {
 		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
 		return "product";
 	}
+	
+	public String addProvider() {
+		this.provider = providerFacade.getProvider(this.productName);
+		this.product.addProvider(this.provider);
+		return "modifyProduct";
+	}
 
 	public Long getId() {
 		return id;
@@ -122,5 +128,13 @@ public class ProductController {
 
 	public void setProducts(List<Product> products) {
 		this.products = products;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 }

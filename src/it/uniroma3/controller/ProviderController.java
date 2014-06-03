@@ -1,12 +1,9 @@
 package it.uniroma3.controller;
 
-import it.uniroma3.model.CustomerFacade;
-import it.uniroma3.model.Order;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
