@@ -39,13 +39,11 @@
     				required="false" 
     				cols="20" 
     				rows="5" /> 
-                     
 	</div>
-	<div>
-	<h5>Fornitore:</h5> 
+	<div>Fornitore:
          <h:selectOneMenu value="#{productController.productName}">
          	<c:forEach var="provider" items="#{administratorController.providers}">
-				<f:selectItem itemValue="provider.name" itemLabel="provider.name" />
+				<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
 			</c:forEach>
          </h:selectOneMenu>
 	</div>

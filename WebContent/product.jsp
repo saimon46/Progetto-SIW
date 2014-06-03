@@ -17,6 +17,13 @@
 <div>Prezzo: ${productController.product.price}</div>
 <div>Quantità: ${productController.product.quantity}</div>
 <div>Descrizione: ${productController.product.description}</div>
+<table>
+	<tr><td>Fornitori:<td>
+	<c:forEach var="provider" items="#{productController.product.providers}">
+		<td>${provider.name}</td>
+	</c:forEach>
+	</tr>
+</table>
 
 <c:if test="${orderController.currentOrder != null}">
 <p>

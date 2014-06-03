@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.List;
@@ -21,8 +22,15 @@ public class ProviderFacade {
 		return provider;
 	}
 	
+	public Provider getProvider(Long id) {
+	    Provider provider = em.find(Provider.class, id);
+		return provider;
+	}
+	
 	public Provider getProvider(String name) {
-	    Provider provider = em.find(Provider.class, name);
+		Query q = em.createQuery("SELECT p FROM Provider p WHERE p.name = :name");
+		q.setParameter("name", name);
+		Provider provider = (Provider) q.getSingleResult();
 		return provider;
 	}
 	

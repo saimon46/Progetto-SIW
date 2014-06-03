@@ -9,6 +9,14 @@ import javax.persistence.*;
 	@NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
 	public class Product {
         
+	public List<Provider> getProviders() {
+			return providers;
+		}
+
+		public void setProviders(List<Provider> providers) {
+			this.providers = providers;
+		}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -28,7 +36,7 @@ import javax.persistence.*;
 	@Column(nullable = false)
 	private int quantity; //quantità in magazzino
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Provider> providers;
 	
 	public Product() {
