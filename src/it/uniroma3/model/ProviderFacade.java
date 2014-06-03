@@ -7,20 +7,22 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.List;
 
-@Stateless
+@Stateless(name="providerFacade")
 public class ProviderFacade {
 	
     @PersistenceContext(unitName = "siw-project")
     private EntityManager em;
     
-	public Provider createProvider(String name, String phonenumber, String email, String vatin, Address address) {
+	public Provider createProvider(String name, String phonenumber, String email, String vatin, String street, String city, String state, String zipcode, String country) {
+		Address address = new Address(street, city, state, zipcode, country);
+		em.persist(address);
 		Provider provider = new Provider(name, phonenumber, email, vatin, address);
 		em.persist(provider);
 		return provider;
 	}
 	
-	public Provider getProvider(Long id) {
-	    Provider provider = em.find(Provider.class, id);
+	public Provider getProvider(String name) {
+	    Provider provider = em.find(Provider.class, name);
 		return provider;
 	}
 	

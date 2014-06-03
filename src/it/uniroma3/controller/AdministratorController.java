@@ -1,10 +1,14 @@
 package it.uniroma3.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
 import it.uniroma3.model.CustomerFacade;
+import it.uniroma3.model.Provider;
+import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -23,12 +27,16 @@ public class AdministratorController {
 	private String nickname;
 	private String password;
 	private Administrator currentAdministrator;
+	private List<Provider> providers;
 	
 	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
+
+	@EJB(beanName="providerFacade")
+	private ProviderFacade providerFacade;
 	
 	public String createAdministrator() {
 		this.currentAdministrator = administratorFacade.createAdministrator(nickname, password);
@@ -89,6 +97,12 @@ public class AdministratorController {
 	public String logoutAdministrator() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "index";
+	}
+	
+	public String newProduct() {
+		this.providers = new ArrayList<Provider>();
+		this.providers = providerFacade.getAllProvider();
+		return "newProduct";
 	}
 	
 	public void setPassword(String password) {

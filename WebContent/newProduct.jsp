@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
 <%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +41,15 @@
     				rows="5" /> 
                      
 	</div>
+	<div>
+	<h5>Fornitore:</h5> 
+         <h:selectOneMenu value="#{productController.productName}">
+         	<c:forEach var="provider" items="#{administratorController.providers}">
+				<f:selectItem itemValue="provider.name" itemLabel="provider.name" />
+			</c:forEach>
+         </h:selectOneMenu>
+	</div>
+	
 	<div>
 		<h:commandButton value="Salva"  action="#{productController.createProduct}"/>
 	</div>

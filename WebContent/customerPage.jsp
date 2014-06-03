@@ -20,7 +20,7 @@
 			<h4> ${customerController.currentCustomer.firstName}, cosa vuoi fare? </h4>
 		</td>		 
 	</tr>
-	
+
 	<tr>
 		<td>
 		<ul><li><h:commandLink action="#{productController.listProducts}"
@@ -34,16 +34,8 @@
 	</tr>	
 	<tr>
 		<td>
-	<c:choose>
-		<c:when test="${customerController.lastOrder == null}">
-				<h:commandLink action="#{orderController.createOrder}"
-					value="APRI un Nuovo ORDINE" />
-		</c:when>
-		<c:otherwise>
-			<h:commandLink action="#{orderController.openLastOrder}"
-					value="VAI all'ultimo ordine aperto" />
-		</c:otherwise>
-	</c:choose>
+		<ul><li><h:commandLink action="#{orderController.createOrder}"
+						value="Creazione Nuovo ORDINE" /></li></ul>
 		</td>
 	</tr>
 	<tr>

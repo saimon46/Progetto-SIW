@@ -4,6 +4,8 @@ import java.util.List;
 
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+import it.uniroma3.model.Provider;
+import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -20,12 +22,18 @@ public class ProductController {
 	private int quantity; //quantità di magazzino
 	private Product product;
 	private List<Product> products;
+	private Provider provider;
+	private String productName;
 	
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
 	
+	@EJB(beanName="providerFacade")
+	private ProviderFacade providerFacade;
+	
 	public String createProduct() {
-		this.product = productFacade.createProduct(name, code, price, description, quantity);
+		this.provider = providerFacade.getProvider(this.productName);
+		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
 		return "product";
 	}
 
@@ -98,6 +106,14 @@ public class ProductController {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	public List<Product> getProducts() {

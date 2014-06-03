@@ -20,7 +20,10 @@
 	</tr>
 	<tr>
 		<td>
-		<ul><li><a href='<c:url value="/faces/newProduct.jsp" />'>Inserisci Nuovo Prodotto nel DB</a></li></ul>
+		<ul><li>
+		<h:commandLink action="#{administratorController.newProduct}"
+					value="Inserisci Nuovo Prodotto nel DB" />
+		</li></ul>
 		</td>
 	</tr>	
 

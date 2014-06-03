@@ -4,15 +4,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
+@NamedQuery(name = "findAllProviders", query = "SELECT pr FROM Provider pr")
 public class Provider {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(unique = true)
 	private String name;
 	
 	@Column
@@ -78,6 +78,22 @@ public class Provider {
 
 	public void setVatin(String vatin) {
 		this.vatin = vatin;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	@Override

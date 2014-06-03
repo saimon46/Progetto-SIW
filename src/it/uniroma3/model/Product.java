@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -33,14 +34,19 @@ import javax.persistence.*;
 	public Product() {
     }
 
-	public Product(String name, Float price, String description, String code, int quantity) {
+	public Product(String name, Float price, String description, String code, int quantity, Provider provider) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.code = code;
-        this.quantity = quantity;
+        this.providers = new ArrayList<Provider>();
+        this.providers.add(provider);
 	}
 
+	public void addProvider(Provider provider){
+		this.providers.add(provider);
+	}
+	
     //          Getters & Setters        
     
    public Long getId() {
