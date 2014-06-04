@@ -66,6 +66,11 @@ public class ProductController {
 		}
 	}
 
+	public String deleteProduct(){
+		this.productFacade.deleteProduct(id);
+		return "deletedProduct";
+	}
+	
 	public Long getId() {
 		return id;
 	}

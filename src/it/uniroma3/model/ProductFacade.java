@@ -27,7 +27,8 @@ public class ProductFacade {
 	public List<Product> getAllProducts() {
         CriteriaQuery<Product> cq = em.getCriteriaBuilder().createQuery(Product.class);
         cq.select(cq.from(Product.class));
-        List<Product> products = em.createQuery(cq).getResultList();
+        List<Product> products = em.createQuery(cq).
+        		getResultList();
 		return products;
 	}
 
