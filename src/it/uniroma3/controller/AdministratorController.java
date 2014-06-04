@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class AdministratorController {
 	private String nickname;
 	private String password;
 	private Administrator currentAdministrator;
+	
+	@ManagedProperty(value="#{providersProduct}")
 	private List<Provider> providers;
 	
 	@ManagedProperty(value="#{currentProduct}")
@@ -113,7 +116,12 @@ public class AdministratorController {
 	}
 	
 	public String modifyProduct() {
-		this.providers = providerFacade.getAllProvider();
+		List<Provider> providersTot = new ArrayList<Provider>(providerFacade.getAllProvider());
+		this.product = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProduct");
+		List<Provider> providerCancel = new ArrayList<Provider>(this.product.getProviders());
+		providersTot.removeAll(providerCancel); // vengono visualizzati solo i provider non associati al prodotto
+		this.providers = providersTot;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		return "modifyProduct";
 	}
 	

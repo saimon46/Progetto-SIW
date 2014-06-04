@@ -36,7 +36,7 @@ public class ProductFacade {
         em.merge(product);
 	}
 	
-    private void deleteProduct(Product product) {
+    public void deleteProduct(Product product) {
         em.remove(product);
     }
 

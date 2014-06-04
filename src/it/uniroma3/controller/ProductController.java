@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma3.model.Product;
@@ -8,7 +9,6 @@ import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -26,6 +26,9 @@ public class ProductController {
 	private Provider provider;
 	private String productName;
 	
+	@ManagedProperty(value="#{providersProduct}")
+	private List<Provider> providers;
+
 	@ManagedProperty(value="#{currentProduct}")
 	private Product product;
 	
@@ -39,35 +42,34 @@ public class ProductController {
 		this.provider = providerFacade.getProvider(this.productName);
 		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
 		this.provider.addProduct(this.product);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentProduct", this.product);
 		return "product";
 	}
 	
 	public String updateProduct() {
-		this.product.setCode(code);
-		this.product.setName(name);
-		this.product.setPrice(price);
-		this.product.setDescription(description);
-		this.product.setQuantity(quantity);
-		
 		productFacade.updateProduct(this.product);
 		return "product";
 	}
 	
 	public String addProvider() {
-		this.product = productFacade.getProduct(id);
-		try{
-			this.provider = providerFacade.getProvider(this.productName);
-			this.product.addProvider(this.provider);
-			this.provider.addProduct(this.product);
-			return "modifyProduct";
-		}catch(Exception e){
-			FacesContext.getCurrentInstance().addMessage("addProviderMenu:addProvider", new FacesMessage("Questo fornitore e' gia' associato!"));
-			return "modifyProduct";
-		}
+		this.provider = providerFacade.getProvider(this.productName);
+		this.product.addProvider(this.provider);
+		this.provider.addProduct(this.product);
+		
+		// aggiornamento lista nuovi provider del prodotto
+		List<Provider> providersTot = new ArrayList<Provider>(providerFacade.getAllProvider());
+		this.product = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProduct");
+		List<Provider> providerCancel = new ArrayList<Provider>(this.product.getProviders());
+		providersTot.removeAll(providerCancel); // vengono visualizzati solo i provider non associati al prodotto
+		this.providers = providersTot;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
+		// ************************************************
+		
+		return "modifyProduct";
 	}
 
 	public String deleteProduct(){
-		this.productFacade.deleteProduct(id);
+		this.productFacade.deleteProduct(product.getId());
 		return "deletedProduct";
 	}
 	
@@ -165,5 +167,13 @@ public class ProductController {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	
+	public List<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(List<Provider> providers) {
+		this.providers = providers;
 	}
 }

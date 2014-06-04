@@ -40,6 +40,11 @@
     				cols="20" 
     				rows="5" /> 
 	</div>
+	<div>
+		<h:commandButton value="Salva"  action="#{productController.updateProduct}"/>
+	</div>
+</h:form>
+
 	<table>
 	<tr><td>Fornitore/i:<td>
 	<c:forEach var="provider" items="#{currentProduct.providers}">
@@ -50,19 +55,14 @@
 	<div>Aggiungi fornitore:
 	<h:form id="addProviderMenu">
          <h:selectOneMenu value="#{productController.productName}">
-         	<c:forEach var="provider" items="#{administratorController.providers}">
+         	<c:forEach var="provider" items="#{providersProduct}">
 				<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
 			</c:forEach>
          </h:selectOneMenu>
           	<h:commandButton id="addProvider" value="Aggiungi provider"  action="#{productController.addProvider}"/>
           	<h:message for="addProvider" />
     </h:form>
-	</div>
-	
-	<div>
-		<h:commandButton value="Salva"  action="#{productController.updateProduct}"/>
-	</div>
-</h:form>
+    </div>
 </f:view>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class Provider {
 	@Column
 	private String vatin;
 	
-	@ManyToMany(mappedBy = "providers")
+	@ManyToMany(mappedBy = "providers", fetch=FetchType.EAGER)
 	private List<Product> products;
 	
 	@OneToOne
