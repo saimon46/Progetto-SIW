@@ -40,7 +40,7 @@
     				cols="20" 
     				rows="5" /> 
 	</div>
-	<div>Fornitore:
+	<div>Fornitore Primario:
          <h:selectOneMenu value="#{productController.productName}"
          		required="true" 
          		requiredMessage="Devi associarlo ad un fornitore!"

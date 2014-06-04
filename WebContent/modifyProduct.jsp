@@ -41,28 +41,32 @@
     				rows="5" /> 
 	</div>
 	<div>
-		<h:commandButton value="Salva"  action="#{productController.updateProduct}"/>
+		<h:commandButton value="Salva Modifiche"  action="#{productController.updateProduct}"/>
 	</div>
 </h:form>
-
+	
+	<br>
 	<table>
-	<tr><td>Fornitore/i:<td>
+	<tr><td>Fornitore/i attuali:</td>
 	<c:forEach var="provider" items="#{currentProduct.providers}">
 		<td>${provider.name}</td>
 	</c:forEach>
 	</tr>
 	</table>
-	<div>Aggiungi fornitore:
+	
+	<br>
+	<div>Aggiungi un altro fornitore:
 	<h:form id="addProviderMenu">
          <h:selectOneMenu value="#{productController.productName}">
          	<c:forEach var="provider" items="#{providersProduct}">
 				<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
 			</c:forEach>
          </h:selectOneMenu>
-          	<h:commandButton id="addProvider" value="Aggiungi provider"  action="#{productController.addProvider}"/>
+          	<h:commandButton id="addProvider" value="Aggiungi e Salva"  action="#{productController.addProvider}"/>
           	<h:message for="addProvider" />
     </h:form>
     </div>
+    
 </f:view>
 </body>
 </html>

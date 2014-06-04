@@ -65,7 +65,6 @@ public class ProductController {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("providersProduct");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		// ************************************************
-		
 		return "modifyProduct";
 	}
 
