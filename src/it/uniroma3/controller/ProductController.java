@@ -64,7 +64,6 @@ public class ProductController {
 		this.providers = providersTot;
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		// ************************************************
-		
 		return "modifyProduct";
 	}
 
