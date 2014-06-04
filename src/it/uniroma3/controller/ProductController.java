@@ -26,10 +26,10 @@ public class ProductController {
 	private Provider provider;
 	private String productName;
 	
-	@ManagedProperty(value="#{providersProduct}")
+	@ManagedProperty(value="#{sessionScope['providersProduct']}")
 	private List<Provider> providers;
 
-	@ManagedProperty(value="#{currentProduct}")
+	@ManagedProperty(value="#{sessionScope['currentProduct']}")
 	private Product product;
 	
 	@EJB(beanName="productFacade")
@@ -55,13 +55,14 @@ public class ProductController {
 		this.provider = providerFacade.getProvider(this.productName);
 		this.product.addProvider(this.provider);
 		this.provider.addProduct(this.product);
+		productFacade.updateProduct(this.product);
 		
 		// aggiornamento lista nuovi provider del prodotto
 		List<Provider> providersTot = new ArrayList<Provider>(providerFacade.getAllProvider());
-		this.product = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProduct");
 		List<Provider> providerCancel = new ArrayList<Provider>(this.product.getProviders());
 		providersTot.removeAll(providerCancel); // vengono visualizzati solo i provider non associati al prodotto
 		this.providers = providersTot;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("providersProduct");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		// ************************************************
 		
