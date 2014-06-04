@@ -36,13 +36,16 @@ public class ProductController {
 	public String createProduct() {
 		this.provider = providerFacade.getProvider(this.productName);
 		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
+		this.provider.addProduct(this.product);
 		return "product";
 	}
 	
 	public String addProvider() {
+		this.product = productFacade.getProduct(id);
 		try{
 			this.provider = providerFacade.getProvider(this.productName);
 			this.product.addProvider(this.provider);
+			this.provider.addProduct(this.product);
 			return "modifyProduct";
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage("addProviderMenu:addProvider", new FacesMessage("Questo fornitore e' gia' associato!"));

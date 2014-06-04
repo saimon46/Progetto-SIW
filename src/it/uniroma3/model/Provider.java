@@ -41,6 +41,10 @@ public class Provider {
 		this.address = address;
 	}
 	
+	public void addProduct(Product product) {
+		this.products.add(product);
+	}
+	
 //  Getters & Setters   
 	
 	
