@@ -5,9 +5,9 @@ import java.util.List;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
-import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Product;
+import it.uniroma3.model.ProductFacade;
 import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
@@ -31,8 +31,8 @@ public class AdministratorController {
 	private Administrator currentAdministrator;
 	private List<Provider> providers;
 	
-	@ManagedProperty(value="#{sessionScope['productController'].product}")
-	private Product currentProduct;
+	@ManagedProperty(value="#{currentProduct}")
+	private Product product;
 
 	@EJB(beanName="administratorFacade")
 	private AdministratorFacade administratorFacade;
@@ -42,6 +42,9 @@ public class AdministratorController {
 
 	@EJB(beanName="providerFacade")
 	private ProviderFacade providerFacade;
+	
+	@EJB(beanName="productFacade")
+	private ProductFacade productFacade;
 	
 	public String createAdministrator() {
 		this.currentAdministrator = administratorFacade.createAdministrator(nickname, password);
@@ -245,11 +248,12 @@ public class AdministratorController {
 		this.providers = providers;
 	}
 	
-	public Product getCurrentProduct() {
-		return currentProduct;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setCurrentProduct(Product currentProduct) {
-		this.currentProduct = currentProduct;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
+	
 }

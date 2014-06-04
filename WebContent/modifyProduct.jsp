@@ -7,42 +7,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Inserimento Nuovo Prodotto</title>
+<title>Modifica Prodotto</title>
 </head>
 <body>
 <f:view>
 <jsp:include page="header.jsp"/>
 <h:form>
-    <div>Nome: <h:inputText value="#{productController.name}" 
+    <div>Nome: <h:inputText value="#{productController.product.name}" 
                      required="true"
                      requiredMessage="Il nome e' obbligatorio!"
                      id="name"/> <h:message for="name" />
 	</div>
-    <div>Codice: <h:inputText value="#{productController.code}" 
+    <div>Codice: <h:inputText value="#{productController.product.code}" 
                      required="true"
                      requiredMessage="Il Codice e' obbligatorio!"
                      id="code"/> <h:message for="code" />
 	</div>
-    <div>Prezzo: <h:inputText value="#{productController.price}" 
+    <div>Prezzo: <h:inputText value="#{productController.product.price}" 
                      required="true"
                      requiredMessage="Il prezzo e' obbligatorio!"
                      converterMessage="Il prezzo deve essere un numero!"
                      id="price"/> <h:message for="price" />
 	</div>
-	<div>Quantita': <h:inputText value="#{productController.quantity}" 
+	<div>Quantita': <h:inputText value="#{productController.product.quantity}" 
                      required="true"
                      requiredMessage="La quantita' e' obbligatoria!"
                      converterMessage="La quantita' deve essere un numero!"
                      id="quantity"/> <h:message for="quantity" />
 	</div>
-    <div>Descrizione: <h:inputTextarea value="#{productController.description}" 
+    <div>Descrizione: <h:inputTextarea value="#{productController.product.description}" 
     				required="false" 
     				cols="20" 
     				rows="5" /> 
 	</div>
 	<table>
 	<tr><td>Fornitore/i:<td>
-	<c:forEach var="provider" items="#{productController.product.providers}">
+	<c:forEach var="provider" items="#{currentProduct.providers}">
 		<td>${provider.name}</td>
 	</c:forEach>
 	</tr>
@@ -60,7 +60,7 @@
 	</div>
 	
 	<div>
-		<h:commandButton value="Salva"  action="#{productController.createProduct}"/>
+		<h:commandButton value="Salva"  action="#{productController.updateProduct}"/>
 	</div>
 </h:form>
 </f:view>

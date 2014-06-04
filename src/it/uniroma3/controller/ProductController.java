@@ -22,10 +22,12 @@ public class ProductController {
 	private String name, description, code;
 	private Float price;
 	private int quantity; //quantità di magazzino
-	private Product product;
 	private List<Product> products;
 	private Provider provider;
 	private String productName;
+	
+	@ManagedProperty(value="#{currentProduct}")
+	private Product product;
 	
 	@EJB(beanName="productFacade")
 	private ProductFacade productFacade;
@@ -37,6 +39,17 @@ public class ProductController {
 		this.provider = providerFacade.getProvider(this.productName);
 		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
 		this.provider.addProduct(this.product);
+		return "product";
+	}
+	
+	public String updateProduct() {
+		this.product.setCode(code);
+		this.product.setName(name);
+		this.product.setPrice(price);
+		this.product.setDescription(description);
+		this.product.setQuantity(quantity);
+		
+		productFacade.updateProduct(this.product);
 		return "product";
 	}
 	
@@ -68,6 +81,7 @@ public class ProductController {
 
 	public String findProduct() {
 		this.product = productFacade.getProduct(id);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentProduct", this.product);
 		return "product";
 	}
 	

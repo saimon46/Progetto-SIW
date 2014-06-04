@@ -7,10 +7,8 @@ import it.uniroma3.model.ProviderFacade;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.FacesContext;
 
 @ManagedBean
 public class ProviderController {
@@ -29,18 +27,6 @@ public class ProviderController {
 	public String createProvider() {
 		this.provider = providerFacade.createProvider(name, phoneNumber, email, vatin, street, city, state, zipcode, country);
 		return "providerInfo";
-	}
-	
-	private void resetProvider() {
-		this.name = null;
-		this.email = null;
-		this.phoneNumber = null;
-		this.vatin = null;
-		this.street = null;
-		this.city = null;
-		this.state = null;
-		this.zipcode = null;
-		this.country = null;
 	}
 
 	public String listProducts() {
