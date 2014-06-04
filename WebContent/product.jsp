@@ -40,6 +40,12 @@
 <h:commandButton action="#{administratorController.modifyProduct}"
 					value="Modifica" />
 </h:form>
+<br>
+<h:form>
+<h:commandButton action="#{productController.deleteProduct}"
+					value="Elimina" />
+<f:param name="id" value="#{product.id}" />
+</h:form>
 <p>
 </c:if>
 

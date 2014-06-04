@@ -21,6 +21,13 @@
 	
 	<tr>
 		<td>
+		<ul><li><h:commandLink action="#{productController.listProducts}" 
+				value="CATALOGO Prodotti in Negozio" /></li></ul>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
 		<ul><li>
 		<h:commandLink action="#{administratorController.newProduct}"
 					value="Inserisci un Nuovo Prodotto" />
@@ -43,13 +50,6 @@
 		<h:commandLink action="#{customerController.listCustomers}"
 					value="Lista degli Utenti Registrati" />
 		</li></ul>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-		<ul><li><h:commandLink action="#{productController.listProducts}" 
-				value="Controlla i Prodotti in Negozio" /></li></ul>
 		</td>
 	</tr>
 </table>
