@@ -46,27 +46,37 @@
 </h:form>
 	
 	<br>
-	<table>
-	<tr><td>Fornitore/i attuali:</td>
-	<c:forEach var="provider" items="#{currentProduct.providers}">
-		<td>${provider.name}</td>
-	</c:forEach>
-	</tr>
-	</table>
+	<c:if test="${not empty currentProduct.providers}">
+		<div>Fornitore/i attuali:
+		<h:form id="removeProviderMenu">
+			<h:selectOneListbox id="listProvider"
+				value="#{productController.providerNameDelete}"
+				required="true"
+				requiredMessage="Seleziona elemento!">
+				<c:forEach var="provider" items="#{currentProduct.providers}">
+					<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
+				</c:forEach>
+			</h:selectOneListbox>
+			<h:commandButton id="addProvider" value="Rimuovi fornitore"  action="#{productController.removeProvider}"/>
+		    <h:message for="listProvider" />
+		</h:form>
+		</div>
+	</c:if>
 	
 	<br>
-	<div>Aggiungi un altro fornitore:
-	<h:form id="addProviderMenu">
-         <h:selectOneMenu value="#{productController.productName}">
-         	<c:forEach var="provider" items="#{providersProduct}">
-				<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
-			</c:forEach>
-         </h:selectOneMenu>
-          	<h:commandButton id="addProvider" value="Aggiungi e Salva"  action="#{productController.addProvider}"/>
-          	<h:message for="addProvider" />
-    </h:form>
-    </div>
-    
+	<c:if test="${not empty providersProduct}">
+		<div>Aggiungi un altro fornitore:
+		<h:form id="addProviderMenu">
+	         <h:selectOneMenu value="#{productController.providerName}">
+	         	<c:forEach var="provider" items="#{providersProduct}">
+					<f:selectItem itemValue="#{provider.name}" itemLabel="#{provider.name}" />
+				</c:forEach>
+	         </h:selectOneMenu>
+	          	<h:commandButton id="addProvider" value="Aggiungi e Salva"  action="#{productController.addProvider}"/>
+	          	<h:message for="addProvider" />
+	    </h:form>
+	    </div>
+    </c:if>
 </f:view>
 </body>
 </html>

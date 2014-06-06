@@ -24,8 +24,10 @@ public class ProductController {
 	private int quantity; //quantità di magazzino
 	private List<Product> products;
 	private Provider provider;
-	private String productName;
-	
+	private String providerName;
+
+	private String providerNameDelete;
+
 	@ManagedProperty(value="#{sessionScope['providersProduct']}")
 	private List<Provider> providers;
 
@@ -39,7 +41,7 @@ public class ProductController {
 	private ProviderFacade providerFacade;
 	
 	public String createProduct() {
-		this.provider = providerFacade.getProvider(this.productName);
+		this.provider = providerFacade.getProvider(this.providerName);
 		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
 		this.provider.addProduct(this.product);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentProduct", this.product);
@@ -52,11 +54,26 @@ public class ProductController {
 	}
 	
 	public String addProvider() {
-		this.provider = providerFacade.getProvider(this.productName);
+		this.provider = providerFacade.getProvider(this.providerName);
 		this.product.addProvider(this.provider);
-		this.provider.addProduct(this.product);
 		productFacade.updateProduct(this.product);
+		providerFacade.updateProvider(this.provider);
 		
+		updateListProvider();
+		return "modifyProduct";
+	}
+	
+	public String removeProvider() {
+		this.provider = providerFacade.getProvider(this.providerNameDelete);
+		this.product.removeProvider(this.provider);
+		productFacade.updateProduct(this.product);
+		providerFacade.updateProvider(this.provider);
+		
+		updateListProvider();
+		return "modifyProduct";
+	}
+	
+	private void updateListProvider() {
 		// aggiornamento lista nuovi provider del prodotto
 		List<Provider> providersTot = new ArrayList<Provider>(providerFacade.getAllProvider());
 		List<Provider> providerCancel = new ArrayList<Provider>(this.product.getProviders());
@@ -65,7 +82,6 @@ public class ProductController {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("providersProduct");
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		// ************************************************
-		return "modifyProduct";
 	}
 
 	public String deleteProduct(){
@@ -162,11 +178,11 @@ public class ProductController {
 	}
 
 	public String getProductName() {
-		return productName;
+		return providerName;
 	}
 
 	public void setProductName(String productName) {
-		this.productName = productName;
+		this.providerName = productName;
 	}
 	
 	public List<Provider> getProviders() {
@@ -175,5 +191,21 @@ public class ProductController {
 
 	public void setProviders(List<Provider> providers) {
 		this.providers = providers;
+	}
+	
+	public String getProviderNameDelete() {
+		return providerNameDelete;
+	}
+
+	public void setProviderNameDelete(String providerNameDelete) {
+		this.providerNameDelete = providerNameDelete;
+	}
+	
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
 	}
 }

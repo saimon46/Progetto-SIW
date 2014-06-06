@@ -46,6 +46,12 @@ import javax.persistence.*;
 
 	public void addProvider(Provider provider){
 		this.providers.add(provider);
+		provider.addProduct(this);
+	}
+	
+	public void removeProvider(Provider provider) {
+		this.providers.remove(provider);
+		provider.removeProduct(this);
 	}
 	
     //          Getters & Setters        
