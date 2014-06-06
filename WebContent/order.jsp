@@ -20,7 +20,7 @@
 
 		<br>
 		<h3>${orderController.message}</h3>
-		<br>
+		
 		<c:if test="${not empty currentOrder.orderLines}">
 			<h4>Righe ordine:</h4>
 			<h:form>

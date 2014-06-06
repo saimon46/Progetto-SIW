@@ -58,9 +58,7 @@ public class OrderController {
 		} else {
 			orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
 			this.currentOrder.addOrderLine(orderLine);
-			orderFacade.updateOrder(currentOrder);
-			this.message = "Prodotto nn era persente";
-			
+			orderFacade.updateOrder(currentOrder);			
 		}
 		return "order";
 	}

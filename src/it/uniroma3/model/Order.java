@@ -35,7 +35,8 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany
+	@JoinColumn(name="order_id")
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<OrderLine> orderLines;
 
 	public Order (Date creationTime, Customer customer) {
@@ -115,7 +116,7 @@ public class Order {
 	public OrderLine checkOrderLine(Product product) {
 		OrderLine orderLine = null;
 		for(OrderLine line : this.orderLines){
-			if(line.getProduct() == product)
+			if(line.getProduct().getId().equals(product.getId()))
 				orderLine = line;
 		}
 		return orderLine;
