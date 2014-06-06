@@ -30,6 +30,7 @@ public class OrderController {
 	@ManagedProperty(value="#{sessionScope['customerController'].currentCustomer}")
 	private Customer currentCustomer;
 	
+	private String message;
 	private int quantity; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
 	
@@ -47,9 +48,20 @@ public class OrderController {
 	}
 	
 	public String addOrderLine() {
-		OrderLine orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
-		this.currentOrder.addOrderLine(orderLine);
-		orderFacade.updateOrder(currentOrder);
+		this.message = "";
+		OrderLine orderLine = this.currentOrder.checkOrderLine(currentProduct);
+		if(orderLine != null){
+			orderLine.setQuantity(orderLine.getQuantity()+this.quantity);
+			// abbiamo deciso che il prezzo rimane quello che c'era al primo ordine
+			orderLineFacade.updateOrderLine(orderLine);
+			this.message = "Prodotto già associato a quest'ordine! Sono state sommate le quantità!";
+		} else {
+			orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
+			this.currentOrder.addOrderLine(orderLine);
+			orderFacade.updateOrder(currentOrder);
+			this.message = "Prodotto nn era persente";
+			
+		}
 		return "order";
 	}
 	
@@ -114,5 +126,13 @@ public class OrderController {
 
 	public void setCurrentProduct(Product currentProduct) {
 		this.currentProduct = currentProduct;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

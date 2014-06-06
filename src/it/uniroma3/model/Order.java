@@ -110,4 +110,14 @@ public class Order {
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
+	
+	// metodo per trovare una riga d'ordine in base al prodotto
+	public OrderLine checkOrderLine(Product product) {
+		OrderLine orderLine = null;
+		for(OrderLine line : this.orderLines){
+			if(line.getProduct() == product)
+				orderLine = line;
+		}
+		return orderLine;
+	}
 }
