@@ -29,16 +29,27 @@
 				</h:selectOneListbox>
 			</div>
 		</c:if>
-
+		
+		<br>
+		<!-- Sono un cliente -->
 		<c:if test="${orderController.currentOrder != null}">
 			<p>
 				<h:form>
-					<h:commandButton action="#{productController.listProducts}"
+					<div>
+						Quantita' desiderata:
+						<h:inputText value="#{orderController.quantity}" required="true"
+							requiredMessage="La quantita' e' obbligatoria!"
+							converterMessage="La quantita' deve essere un numero!"
+							id="quantity" />
+						<h:message for="quantity" />
+					</div>
+					<h:commandButton action="#{orderController.addOrderLine}"
 						value="Aggiungi all'ordine corrente" />
 				</h:form>
 			<p>
 		</c:if>
-
+		
+		<!-- Sono un amministratore -->
 		<c:if test="${administratorController.currentAdministrator != null}">
 			<p>
 				<h:form>

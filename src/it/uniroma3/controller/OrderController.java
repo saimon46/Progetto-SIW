@@ -6,6 +6,9 @@ import java.util.List;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
+import it.uniroma3.model.OrderLineFacade;
+import it.uniroma3.model.Product;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -18,21 +21,35 @@ public class OrderController {
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
-	@ManagedProperty(value="#{currentOrder}")
+	@ManagedProperty(value="#{sessionScope['currentOrder']}")
 	private Order currentOrder;
 	
+	@ManagedProperty(value="#{sessionScope['currentProduct']}")
+	private Product currentProduct;
+
 	@ManagedProperty(value="#{sessionScope['customerController'].currentCustomer}")
 	private Customer currentCustomer;
 	
+	private int quantity; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
 	
 	@EJB(beanName="orderFacade")
 	private OrderFacade orderFacade;
 	
+	@EJB(beanName="orderLineFacade")
+	private OrderLineFacade orderLineFacade;
+	
 	public String createOrder() {
 		this.currentOrder = orderFacade.createOrder(new Date(), this.currentCustomer);
 		this.currentCustomer.addOrder(this.currentOrder);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
+		return "order";
+	}
+	
+	public String addOrderLine() {
+		OrderLine orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
+		this.currentOrder.addOrderLine(orderLine);
+		orderFacade.updateOrder(currentOrder);
 		return "order";
 	}
 	
@@ -81,5 +98,21 @@ public class OrderController {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public Product getCurrentProduct() {
+		return currentProduct;
+	}
+
+	public void setCurrentProduct(Product currentProduct) {
+		this.currentProduct = currentProduct;
 	}
 }

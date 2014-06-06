@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,7 +42,12 @@ public class Order {
     	this.creationTime = creationTime;
     	this.customer = customer;
     	this.chiuso = false; //Alla creazione, l'ordine è ancora aperto
+    	this.orderLines = new ArrayList<OrderLine>();
     }
+	
+	public void addOrderLine(OrderLine orderLine) {
+		this.orderLines.add(orderLine);
+	}
 	
 	// ***** Getters and setters *****
 	

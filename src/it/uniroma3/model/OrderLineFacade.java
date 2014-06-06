@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Stateless
+@Stateless(name="orderLineFacade")
 public class OrderLineFacade {
 	
     @PersistenceContext(unitName = "siw-project")

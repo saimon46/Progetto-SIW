@@ -116,11 +116,10 @@ public class AdministratorController {
 	}
 	
 	public String modifyProduct() {
-		List<Provider> providersTot = new ArrayList<Provider>(providerFacade.getAllProvider());
+		this.providers = new ArrayList<Provider>(providerFacade.getAllProvider());
 		this.product = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProduct");
 		List<Provider> providerCancel = new ArrayList<Provider>(this.product.getProviders());
-		providersTot.removeAll(providerCancel); // vengono visualizzati solo i provider non associati al prodotto
-		this.providers = providersTot;
+		this.providers.removeAll(providerCancel); // vengono visualizzati solo i provider non associati al prodotto
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		return "modifyProduct";
 	}
