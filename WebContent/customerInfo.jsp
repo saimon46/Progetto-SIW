@@ -17,8 +17,12 @@
 <div>Stato: ${customerController.currentCustomer.address.state}</div>
 <div>CAP: ${customerController.currentCustomer.address.zipcode}</div>
 <div>Numero di Telefono: ${customerController.currentCustomer.phoneNumber}</div>
-<div>Data di Nascita: ${customerController.currentCustomer.dateOfBirth}</div>
-<div>Data di Registrazione: ${customerController.currentCustomer.registrationDate}</div>
+<div>Data di Nascita: <h:outputText value="#{customerController.currentCustomer.dateOfBirth}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		</h:outputText></div>
+<div>Data di Registrazione: <h:outputText value="#{customerController.currentCustomer.registrationDate}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		</h:outputText></div>
 <div>
 <br><br><a href='<c:url value="/faces/customerPage.jsp" />'>Torna Indietro</a>
 </div>

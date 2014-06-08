@@ -78,6 +78,7 @@ public class OrderController {
 
 	public String findOrder() {
 		this.currentOrder = orderFacade.getOrder(id);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
 		return "order";
 	}
 	

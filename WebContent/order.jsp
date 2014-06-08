@@ -14,9 +14,40 @@
 
 		<h2>Dettagli Completi</h2>
 		<div>ID Ordine: ${currentOrder.id}</div>
-		<div>Data Creazione: ${currentOrder.creationTime}</div>
-		<div>Data Completamento: ${currentOrder.completedTime}</div>
-		<div>Data Spedizione: ${currentOrder.processedTime}</div>
+		
+		<div>Creato il: <h:outputText value="#{currentOrder.creationTime}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		</h:outputText></div>
+		
+		<div>
+		<c:choose>
+		<c:when test="${currentOrder.chiuso == false}">Stato: Aperto</c:when>
+		<c:otherwise>
+		Stato: Completato
+		</c:otherwise>
+		</c:choose>
+		</div>
+		
+		<c:if test="${currentOrder.completedTime != null }">
+		<div>Data Completamento: <h:outputText value="#{currentOrder.completedTime}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		</h:outputText></div>
+		</c:if>
+		
+		<div>
+		<c:choose>
+		<c:when test="${currentOrder.evaso == false}">Evaso: NO</c:when>
+		<c:otherwise>
+		Evaso: SI
+		</c:otherwise>
+		</c:choose>
+		</div>
+		
+		<c:if test="${currentOrder.processedTime != null }">
+		<div>Data Spedizione: <h:outputText value="#{currentOrder.processedTime}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		</h:outputText></div>
+		</c:if>
 
 		<br>
 		<h3>${orderController.message}</h3>

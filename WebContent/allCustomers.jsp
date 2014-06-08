@@ -17,7 +17,10 @@
 	</tr>
 	<c:forEach var="customer" items="#{customerController.customers}">
 	<tr>
-	   <td>${customer.email}</td><td>${customer.firstName}</td><td>${customer.lastName}</td><td>${customer.phoneNumber}</td><td>${customer.registrationDate}</td>
+	   <td>${customer.email}</td><td>${customer.firstName}</td><td>${customer.lastName}</td><td>${customer.phoneNumber}</td>
+	   <td><h:outputText value="#{customer.registrationDate}">
+			<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+			</h:outputText></td>
 	</tr>
 	</c:forEach>
 </table>

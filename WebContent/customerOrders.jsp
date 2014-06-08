@@ -14,12 +14,44 @@
 <h:form>
 <table>
 	<tr>
-		<th>ID</th><th>Chiuso</th><th>Evaso</th>
+		<th>ID</th><th>Data-Creazione</th><th>Stato</th><th>Data-Completamento</th><th>Evaso</th><th>Data-Evasione</th>
 	</tr>
 	<c:forEach var="order" items="#{customerController.orders}">
 		<tr><td>
-		${order.id}
-		</td><td>${order.chiuso}</td><td>${order.evaso}</td></tr>
+		<h:commandLink action="#{orderController.findOrder}" value="#{order.id}">
+			<f:param name="id" value="#{order.id}" />
+		</h:commandLink>
+		</td>
+		
+		<td><h:outputText value="#{order.creationTime}">
+			<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+			</h:outputText></td>
+		
+		<td>
+		<c:choose>
+		<c:when test="${order.chiuso == false}">Aperto</c:when>
+		<c:otherwise>
+		Completato
+		</c:otherwise>
+		</c:choose>
+		</td>
+		
+		<td><h:outputText value="#{order.completedTime}">
+			<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+			</h:outputText></td>
+		
+		<td>
+		<c:choose>
+		<c:when test="${order.evaso == false}">NO</c:when>
+		<c:otherwise>
+		SI
+		</c:otherwise>
+		</c:choose>
+		</td>
+		
+		<td><h:outputText value="#{order.processedTime}">
+			<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+			</h:outputText></td>
 	</c:forEach>
 </table>
 </h:form>
@@ -27,7 +59,7 @@
 <br>
 <c:if test="${orderController.currentOrder != null}">
 <p>
-	<a href='<c:url value="/faces/order.jsp" />'><c:out value="Torna all'ordine"/></a>
+	<a href='<c:url value="/faces/order.jsp" />'><c:out value="Torna all'ordine appena aperto"/></a>
 <p>
 </c:if>
 
