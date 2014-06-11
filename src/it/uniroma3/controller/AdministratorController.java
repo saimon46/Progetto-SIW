@@ -7,6 +7,8 @@ import java.util.List;
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
 import it.uniroma3.model.CustomerFacade;
+import it.uniroma3.model.Order;
+import it.uniroma3.model.OrderFacade;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
 import it.uniroma3.model.Provider;
@@ -31,6 +33,8 @@ public class AdministratorController {
 	private String password;
 	private Administrator currentAdministrator;
 	
+	private List<Order> orders;
+
 	@ManagedProperty(value="#{providersProduct}")
 	private List<Provider> providers;
 	
@@ -42,6 +46,9 @@ public class AdministratorController {
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
+	
+	@EJB(beanName="orderFacade")
+	private OrderFacade orderFacade;
 
 	@EJB(beanName="providerFacade")
 	private ProviderFacade providerFacade;
@@ -88,6 +95,11 @@ public class AdministratorController {
 			FacesContext.getCurrentInstance().addMessage("registrationCustomer:signinCustomer", new FacesMessage("Utente già registrato!"));
 			return "customerRegistrationByAdmin";
 		}
+	}
+	
+	public String listClosedOrders() {
+		this.orders = orderFacade.getAllOrderClosed();
+		return "administratorOrders";
 	}
 	
 	private void resetCustomer(){
@@ -263,4 +275,11 @@ public class AdministratorController {
 		this.product = product;
 	}
 	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 }

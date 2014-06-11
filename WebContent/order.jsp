@@ -82,7 +82,20 @@
 			<h:commandButton action="#{productController.listProducts}"
 				value="Lista dei Prodotti in Negozio" />
 		</h:form>
-
+		
+		<c:if test="${currentOrder.chiuso == false}">
+			<h:form>
+				<h:commandButton action="#{orderController.closeOrder}"
+					value="Chiudi ordine" />
+			</h:form>
+		</c:if>
+		
+		<c:if test="${administratorController.currentAdministrator != null && currentOrder.chiuso == true && currentOrder.evaso == false}">
+			<h:form>
+				<h:commandButton action="#{orderController.processedOrder}"
+					value="Evadi ordine" />
+			</h:form>
+		</c:if>
 	</f:view>
 </body>
 </html>

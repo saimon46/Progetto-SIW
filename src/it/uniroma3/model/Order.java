@@ -18,7 +18,7 @@ public class Order {
 	private boolean chiuso; //Stato chiuso dell'ordine
 	
 	@Column
-	private boolean evaso; //Stato chiuso dell'ordine
+	private boolean evaso; //Stato evaso dell'ordine
 	
 	@Column
 	@Temporal (TemporalType.DATE)

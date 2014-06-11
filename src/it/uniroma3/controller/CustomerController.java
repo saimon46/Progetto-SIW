@@ -6,6 +6,7 @@ import java.util.List;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
+import it.uniroma3.model.OrderFacade;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -23,6 +24,9 @@ public class CustomerController {
 	private List<Customer> customers; //Tutti gli utenti registrati
 
 	private Customer currentCustomer;
+	
+	@EJB(beanName="orderFacade")
+	private OrderFacade orderFacade;
 
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
@@ -42,7 +46,7 @@ public class CustomerController {
 	}
 
 	public String listOrders() {
-		this.orders = currentCustomer.getOrders();
+		this.orders = orderFacade.getAllOrdersByCustomer(currentCustomer);
 		return "customerOrders";
 	}
 

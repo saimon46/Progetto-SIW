@@ -14,19 +14,22 @@
 		<h:form>
 			<table>
 				<tr>
-					<th>ID</th>
+					<th>ID-Ordine</th>
+					<th>Cliente-Associato</th>
 					<th>Data-Creazione</th>
 					<th>Stato</th>
 					<th>Data-Completamento</th>
 					<th>Evaso</th>
 					<th>Data-Evasione</th>
 				</tr>
-				<c:forEach var="order" items="#{customerController.orders}">
+				<c:forEach var="order" items="#{administratorController.orders}">
 					<tr>
 						<td><h:commandLink action="#{orderController.findOrder}"
 								value="#{order.id}">
 								<f:param name="id" value="#{order.id}" />
 							</h:commandLink></td>
+							
+						<td>${order.customer.email}</td>
 
 						<td><h:outputText value="#{order.creationTime}">
 								<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
@@ -58,12 +61,6 @@
 		</h:form>
 
 		<br>
-		<c:if test="${orderController.currentOrder != null}">
-			<p>
-				<a href='<c:url value="/faces/order.jsp" />'><c:out
-						value="Torna all'ordine appena aperto" /></a>
-			<p>
-		</c:if>
 
 		<a href='<c:url value="/faces/index.jsp" />'>Vai alla HomePage</a>
 

@@ -31,8 +31,8 @@
 		</c:if>
 		
 		<br>
-		<!-- Sono un cliente -->
-		<c:if test="${orderController.currentOrder != null}">
+		<!-- Sono un cliente (posso vedere ciò quando c'è un ordine corrente "aperto"!)-->
+		<c:if test="${currentOrder != null && currentOrder.chiuso == false}">
 			<p>
 				<h:form>
 					<div>

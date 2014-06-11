@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.Date;
@@ -29,6 +30,19 @@ public class OrderFacade {
         CriteriaQuery<Order> cq = em.getCriteriaBuilder().createQuery(Order.class);
         cq.select(cq.from(Order.class));
         List<Order> orders = em.createQuery(cq).getResultList();
+		return orders;
+	}
+	
+	public List<Order> getAllOrderClosed() {
+		Query q = em.createQuery("SELECT o FROM Order o WHERE o.chiuso = true");
+		List<Order> orders = q.getResultList();
+		return orders;
+	}
+	
+	public List<Order> getAllOrdersByCustomer(Customer customer) {
+		Query q = em.createQuery("SELECT o FROM Order o WHERE o.customer.email = :email");
+		q.setParameter("email", customer.getEmail());
+		List<Order> orders = q.getResultList();
 		return orders;
 	}
 	

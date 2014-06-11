@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.uniroma3.model.Customer;
+import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
 import it.uniroma3.model.OrderLine;
@@ -34,6 +35,9 @@ public class OrderController {
 	private int quantity; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
 	
+	@EJB(beanName="customerFacade")
+	private CustomerFacade customerFacade;
+	
 	@EJB(beanName="orderFacade")
 	private OrderFacade orderFacade;
 	
@@ -58,8 +62,26 @@ public class OrderController {
 		} else {
 			orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
 			this.currentOrder.addOrderLine(orderLine);
-			orderFacade.updateOrder(currentOrder);			
+			orderFacade.updateOrder(currentOrder);
 		}
+		return "order";
+	}
+	
+	public String closeOrder() {
+		this.currentOrder.setCompletedTime(new Date());
+		this.currentOrder.setChiuso();
+		orderFacade.updateOrder(currentOrder);
+		customerFacade.updateCustomer(currentCustomer);
+		this.message = "Ordine chiuso correttamente!";
+		return "order";
+	}
+	
+	public String processedOrder() {
+		this.currentOrder.setProcessedTime(new Date());
+		this.currentOrder.setEvaso();
+		orderFacade.updateOrder(currentOrder);
+		customerFacade.updateCustomer(currentCustomer);
+		this.message = "Ordine evaso correttamente!";
 		return "order";
 	}
 	

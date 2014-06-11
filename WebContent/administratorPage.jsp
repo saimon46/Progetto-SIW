@@ -52,6 +52,12 @@
 		</li></ul>
 		</td>
 	</tr>
+	<tr>
+	<td>
+		<ul><li><h:commandLink action="#{administratorController.listClosedOrders}"
+						value="Lista ORDINI" /></li></ul>
+		</td>
+	</tr>
 </table>
 <br>
 </h:form>
