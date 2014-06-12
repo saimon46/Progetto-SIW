@@ -24,15 +24,15 @@
 				</tr>
 				<c:forEach var="order" items="#{administratorController.orders}">
 					<tr>
-						<td><h:commandLink action="#{orderController.findOrder}"
+						<td><h:commandLink action="#{orderController.findOrderByAdministrator}"
 								value="#{order.id}">
 								<f:param name="id" value="#{order.id}" />
 							</h:commandLink></td>
 							
 						<td>${order.customer.email}</td>
 
-						<td><h:outputText value="#{order.creationTime}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+						<td><h:outputText value="#{order.creationTime.time}">
+								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 							</h:outputText></td>
 
 						<td><c:choose>
@@ -42,8 +42,8 @@
 								</c:otherwise>
 							</c:choose></td>
 
-						<td><h:outputText value="#{order.completedTime}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+						<td><h:outputText value="#{order.completedTime.time}">
+								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 							</h:outputText></td>
 
 						<td><c:choose>
@@ -53,8 +53,8 @@
 							</c:otherwise>
 							</c:choose></td>
 
-						<td><h:outputText value="#{order.processedTime}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+						<td><h:outputText value="#{order.processedTime.time}">
+								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 							</h:outputText></td>
 				</c:forEach>
 			</table>

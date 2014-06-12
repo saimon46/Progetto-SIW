@@ -1,8 +1,10 @@
 package it.uniroma3.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import it.uniroma3.model.Administrator;
 import it.uniroma3.model.AdministratorFacade;
@@ -27,7 +29,8 @@ public class AdministratorController {
 	
 	/*Dati per la registrazione di un nuovo utente da parte dell'amministratore */
 	private String firstName, lastName, passwordCustomer, email, phoneNumber, street, city, state, zipcode, country;
-	private Date dateOfBirth, registrationDate;
+	private Date dateOfBirth;
+	private Calendar registrationDate;
 	
 	private String nickname;
 	private String password;
@@ -85,7 +88,7 @@ public class AdministratorController {
 	public String createCustomer() {
 		try{
 			/*Genera automaticamente la data di oggi */
-			this.registrationDate = new Date();
+			this.registrationDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
 			this.resetCustomer();
 			return "registrationDoneByAdmin";
@@ -262,11 +265,11 @@ public class AdministratorController {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Date getRegistrationDate() {
+	public Calendar getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(Calendar registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 	

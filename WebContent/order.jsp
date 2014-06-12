@@ -15,8 +15,8 @@
 		<h2>Dettagli Completi</h2>
 		<div>ID Ordine: ${currentOrder.id}</div>
 		
-		<div>Creato il: <h:outputText value="#{currentOrder.creationTime}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		<div>Creato il: <h:outputText value="#{currentOrder.creationTime.time}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" />
 		</h:outputText></div>
 		
 		<div>
@@ -29,8 +29,8 @@
 		</div>
 		
 		<c:if test="${currentOrder.completedTime != null }">
-		<div>Data Completamento: <h:outputText value="#{currentOrder.completedTime}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		<div>Data Completamento: <h:outputText value="#{currentOrder.completedTime.time}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 		</h:outputText></div>
 		</c:if>
 		
@@ -44,8 +44,8 @@
 		</div>
 		
 		<c:if test="${currentOrder.processedTime != null }">
-		<div>Data Spedizione: <h:outputText value="#{currentOrder.processedTime}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+		<div>Data Spedizione: <h:outputText value="#{currentOrder.processedTime.time}">
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 		</h:outputText></div>
 		</c:if>
 
@@ -87,13 +87,6 @@
 			<h:form>
 				<h:commandButton action="#{orderController.closeOrder}"
 					value="Chiudi ordine" />
-			</h:form>
-		</c:if>
-		
-		<c:if test="${administratorController.currentAdministrator != null && currentOrder.chiuso == true && currentOrder.evaso == false}">
-			<h:form>
-				<h:commandButton action="#{orderController.processedOrder}"
-					value="Evadi ordine" />
 			</h:form>
 		</c:if>
 	</f:view>

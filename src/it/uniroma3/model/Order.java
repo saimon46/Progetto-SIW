@@ -1,7 +1,7 @@
 package it.uniroma3.model;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.*;
@@ -21,16 +21,16 @@ public class Order {
 	private boolean evaso; //Stato evaso dell'ordine
 	
 	@Column
-	@Temporal (TemporalType.DATE)
-	private Date creationTime; //data di creazione dell'ordine
+	@Temporal (TemporalType.TIMESTAMP)
+	private Calendar creationTime; //data di creazione dell'ordine
 	
 	@Column
-	@Temporal (TemporalType.DATE)
-	private Date completedTime; //data di chiusura dell'ordine
+	@Temporal (TemporalType.TIMESTAMP)
+	private Calendar completedTime; //data di chiusura dell'ordine
 	
 	@Column
-	@Temporal (TemporalType.DATE)
-	private Date processedTime; //data di evasione (spedizione) dell'ordine
+	@Temporal (TemporalType.TIMESTAMP)
+	private Calendar processedTime; //data di evasione (spedizione) dell'ordine
 	
 	@ManyToOne
 	private Customer customer;
@@ -39,7 +39,7 @@ public class Order {
 	@OneToMany(fetch=FetchType.EAGER)
 	private List<OrderLine> orderLines;
 
-	public Order (Date creationTime, Customer customer) {
+	public Order (Calendar creationTime, Customer customer) {
     	this.creationTime = creationTime;
     	this.customer = customer;
     	this.chiuso = false; //Alla creazione, l'ordine è ancora aperto
@@ -72,27 +72,27 @@ public class Order {
 		this.evaso = true;
 	}
 
-	public Date getCreationTime() {
+	public Calendar getCreationTime() {
 		return creationTime;
 	}
 
-	public void setCreationTime(Date creationTime) {
+	public void setCreationTime(Calendar creationTime) {
 		this.creationTime = creationTime;
 	}
 
-	public Date getCompletedTime() {
+	public Calendar getCompletedTime() {
 		return completedTime;
 	}
 
-	public void setCompletedTime(Date completedTime) {
+	public void setCompletedTime(Calendar completedTime) {
 		this.completedTime = completedTime;
 	}
 
-	public Date getProcessedTime() {
+	public Calendar getProcessedTime() {
 		return processedTime;
 	}
 
-	public void setProcessedTime(Date processedTime) {
+	public void setProcessedTime(Calendar processedTime) {
 		this.processedTime = processedTime;
 	}
 	

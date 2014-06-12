@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Stateless(name="orderFacade")
@@ -15,7 +15,7 @@ public class OrderFacade {
     @PersistenceContext(unitName = "siw-project")
     private EntityManager em;
     
-	public Order createOrder(Date creationTime, Customer customer) {
+	public Order createOrder(Calendar creationTime, Customer customer) {
 		Order order = new Order(creationTime, customer);
 		em.persist(order);
 		return order;
@@ -34,7 +34,7 @@ public class OrderFacade {
 	}
 	
 	public List<Order> getAllOrderClosed() {
-		Query q = em.createQuery("SELECT o FROM Order o WHERE o.chiuso = true");
+		Query q = em.createQuery("SELECT o FROM Order o WHERE o.chiuso = true ORDER BY o.id");
 		List<Order> orders = q.getResultList();
 		return orders;
 	}

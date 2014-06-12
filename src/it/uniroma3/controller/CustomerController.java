@@ -1,7 +1,9 @@
 package it.uniroma3.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
@@ -19,7 +21,8 @@ import javax.faces.context.FacesContext;
 public class CustomerController {
 
 	private String firstName, lastName, password, email, phoneNumber, street, city, state, zipcode, country;
-	private Date dateOfBirth, registrationDate;
+	private Date dateOfBirth;
+	private Calendar registrationDate;
 	private List<Order> orders;
 	private List<Customer> customers; //Tutti gli utenti registrati
 
@@ -34,7 +37,7 @@ public class CustomerController {
 	public String createCustomer() {
 		try{
 			/*Genera automaticamente la data di oggi */
-			this.registrationDate = new Date();
+			this.registrationDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			this.currentCustomer = customerFacade.createCustomer(firstName, lastName, password, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
 			return "registrationDone";
 		}catch(Exception e){
@@ -154,10 +157,9 @@ public class CustomerController {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Date getRegistrationDate() {
+	public Calendar getRegistrationDate() {
 		return registrationDate;
 	}
-
 
 	public List<Customer> getCustomers() {
 		return customers;
@@ -207,7 +209,7 @@ public class CustomerController {
 		this.country = country;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(Calendar registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 

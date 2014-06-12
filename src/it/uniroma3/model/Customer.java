@@ -1,6 +1,7 @@
 package it.uniroma3.model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class Customer {
 	@Temporal (TemporalType.DATE)
 	private Date dateOfBirth;
 	
-	@Temporal (TemporalType.DATE)
-	private Date registrationDate;
+	@Temporal (TemporalType.TIMESTAMP)
+	private Calendar registrationDate;
 	
 	@OneToOne
 	private Address address;
@@ -44,7 +45,7 @@ public class Customer {
 		
 	}
 
-	public Customer (String firstName, String lastName, String password, String email, String phoneNumber, Date dateOfBirth, Address address, Date registrationDate) {
+	public Customer (String firstName, String lastName, String password, String email, String phoneNumber, Date dateOfBirth, Address address, Calendar registrationDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
@@ -111,11 +112,11 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public Date getRegistrationDate() {
+	public Calendar getRegistrationDate() {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
+	public void setRegistrationDate(Calendar registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 
