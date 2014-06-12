@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<h3>Prodotto Corrente eliminato correttamente!</h4>
+<h3>Prodotto Corrente eliminato correttamente!</h3>
 <br>
 <a href='<c:url value="/faces/administratorPage.jsp" />'>Torna all'amministrazione</a>
 

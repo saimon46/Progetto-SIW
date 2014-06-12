@@ -54,8 +54,13 @@
 	</tr>
 	<tr>
 	<td>
+		<ul><li><a href='<c:url value="/faces/deleteCustomer.jsp" />'>Elimina un Utente esistente</a></li></ul>
+		</td>
+	</tr>
+	<tr>
+	<td>
 		<ul><li><h:commandLink action="#{administratorController.listClosedOrders}"
-						value="Lista ORDINI" /></li></ul>
+						value="Lista ORDINI da evadere" /></li></ul>
 		</td>
 	</tr>
 </table>

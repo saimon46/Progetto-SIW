@@ -49,6 +49,11 @@ public class CustomerFacade {
         Customer customer = em.find(Customer.class, id);
         deleteCustomer(customer);
 	}
+	
+	public void deleteCustomerByEmail(String email) {
+        Customer customer = em.find(Customer.class, email);
+        deleteCustomer(customer);
+	}
 
 	public Customer getCustomer(String email) {
 		Customer customer = em.find(Customer.class, email);
