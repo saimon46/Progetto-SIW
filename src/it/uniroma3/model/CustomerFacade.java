@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class CustomerFacade {
     @PersistenceContext(unitName = "siw-project")
     private EntityManager em;
     
-	public Customer createCustomer(String firstName, String lastName, String password, String email, String phoneNumber, Date dateOfBirth, String street, String city, String state, String zipcode, String country, Date registrationDate) {
+	public Customer createCustomer(String firstName, String lastName, String password, String email, String phoneNumber, Date dateOfBirth, String street, String city, String state, String zipcode, String country, Calendar registrationDate) {
 		Address address = new Address(street, city, state, zipcode, country);
 		em.persist(address);
 		Customer customer = new Customer(firstName, lastName, password, email, phoneNumber, dateOfBirth, address, registrationDate);

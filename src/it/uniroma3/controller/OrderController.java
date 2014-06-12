@@ -1,7 +1,8 @@
 package it.uniroma3.controller;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
@@ -45,7 +46,7 @@ public class OrderController {
 	private OrderLineFacade orderLineFacade;
 	
 	public String createOrder() {
-		this.currentOrder = orderFacade.createOrder(new Date(), this.currentCustomer);
+		this.currentOrder = orderFacade.createOrder(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")), this.currentCustomer);
 		this.currentCustomer.addOrder(this.currentOrder);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
 		return "order";
@@ -68,7 +69,7 @@ public class OrderController {
 	}
 	
 	public String closeOrder() {
-		this.currentOrder.setCompletedTime(new Date());
+		this.currentOrder.setCompletedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
 		this.currentOrder.setChiuso();
 		orderFacade.updateOrder(currentOrder);
 		customerFacade.updateCustomer(currentCustomer);
@@ -77,12 +78,12 @@ public class OrderController {
 	}
 	
 	public String processedOrder() {
-		this.currentOrder.setProcessedTime(new Date());
+		this.currentOrder.setProcessedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
 		this.currentOrder.setEvaso();
 		orderFacade.updateOrder(currentOrder);
 		customerFacade.updateCustomer(currentCustomer);
 		this.message = "Ordine evaso correttamente!";
-		return "order";
+		return "orderDetails";
 	}
 	
 	public Long getId() {
@@ -102,6 +103,11 @@ public class OrderController {
 		this.currentOrder = orderFacade.getOrder(id);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
 		return "order";
+	}
+	
+	public String findOrderByAdministrator() {
+		this.findOrder();
+		return "orderDetails";
 	}
 	
 	public String findOrder(Long id) {

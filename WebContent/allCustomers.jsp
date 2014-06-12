@@ -18,8 +18,8 @@
 	<c:forEach var="customer" items="#{customerController.customers}">
 	<tr>
 	   <td>${customer.email}</td><td>${customer.firstName}</td><td>${customer.lastName}</td><td>${customer.phoneNumber}</td>
-	   <td><h:outputText value="#{customer.registrationDate}">
-			<f:convertDateTime dateStyle="medium" locale="it_IT" type="date" />
+	   <td><h:outputText value="#{customer.registrationDate.time}">
+			<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
 			</h:outputText></td>
 	</tr>
 	</c:forEach>
