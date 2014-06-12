@@ -52,7 +52,7 @@ public class CustomerFacade {
 	}
 	
 	public void deleteCustomerByEmail(String email) {
-        Customer customer = em.find(Customer.class, email);
+        Customer customer = this.getCustomer(email);
         deleteCustomer(customer);
 	}
 
