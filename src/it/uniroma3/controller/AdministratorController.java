@@ -90,12 +90,12 @@ public class AdministratorController {
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
-			this.resetCustomer();
-			return "registrationDoneByAdmin";
+			FacesContext.getCurrentInstance().addMessage("registrationCustomerByAdmin:signinCustomerByAdmin", new FacesMessage("Registrazione Utente effettuata!"));
+			return "customerRegistrationByAdmin";
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();
-			FacesContext.getCurrentInstance().addMessage("registrationCustomer:signinCustomer", new FacesMessage("Utente già registrato!"));
+			FacesContext.getCurrentInstance().addMessage("registrationCustomerByAdmin:signinCustomerByAdmin", new FacesMessage("Utente già registrato!"));
 			return "customerRegistrationByAdmin";
 		}
 	}

@@ -16,7 +16,7 @@
 		<div>ID Ordine: ${currentOrder.id}</div>
 		
 		<div>Creato il: <h:outputText value="#{currentOrder.creationTime.time}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" />
+		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome"/>
 		</h:outputText></div>
 		
 		<div>
