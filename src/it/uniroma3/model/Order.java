@@ -36,7 +36,7 @@ public class Order {
 	private Customer customer;
 	
 	@JoinColumn(name="order_id")
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<OrderLine> orderLines;
 
 	public Order (Calendar creationTime, Customer customer) {

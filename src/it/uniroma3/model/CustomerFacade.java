@@ -52,7 +52,7 @@ public class CustomerFacade {
 	}
 	
 	public void deleteCustomerByEmail(String email) {
-        Customer customer = this.getCustomer(email);
+        Customer customer = this.getCustomerByEmail(email);
         deleteCustomer(customer);
 	}
 

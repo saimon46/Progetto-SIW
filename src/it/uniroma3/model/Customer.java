@@ -35,10 +35,10 @@ public class Customer {
 	@Temporal (TemporalType.TIMESTAMP)
 	private Calendar registrationDate;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private Address address;
 	
-	@OneToMany(mappedBy = "customer", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Order> orders;
 	
 	public Customer () {

@@ -101,14 +101,14 @@ public class AdministratorController {
 	}
 	
 	public String deleteCustomer() {
-		//try{
+		try{
 			customerFacade.deleteCustomerByEmail(email);
 			FacesContext.getCurrentInstance().addMessage("deletingCustomer:deleteCustomer", new FacesMessage("Operazione effettuata!"));
 			return "deleteCustomer";
-		//}catch(Exception e){
-			//FacesContext.getCurrentInstance().addMessage("deletingCustomer:deleteCustomer", new FacesMessage("Utente inesistente!"));
-			//return "deleteCustomer";
-		//}
+		}catch(Exception e){
+			FacesContext.getCurrentInstance().addMessage("deletingCustomer:deleteCustomer", new FacesMessage("Utente inesistente!"));
+			return "deleteCustomer";
+		}
 	}
 	
 	public String listClosedOrders() {

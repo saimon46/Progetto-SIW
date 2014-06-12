@@ -78,12 +78,15 @@ public class OrderController {
 	}
 	
 	public String processedOrder() {
-		this.currentOrder.setProcessedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
-		this.currentOrder.setEvaso();
-		orderFacade.updateOrder(currentOrder);
-		customerFacade.updateCustomer(currentCustomer);
-		this.message = "Ordine evaso correttamente!";
-		return "orderDetails";
+		
+			//Aggiungere il controllo delle quantità in magazzino !!!!!!!!!
+		
+			this.currentOrder.setProcessedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
+			this.currentOrder.setEvaso();
+			orderFacade.updateOrder(currentOrder);
+			customerFacade.updateCustomer(currentCustomer);
+			this.message = "Ordine evaso correttamente!";
+			return "orderDetails";
 	}
 	
 	public Long getId() {
