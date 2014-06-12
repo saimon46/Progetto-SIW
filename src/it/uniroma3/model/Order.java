@@ -36,7 +36,7 @@ public class Order {
 	private Customer customer;
 	
 	@JoinColumn(name="order_id")
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<OrderLine> orderLines;
 
 	public Order (Calendar creationTime, Customer customer) {
@@ -48,6 +48,19 @@ public class Order {
 	
 	public void addOrderLine(OrderLine orderLine) {
 		this.orderLines.add(orderLine);
+	}
+	
+	public void removeOrderLine(OrderLine orderLine) {
+			this.orderLines.remove(orderLine);
+	}
+	
+	public OrderLine getOrderLineById(Long orderLineId) {
+		OrderLine orderLine = null;
+		for(OrderLine line : this.orderLines){
+			if(line.getId().equals(orderLineId))
+				orderLine = line;
+		}
+		return orderLine;
 	}
 	
 	// ***** Getters and setters *****

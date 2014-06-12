@@ -29,7 +29,7 @@ public class OrderLineFacade {
         em.remove(orderLine);
     }
 
-	public void deleteProduct(Long id) {
+	public void deleteOrderLine(Long id) {
         OrderLine orderLine = em.find(OrderLine.class, id);
         deleteOrderLine(orderLine);
 	}

@@ -14,67 +14,85 @@
 
 		<h2>Dettagli Completi</h2>
 		<div>ID Ordine: ${currentOrder.id}</div>
-		
-		<div>Creato il: <h:outputText value="#{currentOrder.creationTime.time}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome"/>
-		</h:outputText></div>
-		
+
 		<div>
-		<c:choose>
-		<c:when test="${currentOrder.chiuso == false}">Stato: Aperto</c:when>
-		<c:otherwise>
+			Creato il:
+			<h:outputText value="#{currentOrder.creationTime.time}">
+				<f:convertDateTime dateStyle="medium" locale="it_IT" type="both"
+					timeZone="Europe/Rome" />
+			</h:outputText>
+		</div>
+
+		<div>
+			<c:choose>
+				<c:when test="${currentOrder.chiuso == false}">Stato: Aperto</c:when>
+				<c:otherwise>
 		Stato: Completato
 		</c:otherwise>
-		</c:choose>
+			</c:choose>
 		</div>
-		
+
 		<c:if test="${currentOrder.completedTime != null }">
-		<div>Data Completamento: <h:outputText value="#{currentOrder.completedTime.time}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
-		</h:outputText></div>
+			<div>
+				Data Completamento:
+				<h:outputText value="#{currentOrder.completedTime.time}">
+					<f:convertDateTime dateStyle="medium" locale="it_IT" type="both"
+						timeZone="Europe/Rome" />
+				</h:outputText>
+			</div>
 		</c:if>
-		
+
 		<div>
-		<c:choose>
-		<c:when test="${currentOrder.evaso == false}">Evaso: NO</c:when>
-		<c:otherwise>
+			<c:choose>
+				<c:when test="${currentOrder.evaso == false}">Evaso: NO</c:when>
+				<c:otherwise>
 		Evaso: SI
 		</c:otherwise>
-		</c:choose>
+			</c:choose>
 		</div>
-		
+
 		<c:if test="${currentOrder.processedTime != null }">
-		<div>Data Spedizione: <h:outputText value="#{currentOrder.processedTime.time}">
-		<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
-		</h:outputText></div>
+			<div>
+				Data Spedizione:
+				<h:outputText value="#{currentOrder.processedTime.time}">
+					<f:convertDateTime dateStyle="medium" locale="it_IT" type="both"
+						timeZone="Europe/Rome" />
+				</h:outputText>
+			</div>
 		</c:if>
 
 		<br>
 		<h3>${orderController.message}</h3>
-		
+
 		<c:if test="${not empty currentOrder.orderLines}">
 			<h4>Righe ordine:</h4>
 			<h:form>
-			<table>
-				<tr>
-					<th>Codice</th>
-					<th>Nome</th>
-					<th>Prezzo</th>
-					<th>Quantità</th>
-				</tr>
-
-				<c:forEach var="orderLine" items="#{currentOrder.orderLines}">
+				<table>
 					<tr>
-						<td><h:commandLink action="#{productController.findProduct}"
-								value="#{orderLine.product.code}">
-								<f:param name="id" value="#{orderLine.product.id}" />
-							</h:commandLink></td>
-						<td>${orderLine.product.name}</td>
-						<td>${orderLine.unitPrice}</td>
-						<td>${orderLine.quantity}</td>
+						<th>Codice</th>
+						<th>Nome</th>
+						<th>Prezzo</th>
+						<th>Quantità</th>
 					</tr>
-				</c:forEach>
-			</table>
+
+					<c:forEach var="orderLine" items="#{currentOrder.orderLines}">
+						<tr>
+							<td><h:commandLink action="#{productController.findProduct}"
+									value="#{orderLine.product.code}">
+									<f:param name="id" value="#{orderLine.product.id}" />
+								</h:commandLink></td>
+							<td>${orderLine.product.name}</td>
+							<td>${orderLine.unitPrice}</td>
+							<td>${orderLine.quantity}</td>
+							<c:if test="${currentOrder.chiuso == false}">
+								<td><h:commandLink
+										action="#{orderController.deleteOrderLine}" value="Cancella">
+										<f:param name="orderLineId" value="#{orderLine.id}" />
+									</h:commandLink></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</table>
 			</h:form>
 		</c:if>
 
@@ -82,7 +100,7 @@
 			<h:commandButton action="#{productController.listProducts}"
 				value="Lista dei Prodotti in Negozio" />
 		</h:form>
-		
+
 		<c:if test="${currentOrder.chiuso == false}">
 			<h:form>
 				<h:commandButton action="#{orderController.closeOrder}"

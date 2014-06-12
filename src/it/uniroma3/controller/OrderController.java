@@ -23,6 +23,9 @@ public class OrderController {
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
+	@ManagedProperty(value="#{param.orderLineId}")
+	private Long orderLineId;
+
 	@ManagedProperty(value="#{sessionScope['currentOrder']}")
 	private Order currentOrder;
 	
@@ -65,6 +68,17 @@ public class OrderController {
 			this.currentOrder.addOrderLine(orderLine);
 			orderFacade.updateOrder(currentOrder);
 		}
+		return "order";
+	}
+	
+	public String deleteOrderLine() {
+		OrderLine orderLine = this.currentOrder.getOrderLineById(this.orderLineId);
+		this.currentOrder.removeOrderLine(orderLine);
+		orderLineFacade.deleteOrderLine(this.orderLineId);
+		orderFacade.updateOrder(currentOrder);
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
+		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
+		this.message = "Linea ordine rimossa!";
 		return "order";
 	}
 	
@@ -164,5 +178,13 @@ public class OrderController {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	public Long getOrderLineId() {
+		return orderLineId;
+	}
+
+	public void setOrderLineId(Long orderLineId) {
+		this.orderLineId = orderLineId;
 	}
 }
