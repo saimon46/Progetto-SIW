@@ -38,7 +38,7 @@ public class OrderController {
 	private Customer currentCustomer;
 	
 	private String message;
-	private int quantity; // quantità della riga d'ordine appena inserita
+	private int quantity = 1; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
 	
 	/* Questa lista conterra' i codici dei prodotti delle righe ordine con una quantita'
@@ -46,7 +46,7 @@ public class OrderController {
 	  	
 	private List<String> codiceProdottiRigheOrdine = new ArrayList<String>() ; 
 	
-	private int quantityNew = 0;
+	private int quantityNew = 1;
 	private String codeProductLineOrder = null;
 	
 	
@@ -99,31 +99,23 @@ public class OrderController {
 	}
 	
 	public String changeQuantityOrderLine() {
-		boolean cambiata = false;
 		if(this.quantityNew <=0){
-			this.quantityNew = 0;
+			this.quantityNew = 1;
 			this.message = "La quantità deve essere maggiore di 0";
-			return "order";
-		}
-		
-		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
-		for(OrderLine orderLine : orderLines){
-		
-			if(orderLine.getProduct().getCode().equals(this.codeProductLineOrder)){
-				orderLine.setQuantity(this.quantityNew);
-				orderLineFacade.updateOrderLine(orderLine);
-				orderFacade.updateOrder(currentOrder);
-				this.quantityNew = 0;
-				cambiata = true;
+		} else {
+			List<OrderLine> orderLines = this.currentOrder.getOrderLines();
+			for(OrderLine orderLine : orderLines){
+			
+				if(orderLine.getProduct().getCode().equals(this.codeProductLineOrder)){
+					orderLine.setQuantity(this.quantityNew);
+					orderLineFacade.updateOrderLine(orderLine);
+					orderFacade.updateOrder(currentOrder);
+					this.quantityNew = 1;
+				}
 			}
+			this.message = "Quantità riga ordine modificata!";
 		}
-		if (cambiata == false){
-				this.message = "Prodotto non presente tra le righe dell'ordine corrente!";
-				return "order";
-			}else{
-				this.message = "Quantità riga ordine modificata!";
-				return "order";
-			}	
+		return "order";
 	}
 	
 	public String closeOrder() {

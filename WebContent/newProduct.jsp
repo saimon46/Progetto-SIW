@@ -34,7 +34,7 @@
                      required="true"
                      requiredMessage="La quantita' e' obbligatoria!"
                      converterMessage="La quantita' deve essere un numero!"
-                     validatorMessage="La quantita' non puo' esser negativa!"
+                     validatorMessage="La quantita' deve essere maggior di zero!"
                      id="quantity">
                      <f:validateLongRange minimum="1" />
                      </h:inputText> <h:message for="quantity" />
