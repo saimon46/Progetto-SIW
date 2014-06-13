@@ -1,7 +1,6 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 <!DOCTYPE html>
 <html>
@@ -89,17 +88,15 @@
 										action="#{orderController.deleteOrderLine}" value="Cancella">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
 									</h:commandLink></td>
-								<td>Modifica Quantita': <h:inputText
-										value="#{orderController.quantityNew}" required="true"
-										requiredMessage="*"
-										validatorMessage="La quantita' non puo' esser negativa!"
-										size="2" id="orderLineQuantity">
-										<f:validateLongRange minimum="1" />
-									</h:inputText>
-									<h:commandButton action="#{orderController.changeQuantityOrderLine}" value="OK">
+									<td> Modifica Quantita': <h:inputText value="#{orderController.quantityNew}" 
+                     					required="true"
+                     					requiredMessage="*"
+                     					size="2"
+                      					id="orderLineQuantity"/>  <h:message for="orderLineQuantity" />
+                      				<h:commandButton
+ 									action="#{orderController.changeQuantityOrderLine}" value="OK">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
-									</h:commandButton>
-									<h:message for="orderLineQuantity" /></td>
+ 									</h:commandButton></td>
 							</c:if>
 						</tr>
 					</c:forEach>

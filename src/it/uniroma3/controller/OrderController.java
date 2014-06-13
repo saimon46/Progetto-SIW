@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -40,7 +41,12 @@ public class OrderController {
 	private int quantity; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
 	
-	private int quantitynew;
+	/* Questa lista conterra' i codici dei prodotti delle righe ordine con una quantita'
+	 *  inferiore alle disponibilita' in magazzino */
+	  	
+	private List<String> codiceProdottiRigheOrdine = new ArrayList<String>() ; 
+	
+	private int quantityNew = 0;
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
@@ -92,12 +98,14 @@ public class OrderController {
 	
 	public String changeQuantityOrderLine() {
 		OrderLine orderLine = this.currentOrder.getOrderLineById(this.orderLineId);
-		if(this.quantitynew <=0){
+		if(this.quantityNew <=0){
+			this.quantityNew = 0;
 			this.message = "La quantità deve essere maggiore di 0";
 		}else{
-			orderLine.setQuantity(this.quantitynew);
+			orderLine.setQuantity(this.quantityNew);
 			orderLineFacade.updateOrderLine(orderLine);
 			orderFacade.updateOrder(currentOrder);
+			this.quantityNew = 0;
 			this.message = "Quantità riga ordine modificata!";
 		}
 		return "order";
@@ -121,18 +129,24 @@ public class OrderController {
 			customerFacade.updateCustomer(currentCustomer);
 			this.message = "Ordine evaso correttamente!";
 		} else {
-			this.message = "Ordine non evaso correttamente! Quantità di alcuni prodotti non disponibili!";
+			this.message = "Ordine non evaso correttamente! Uno o più prodotti non sono disponibili nelle"
+			+ " quantita' scelte! \nCodice Prodotti in righe d'ordine non evadibili: "+this.codiceProdottiRigheOrdine.toString();
 		}
 		return "orderDetails";
 	}
 	
 	private boolean checkOrderQuantity() {
+		this.codiceProdottiRigheOrdine.clear();
 		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
 		for(OrderLine orderLine : orderLines){
-			if(orderLine.getQuantity()>orderLine.getProduct().getQuantity())
-				return false;
+			if(orderLine.getQuantity()>orderLine.getProduct().getQuantity()){
+				this.codiceProdottiRigheOrdine.add(orderLine.getProduct().getCode());
+			}
 		}
-		return true;
+		if(this.codiceProdottiRigheOrdine.size() == 0)
+			return true;
+		else
+			return false;
 	}
 	
 	private boolean reduceOrderQuantity() {
@@ -232,11 +246,19 @@ public class OrderController {
 	}
 
 	public int getQuantityNew() {
-		return quantitynew;
+		return quantityNew;
 	}
 
 	public void setQuantityNew(int quantityNew) {
-		this.quantitynew = quantityNew;
+		this.quantityNew = quantityNew;
+	}
+
+	public List<String> getCodiceProdottiRigheOrdine() {
+		return codiceProdottiRigheOrdine;
+	}
+
+	public void setCodiceProdottiRigheOrdine(List<String> codiceProdottiRigheOrdine) {
+		this.codiceProdottiRigheOrdine = codiceProdottiRigheOrdine;
 	}
 
 }
