@@ -13,6 +13,7 @@
 <f:view>
 <jsp:include page="header.jsp"/>
 <h:form>
+<h2> Inserimento PRODOTTO nel DataBase</h2>
     <div>Nome: <h:inputText value="#{productController.name}" 
                      required="true"
                      requiredMessage="Il nome e' obbligatorio!"
@@ -33,7 +34,10 @@
                      required="true"
                      requiredMessage="La quantita' e' obbligatoria!"
                      converterMessage="La quantita' deve essere un numero!"
-                     id="quantity"/> <h:message for="quantity" />
+                     validatorMessage="La quantita' non puo' esser negativa!"
+                     id="quantity">
+                     <f:validateLongRange minimum="1" />
+                     </h:inputText> <h:message for="quantity" />
 	</div>
     <div>Descrizione: <h:inputTextarea value="#{productController.description}" 
     				required="false" 

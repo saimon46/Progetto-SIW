@@ -89,15 +89,17 @@
 										action="#{orderController.deleteOrderLine}" value="Cancella">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
 									</h:commandLink></td>
-								<td>---- Modifica Quantita': <h:inputText value="#{orderController.quantitynew}" 
-                    					required="true"
-                    					requiredMessage="*"
-                    					size="2"
-                     					id="orderLineQuantity"/>  <h:message for="orderLineQuantity" />
-                     				<h:commandButton
-										action="#{orderController.changeQuantityOrderLine}" value="OK">
+								<td>Modifica Quantita': <h:inputText
+										value="#{orderController.quantityNew}" required="true"
+										requiredMessage="*"
+										validatorMessage="La quantita' non puo' esser negativa!"
+										size="2" id="orderLineQuantity">
+										<f:validateLongRange minimum="1" />
+									</h:inputText>
+									<h:commandButton action="#{orderController.changeQuantityOrderLine}" value="OK">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
-									</h:commandButton></td>
+									</h:commandButton>
+									<h:message for="orderLineQuantity" /></td>
 							</c:if>
 						</tr>
 					</c:forEach>

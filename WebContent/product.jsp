@@ -39,9 +39,12 @@
 						Quantita' desiderata:
 						<h:inputText value="#{orderController.quantity}" required="true"
 							requiredMessage="La quantita' e' obbligatoria!"
+							validatorMessage="La quantita' non puo' esser negativa!"
 							converterMessage="La quantita' deve essere un numero!"
 							size = "2"
-							id="quantity" />
+							id="quantity" >
+							<f:validateLongRange minimum="1" />
+						</h:inputText>
 						<h:message for="quantity" />
 					</div>
 					<h:commandButton action="#{orderController.addOrderLine}"

@@ -11,6 +11,7 @@ import it.uniroma3.model.OrderFacade;
 import it.uniroma3.model.OrderLine;
 import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.Product;
+import it.uniroma3.model.ProductFacade;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -50,6 +51,9 @@ public class OrderController {
 	@EJB(beanName="orderLineFacade")
 	private OrderLineFacade orderLineFacade;
 	
+	@EJB(beanName="productFacade")
+	private ProductFacade productFacade;
+	
 	public String createOrder() {
 		this.currentOrder = orderFacade.createOrder(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")), this.currentCustomer);
 		this.currentCustomer.addOrder(this.currentOrder);
@@ -58,9 +62,9 @@ public class OrderController {
 	}
 	
 	public String addOrderLine() {
-		if(this.quantity<=0)
+		if(this.quantity<=0){
 			this.message = "La quantità deve essere maggiore di 0";
-		else{
+		} else {
 			this.message = "";
 			OrderLine orderLine = this.currentOrder.checkOrderLine(currentProduct);
 			if(orderLine != null){
@@ -82,8 +86,6 @@ public class OrderController {
 		this.currentOrder.removeOrderLine(orderLine);
 		orderLineFacade.deleteOrderLine(this.orderLineId);
 		orderFacade.updateOrder(currentOrder);
-		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
-		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
 		this.message = "Linea ordine rimossa!";
 		return "order";
 	}
@@ -111,15 +113,37 @@ public class OrderController {
 	}
 	
 	public String processedOrder() {
-		
-			//Aggiungere il controllo delle quantità in magazzino !!!!!!!!!
-		
+		if(this.checkOrderQuantity()){
+			this.reduceOrderQuantity();
 			this.currentOrder.setProcessedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
 			this.currentOrder.setEvaso();
 			orderFacade.updateOrder(currentOrder);
 			customerFacade.updateCustomer(currentCustomer);
 			this.message = "Ordine evaso correttamente!";
-			return "orderDetails";
+		} else {
+			this.message = "Ordine non evaso correttamente! Quantità di alcuni prodotti non disponibili!";
+		}
+		return "orderDetails";
+	}
+	
+	private boolean checkOrderQuantity() {
+		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
+		for(OrderLine orderLine : orderLines){
+			if(orderLine.getQuantity()>orderLine.getProduct().getQuantity())
+				return false;
+		}
+		return true;
+	}
+	
+	private boolean reduceOrderQuantity() {
+		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
+		for(OrderLine orderLine : orderLines){
+			int quantityOriginal = orderLine.getProduct().getQuantity(); // quantità originale di magazzino del prodotto
+			int quantityToReduce = orderLine.getQuantity(); // quantità da ridurre
+			orderLine.getProduct().setQuantity(quantityOriginal-quantityToReduce);
+			productFacade.updateProduct(orderLine.getProduct());
+		}
+		return true;
 	}
 	
 	public Long getId() {
@@ -207,12 +231,12 @@ public class OrderController {
 		this.orderLineId = orderLineId;
 	}
 
-	public int getQuantitynew() {
+	public int getQuantityNew() {
 		return quantitynew;
 	}
 
-	public void setQuantitynew(int quantitynew) {
-		this.quantitynew = quantitynew;
+	public void setQuantityNew(int quantityNew) {
+		this.quantitynew = quantityNew;
 	}
 
 }
