@@ -47,6 +47,8 @@ public class OrderController {
 	private List<String> codiceProdottiRigheOrdine = new ArrayList<String>() ; 
 	
 	private int quantityNew = 0;
+	private String codeProductLineOrder = null;
+	
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
@@ -97,18 +99,31 @@ public class OrderController {
 	}
 	
 	public String changeQuantityOrderLine() {
-		OrderLine orderLine = this.currentOrder.getOrderLineById(this.orderLineId);
+		boolean cambiata = false;
 		if(this.quantityNew <=0){
 			this.quantityNew = 0;
 			this.message = "La quantità deve essere maggiore di 0";
-		}else{
-			orderLine.setQuantity(this.quantityNew);
-			orderLineFacade.updateOrderLine(orderLine);
-			orderFacade.updateOrder(currentOrder);
-			this.quantityNew = 0;
-			this.message = "Quantità riga ordine modificata!";
+			return "order";
 		}
-		return "order";
+		
+		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
+		for(OrderLine orderLine : orderLines){
+		
+			if(orderLine.getProduct().getCode().equals(this.codeProductLineOrder)){
+				orderLine.setQuantity(this.quantityNew);
+				orderLineFacade.updateOrderLine(orderLine);
+				orderFacade.updateOrder(currentOrder);
+				this.quantityNew = 0;
+				cambiata = true;
+			}
+		}
+		if (cambiata == false){
+				this.message = "Prodotto non presente tra le righe dell'ordine corrente!";
+				return "order";
+			}else{
+				this.message = "Quantità riga ordine modificata!";
+				return "order";
+			}	
 	}
 	
 	public String closeOrder() {
@@ -251,6 +266,14 @@ public class OrderController {
 
 	public void setQuantityNew(int quantityNew) {
 		this.quantityNew = quantityNew;
+	}
+
+	public String getCodeProductLineOrder() {
+		return codeProductLineOrder;
+	}
+
+	public void setCodeProductLineOrder(String codeProductLineOrder) {
+		this.codeProductLineOrder = codeProductLineOrder;
 	}
 
 	public List<String> getCodiceProdottiRigheOrdine() {

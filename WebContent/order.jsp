@@ -62,7 +62,7 @@
 
 		<br>
 		<h3>${orderController.message}</h3>
-
+		
 		<c:if test="${not empty currentOrder.orderLines}">
 			<h4>Righe ordine:</h4>
 			<h:form>
@@ -88,15 +88,6 @@
 										action="#{orderController.deleteOrderLine}" value="Cancella">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
 									</h:commandLink></td>
-									<td> Modifica Quantita': <h:inputText value="#{orderController.quantityNew}" 
-                     					required="true"
-                     					requiredMessage="*"
-                     					size="2"
-                      					id="orderLineQuantity"/>  <h:message for="orderLineQuantity" />
-                      				<h:commandButton
- 									action="#{orderController.changeQuantityOrderLine}" value="OK">
-										<f:param name="orderLineId" value="#{orderLine.id}" />
- 									</h:commandButton></td>
 							</c:if>
 						</tr>
 					</c:forEach>
@@ -108,8 +99,27 @@
 			<h:commandButton action="#{productController.listProducts}"
 				value="Lista dei Prodotti in Negozio" />
 		</h:form>
-
+		
 		<c:if test="${currentOrder.chiuso == false}">
+		<br><br>
+		<h:form>
+		<div> <h4>Modifica Quantita' Prodotti: </h4>
+		
+		Codice Prodotto: <h:inputText value="#{orderController.codeProductLineOrder}" 
+                     					required="true"
+                     					requiredMessage="*"
+                     					size="5"
+                      					id="codeProduct"/>  <h:message for="codeProduct" />
+           Nuova Quantita': <h:inputText value="#{orderController.quantityNew}" 
+                     					required="true"
+                     					requiredMessage="*"
+                     					size="2"
+                      					id="orderLineQuantity"/>  <h:message for="orderLineQuantity" />
+                      				<h:commandButton
+ 									action="#{orderController.changeQuantityOrderLine}" value="OK">
+ 									</h:commandButton></div>
+ 			</h:form>						
+ 			<br><br>						
 			<h:form>
 				<h:commandButton action="#{orderController.closeOrder}"
 					value="Chiudi ordine" />
