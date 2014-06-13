@@ -25,7 +25,7 @@ public class OrderController {
 	
 	@ManagedProperty(value="#{param.orderLineId}")
 	private Long orderLineId;
-
+	
 	@ManagedProperty(value="#{sessionScope['currentOrder']}")
 	private Order currentOrder;
 	
@@ -38,6 +38,8 @@ public class OrderController {
 	private String message;
 	private int quantity; // quantità della riga d'ordine appena inserita
 	private List<Order> orders;
+	
+	private int quantitynew;
 	
 	@EJB(beanName="customerFacade")
 	private CustomerFacade customerFacade;
@@ -56,17 +58,21 @@ public class OrderController {
 	}
 	
 	public String addOrderLine() {
-		this.message = "";
-		OrderLine orderLine = this.currentOrder.checkOrderLine(currentProduct);
-		if(orderLine != null){
-			orderLine.setQuantity(orderLine.getQuantity()+this.quantity);
-			// abbiamo deciso che il prezzo rimane quello che c'era al primo ordine
-			orderLineFacade.updateOrderLine(orderLine);
-			this.message = "Prodotto già associato a quest'ordine! Sono state sommate le quantità!";
-		} else {
-			orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
-			this.currentOrder.addOrderLine(orderLine);
-			orderFacade.updateOrder(currentOrder);
+		if(this.quantity<=0)
+			this.message = "La quantità deve essere maggiore di 0";
+		else{
+			this.message = "";
+			OrderLine orderLine = this.currentOrder.checkOrderLine(currentProduct);
+			if(orderLine != null){
+				orderLine.setQuantity(orderLine.getQuantity()+this.quantity);
+				// abbiamo deciso che il prezzo rimane quello che c'era al primo ordine
+				orderLineFacade.updateOrderLine(orderLine);
+				this.message = "Prodotto già associato a quest'ordine! Sono state sommate le quantità!";
+			} else {
+				orderLine = orderLineFacade.createOrderLine(currentProduct.getPrice(), this.quantity, currentProduct);
+				this.currentOrder.addOrderLine(orderLine);
+				orderFacade.updateOrder(currentOrder);
+			}
 		}
 		return "order";
 	}
@@ -79,6 +85,19 @@ public class OrderController {
 		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("currentOrder");
 		//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentOrder", this.currentOrder);
 		this.message = "Linea ordine rimossa!";
+		return "order";
+	}
+	
+	public String changeQuantityOrderLine() {
+		OrderLine orderLine = this.currentOrder.getOrderLineById(this.orderLineId);
+		if(this.quantitynew <=0){
+			this.message = "La quantità deve essere maggiore di 0";
+		}else{
+			orderLine.setQuantity(this.quantitynew);
+			orderLineFacade.updateOrderLine(orderLine);
+			orderFacade.updateOrder(currentOrder);
+			this.message = "Quantità riga ordine modificata!";
+		}
 		return "order";
 	}
 	
@@ -187,4 +206,13 @@ public class OrderController {
 	public void setOrderLineId(Long orderLineId) {
 		this.orderLineId = orderLineId;
 	}
+
+	public int getQuantitynew() {
+		return quantitynew;
+	}
+
+	public void setQuantitynew(int quantitynew) {
+		this.quantitynew = quantitynew;
+	}
+
 }

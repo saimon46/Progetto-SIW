@@ -89,6 +89,15 @@
 										action="#{orderController.deleteOrderLine}" value="Cancella">
 										<f:param name="orderLineId" value="#{orderLine.id}" />
 									</h:commandLink></td>
+								<td>---- Modifica Quantita': <h:inputText value="#{orderController.quantitynew}" 
+                    					required="true"
+                    					requiredMessage="*"
+                    					size="2"
+                     					id="orderLineQuantity"/>  <h:message for="orderLineQuantity" />
+                     				<h:commandButton
+										action="#{orderController.changeQuantityOrderLine}" value="OK">
+										<f:param name="orderLineId" value="#{orderLine.id}" />
+									</h:commandButton></td>
 							</c:if>
 						</tr>
 					</c:forEach>

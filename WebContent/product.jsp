@@ -40,6 +40,7 @@
 						<h:inputText value="#{orderController.quantity}" required="true"
 							requiredMessage="La quantita' e' obbligatoria!"
 							converterMessage="La quantita' deve essere un numero!"
+							size = "2"
 							id="quantity" />
 						<h:message for="quantity" />
 					</div>
