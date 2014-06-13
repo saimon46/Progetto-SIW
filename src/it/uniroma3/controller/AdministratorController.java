@@ -141,6 +141,14 @@ public class AdministratorController {
 		return "newProduct";
 	}
 	
+	public String newProvider() {
+		return "newProvider";
+	}
+	
+	public String newCustomer() {
+		return "customerRegistrationByAdmin";
+	}
+	
 	public String modifyProduct() {
 		this.providers = new ArrayList<Provider>(providerFacade.getAllProvider());
 		this.product = (Product) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("currentProduct");
