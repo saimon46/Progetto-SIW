@@ -119,11 +119,17 @@ public class OrderController {
 	}
 	
 	public String closeOrder() {
-		this.currentOrder.setCompletedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
-		this.currentOrder.setChiuso();
-		orderFacade.updateOrder(currentOrder);
-		customerFacade.updateCustomer(currentCustomer);
-		this.message = "Ordine chiuso correttamente!";
+		List<OrderLine> orderLines = this.currentOrder.getOrderLines();
+		if(orderLines.size() == 0){
+			//Se non ho righe d'ordine nell'ordine, non posso chiuderlo!!!
+			this.message = "Impossibile chiudere l'ordine, non hai scelto nessun prodotto!";
+		}else{
+			this.currentOrder.setCompletedTime(Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome")));
+			this.currentOrder.setChiuso();
+			orderFacade.updateOrder(currentOrder);
+			customerFacade.updateCustomer(currentCustomer);
+			this.message = "Ordine chiuso correttamente!";
+		}
 		return "order";
 	}
 	
