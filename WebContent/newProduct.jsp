@@ -15,10 +15,12 @@
 		<jsp:include page="header.jsp" />
 
 		<div align="center">
-			<h1>Inserimento nuovo prodotto</h1>
+			
 			<h:form id="newProduct" styleClass="form-horizontal">
 				<h:message for="createProduct" styleClass="error alert alert-danger" />
-				
+				<div>
+					<h1>Inserimento nuovo prodotto</h1>
+				</div>
 				<div class="form-group">
 					<label for="name" class="col-sm-1 control-label col-lg-offset-4">Nome</label>
 					<div class="col-sm-2">
