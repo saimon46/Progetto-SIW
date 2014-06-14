@@ -52,6 +52,11 @@
 				</div>
 			</h:form>
 		</div>
+		<div class="text-right col-md-6 col-md-offset-6">
+			<h5><em>Per accedere e provare la sezione amministrazione:</em></h5>
+			<h5><em>Nickname: admin1</em></h5>
+			<h5><em>Password: admin1</em></h5>
+		</div>
 	</f:view>
 
 </body>

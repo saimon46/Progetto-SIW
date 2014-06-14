@@ -14,7 +14,7 @@ public class OrderLine {
 	@Column
 	private int quantity;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private Product product;
 	
 	public OrderLine() {
