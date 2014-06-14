@@ -9,6 +9,7 @@ import it.uniroma3.model.Provider;
 import it.uniroma3.model.ProviderFacade;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -41,11 +42,18 @@ public class ProductController {
 	private ProviderFacade providerFacade;
 	
 	public String createProduct() {
-		this.provider = providerFacade.getProvider(this.providerName);
-		this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
-		this.provider.addProduct(this.product);
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentProduct", this.product);
-		return "product";
+		try{
+			this.provider = providerFacade.getProvider(this.providerName);
+			this.product = productFacade.createProduct(name, code, price, description, quantity, provider);
+			this.provider.addProduct(this.product);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("currentProduct", this.product);
+			return "product";
+		}catch(Exception e){
+			/*Codice prodotto gia esistente nel DB*/
+			this.resetProduct();
+			FacesContext.getCurrentInstance().addMessage("newProduct:createProduct", new FacesMessage("Codice Prodotto gia esistente!"));
+			return "newProduct";
+		}
 	}
 	
 	public String updateProduct() {
@@ -61,6 +69,15 @@ public class ProductController {
 		
 		updateListProvider();
 		return "modifyProduct";
+	}
+	
+	private void resetProduct(){
+		this.name = null;
+		this.code = null;
+		this.price = null;
+		this.description = null;
+		this.quantity = 0;
+		this.provider = null;
 	}
 	
 	public String removeProvider() {

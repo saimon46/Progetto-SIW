@@ -22,7 +22,7 @@ import javax.persistence.*;
 	@Column(length = 2000)
 	private String description;
 
-	@Column(nullable = false)
+	@Column(unique = true)
 	private String code;
 	
 	@Column(nullable = false)
