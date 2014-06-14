@@ -16,7 +16,9 @@
 
 		<div align="center">
 			<h1>Inserimento nuovo prodotto</h1>
-			<h:form styleClass="form-horizontal">
+			<h:form id="newProduct" styleClass="form-horizontal">
+				<h:message for="createProduct" styleClass="error alert alert-danger" />
+				
 				<div class="form-group">
 					<label for="name" class="col-sm-1 control-label col-lg-offset-4">Nome</label>
 					<div class="col-sm-2">
@@ -84,7 +86,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-5 col-sm-2">
-						<h:commandButton styleClass="btn btn-success" value="Salva"
+						<h:commandButton id="createProduct" styleClass="btn btn-success" value="Salva"
 							action="#{productController.createProduct}" />
 					</div>
 				</div>
