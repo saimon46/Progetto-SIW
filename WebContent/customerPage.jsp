@@ -37,7 +37,7 @@
 						timeZone="Europe/Rome" />
 				</h:outputText>
 			</div>
-			<h3><strong><em>Scegli un operazione sulla barra superiore per iniziare!</em></strong></h3>
+			<h3><strong><em>Scegli un'operazione sulla barra superiore per iniziare!</em></strong></h3>
 		</div>
 	</f:view>
 </body>

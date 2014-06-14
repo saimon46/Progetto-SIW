@@ -23,7 +23,7 @@
 						<h:inputText styleClass="form-control"
 							value="#{productController.name}" required="true"
 							requiredMessage="Il nome e' obbligatorio!" id="name" />
-						<h:message for="name" />
+						<h:message for="name" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -32,7 +32,7 @@
 						<h:inputText styleClass="form-control"
 							value="#{productController.code}" required="true"
 							requiredMessage="Il Codice e' obbligatorio!" id="code" />
-						<h:message for="code" />
+						<h:message for="code" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -42,7 +42,7 @@
 							value="#{productController.price}" required="true"
 							requiredMessage="Il prezzo e' obbligatorio!"
 							converterMessage="Il prezzo deve essere un numero!" id="price" />
-						<h:message for="price" />
+						<h:message for="price" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -54,7 +54,7 @@
 							requiredMessage="La quantita' e' obbligatoria!"
 							converterMessage="La quantita' deve essere un numero!"
 							id="quantity" />
-						<h:message for="quantity" />
+						<h:message for="quantity" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -79,7 +79,7 @@
 									itemLabel="#{provider.name}" />
 							</c:forEach>
 						</h:selectOneMenu>
-						<h:message for="providerName" />
+						<h:message for="providerName" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">

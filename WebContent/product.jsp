@@ -25,21 +25,22 @@
 					<label for="listProvider"
 						class="col-sm-1 control-label col-lg-offset-4">Fornitore/i</label>
 					<div class="col-sm-2">
-						<h:selectOneListbox styleClass="form-control" id="listProvider">
+						<h:selectOneMenu styleClass="form-control" id="listProvider">
 							<c:forEach var="provider"
 								items="#{productController.product.providers}">
 								<f:selectItem itemLabel="#{provider.name}" />
 							</c:forEach>
-						</h:selectOneListbox>
+						</h:selectOneMenu>
 					</div>
 				</div>
+				<br>
+				<br>
+				<hr>
 			</c:if>
-
-			<br> <br>
+			
 			<!-- Sono un cliente (posso vedere ciò quando c'è un ordine corrente "aperto"!)-->
 			<c:if test="${currentOrder != null && currentOrder.chiuso == false}">
 				<h:form styleClass="form-horizontal">
-					<hr>
 					<div>
 						<h4>Aggiungi prodotto all'ordine corrente
 							n°${currentOrder.id}</h4>
@@ -69,17 +70,21 @@
 					</div>
 				</h:form>
 			</c:if>
-
+			
 			<!-- Sono un amministratore -->
 			<c:if test="${administratorController.currentAdministrator != null}">
-				<h:form>
-					<h:commandButton styleClass="btn btn-warning"
-						action="#{administratorController.modifyProduct}" value="Modifica" />
-				</h:form>
-				<br>
-				<h:form>
-					<h:commandButton styleClass="btn btn-danger"
-						action="#{productController.deleteProduct}" value="Elimina" />
+				<h:form styleClass="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-offset-4 col-sm-2">
+							<h:commandButton styleClass="btn btn-warning"
+								action="#{administratorController.modifyProduct}"
+								value="Modifica" />
+						</div>
+						<div class="col-sm-2">
+							<h:commandButton styleClass="btn btn-danger"
+								action="#{productController.deleteProduct}" value="Elimina" />
+						</div>
+					</div>
 				</h:form>
 			</c:if>
 		</div>

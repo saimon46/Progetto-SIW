@@ -27,7 +27,7 @@
 						<h:inputText value="#{customerController.email}" required="true"
 							requiredMessage="L'email e' obbligatoria!" id="email"
 							styleClass="form-control" />
-						<h:message for="email" />
+						<h:message for="email" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -36,7 +36,7 @@
 						<h:inputSecret value="#{customerController.password}"
 							required="true" requiredMessage="La password e' obbligatoria!"
 							id="password" styleClass="form-control" />
-						<h:message for="password" />
+						<h:message for="password" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">

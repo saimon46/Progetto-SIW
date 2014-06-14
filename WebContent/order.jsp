@@ -12,7 +12,7 @@
 		<jsp:include page="header.jsp" />
 
 		<div align="center">
-			<c:if test="${orderController.message != null}">
+			<c:if test="${orderController.message != null && orderController.message != '' }">
 				<span class="error alert alert-success">${orderController.message}</span>
 				<br>
 			</c:if>

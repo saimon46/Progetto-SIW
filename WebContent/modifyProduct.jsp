@@ -23,7 +23,7 @@
 						<h:inputText styleClass="form-control"
 							value="#{productController.product.name}" required="true"
 							requiredMessage="Il nome e' obbligatorio!" id="name" />
-						<h:message for="name" />
+						<h:message for="name" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -32,7 +32,7 @@
 						<h:inputText styleClass="form-control"
 							value="#{productController.product.code}" required="true"
 							requiredMessage="Il Codice e' obbligatorio!" id="code" />
-						<h:message for="code" />
+						<h:message for="code" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -42,7 +42,7 @@
 							value="#{productController.product.price}" required="true"
 							requiredMessage="Il prezzo e' obbligatorio!"
 							converterMessage="Il prezzo deve essere un numero!" id="price" />
-						<h:message for="price" />
+						<h:message for="price" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -54,7 +54,7 @@
 							requiredMessage="La quantita' e' obbligatoria!"
 							converterMessage="La quantita' deve essere un numero!"
 							id="quantity" />
-						<h:message for="quantity" />
+						<h:message for="quantity" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -75,23 +75,22 @@
 				</div>
 			</h:form>
 
-			<hr>
-			
 			<c:if test="${not empty currentProduct.providers}">
+				<hr>
 				<div class="form-group">
 					<h:form id="removeProviderMenu">
 						<div class="form-group">
 							<label for="listProvider"
 								class="col-sm-1 control-label col-lg-offset-4">Fornitore/i</label>
 							<div class="col-sm-2">
-								<h:selectOneListbox styleClass="form-control" id="listProvider"
+								<h:selectOneMenu styleClass="form-control" id="listProvider"
 									value="#{productController.providerNameDelete}" required="true"
 									requiredMessage="Seleziona elemento!">
 									<c:forEach var="provider" items="#{currentProduct.providers}">
 										<f:selectItem itemValue="#{provider.name}"
 											itemLabel="#{provider.name}" />
 									</c:forEach>
-								</h:selectOneListbox>
+								</h:selectOneMenu>
 							</div>
 							<div class="col-sm-2">
 								<h:commandButton styleClass="btn btn-warning"
@@ -102,13 +101,15 @@
 					</h:form>
 				</div>
 			</c:if>
-			
+			<br> <br>
+			<hr>
 			<c:if test="${not empty providersProduct}">
 				<div class="form-group">
 					<h:form id="addProviderMenu">
 						<div class="form-group">
 							<label for="addProviderList"
-								class="col-sm-1 control-label col-lg-offset-4">Aggiungi un altro fornitore:</label>
+								class="col-sm-1 control-label col-lg-offset-4">Aggiungi
+								un altro fornitore</label>
 							<div class="col-sm-2">
 								<h:selectOneMenu styleClass="form-control" id="addProviderList"
 									value="#{productController.providerName}">

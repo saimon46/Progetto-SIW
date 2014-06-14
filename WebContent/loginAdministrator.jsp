@@ -31,7 +31,7 @@
 						<h:inputText value="#{administratorController.nickname}"
 							required="true" requiredMessage="Il nickname e' obbligatorio!"
 							id="nickname" styleClass="form-control" />
-						<h:message for="nickname" />
+						<h:message for="nickname" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -40,7 +40,7 @@
 						<h:inputSecret value="#{administratorController.password}"
 							required="true" requiredMessage="La password e' obbligatoria!"
 							id="password" styleClass="form-control" />
-						<h:message for="password" />
+						<h:message for="password" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">

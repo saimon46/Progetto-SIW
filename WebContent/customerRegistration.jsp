@@ -20,7 +20,7 @@
 			<h:form id="registrationCustomer" styleClass="form-horizontal">
 				<h:message for="signinCustomer" styleClass="error alert alert-danger" />
 				<div>
-					<h2>Registrazione utente</h2>
+					<h1>Registrazione utente</h1>
 				</div>
 				<div class="form-group">
 					<label for="firstName"
