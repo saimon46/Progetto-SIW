@@ -13,135 +13,113 @@
 </head>
 <body>
 	<f:view>
-	
-	<jsp:include page="header.jsp" />
-	
-		<h:form id="registrationCustomer">
-			<table class="table">
-				<tr>
-					<td><h2>Registrazione UTENTE</h2></td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Nome:
-							<h:inputText value="#{customerController.firstName}"
-								required="true" requiredMessage="*" id="firstName" />
-							<h:message for="firstName" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Cognome:
-							<h:inputText value="#{customerController.lastName}"
-								required="true" requiredMessage="*" id="lastName" />
-							<h:message for="lastName" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							E-mail:
-							<h:inputText value="#{customerController.email}" required="true"
-								requiredMessage="*" id="email" />
-							<h:message for="email" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Password:
-							<h:inputSecret value="#{customerController.password}"
-								required="true" requiredMessage="*" id="password" />
-							<h:message for="password" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Data di Nascita:
-							<t:inputDate value="#{customerController.dateOfBirth}"
-								required="true" requiredMessage="*" id="dateOfBirth" />
-							<h:message for="dateOfBirth" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Telefono:
-							<h:inputText value="#{customerController.phoneNumber}"
-								required="true" requiredMessage="*" id="phoneNumber" />
-							<h:message for="phoneNumber" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Via/Piazza:
-							<h:inputText value="#{customerController.street}" required="true"
-								requiredMessage="*" id="address_street" />
-							<h:message for="address_street" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							CAP:
-							<h:inputText value="#{customerController.zipcode}"
-								required="true" requiredMessage="*" id="address_zipcode" />
-							<h:message for="address_zipcode" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Citta':
-							<h:inputText value="#{customerController.city}" required="true"
-								requiredMessage="*" id="address_city" />
-							<h:message for="address_city" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Provincia:
-							<h:inputText value="#{customerController.country}"
-								required="true" requiredMessage="*" id="address_country" />
-							<h:message for="address_country" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Nazione:
-							<h:inputText value="#{customerController.state}" required="true"
-								requiredMessage="*" id="address_state" />
-							<h:message for="address_state" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<h:commandButton id="signinCustomer" value="Registrati"
-								action="#{customerController.createCustomer}" />
-							<h:message for="signinCustomer" styleClass="error" />
-						</div>
-					</td>
-				</tr>
-			</table>
-		</h:form>
+		<!-- Menù di testa -->
+		<jsp:include page="header.jsp" />
+		<!-- -------------- -->
+		<div align="center">
+			<h:form id="registrationCustomer" styleClass="form-horizontal">
+				<div>
+					<h2>Registrazione utente</h2>
+				</div>
+				<div class="form-group">
+					<label for="firstName"
+						class="col-sm-1 control-label col-lg-offset-3">Nome</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.firstName}"
+							required="true" requiredMessage="*" id="firstName"
+							styleClass="form-control" />
+						<h:message for="firstName" />
+					</div>
+					<label for="lastName" class="col-sm-1 control-label">Cognome</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.lastName}"
+							required="true" requiredMessage="*" id="lastName"
+							styleClass="form-control" />
+						<h:message for="lastName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-1 control-label col-lg-offset-3">E-mail</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.email}" required="true"
+							requiredMessage="*" id="email" styleClass="form-control" />
+						<h:message for="email" />
+					</div>
+					<label for="password" class="col-sm-1 control-label">Password</label>
+					<div class="col-sm-2">
+						<h:inputSecret value="#{customerController.password}"
+							required="true" requiredMessage="*" id="password"
+							styleClass="form-control" />
+						<h:message for="password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="dateOfBirth"
+						class="col-sm-1 control-label col-lg-offset-3">Data di
+						Nascita</label>
+					<div class="col-sm-2">
+						<t:inputDate value="#{customerController.dateOfBirth}"
+							required="true" requiredMessage="*" id="dateOfBirth"
+							styleClass="form-control" />
+						<h:message for="dateOfBirth" />
+					</div>
+					<label for="phoneNumber" class="col-sm-1 control-label">Telefono</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.phoneNumber}"
+							required="true" requiredMessage="*" id="phoneNumber"
+							styleClass="form-control" />
+						<h:message for="phoneNumber" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="street" class="col-sm-1 control-label col-lg-offset-3">Via/Piazza</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.street}" required="true"
+							requiredMessage="*" id="address_street" styleClass="form-control" />
+						<h:message for="address_street" />
+					</div>
+					<label for="zipcode" class="col-sm-1 control-label">CAP</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.zipcode}" required="true"
+							requiredMessage="*" id="address_zipcode"
+							styleClass="form-control" />
+						<h:message for="address_zipcode" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_city"
+						class="col-sm-1 control-label col-lg-offset-3">Citta'</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.city}" required="true"
+							requiredMessage="*" id="address_city" styleClass="form-control" />
+						<h:message for="address_city" />
+					</div>
+					<label for="address_country" class="col-sm-1 control-label">Provincia</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.country}" required="true"
+							requiredMessage="*" id="address_country"
+							styleClass="form-control" />
+						<h:message for="address_country" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_state"
+						class="col-sm-1 control-label col-lg-offset-3">Nazione</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{customerController.state}" required="true"
+							requiredMessage="*" id="address_state" styleClass="form-control" />
+						<h:message for="address_state" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-3">
+						<h:commandButton styleClass="btn btn-primary" id="signinCustomer"
+							value="Registrati" action="#{customerController.createCustomer}" />
+						<h:message for="signinCustomer" styleClass="error" />
+					</div>
+				</div>
+			</h:form>
+		</div>
 	</f:view>
 </body>
 </html>

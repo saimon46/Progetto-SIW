@@ -21,45 +21,41 @@
 		<!-- Menù di testa -->
 		<jsp:include page="header.jsp" />
 		<!-- -------------- -->
-		<h1>Sezione Amministrazione</h1>
-		<h:form id="loginAdministrator">
-			<table class="table">
-				<tr>
-					<td><h2>Login ADMIN</h2></td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Nickname:
-							<h:inputText value="#{administratorController.nickname}"
-								required="true" requiredMessage="Il nickname e' obbligatorio!"
-								id="nickname" />
-							<h:message for="nickname" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							Password:
-							<h:inputSecret value="#{administratorController.password}"
-								required="true" requiredMessage="La password e' obbligatoria!"
-								id="password" />
-							<h:message for="password" />
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<h:commandButton id="accediAdmin" value="Accedi"
-								action="#{administratorController.loginAdministrator}" />
-							<h:message for="accediAdmin" styleClass="error" />
-						</div>
-					</td>
-				</tr>
-			</table>
-		</h:form>
+		<div align="center">
+			<h1>Sezione Amministrazione</h1>
+			<h:form id="loginAdministrator" styleClass="form-horizontal">
+				<div>
+					<h2>Login Amministratore</h2>
+				</div>
+				<div class="form-group">
+					<label for="nickname"
+						class="col-sm-1 control-label col-lg-offset-4">Nickname</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.nickname}"
+							required="true" requiredMessage="Il nickname e' obbligatorio!"
+							id="nickname" styleClass="form-control" />
+						<h:message for="nickname" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-1 control-label col-lg-offset-4">Password</label>
+					<div class="col-sm-2">
+						<h:inputSecret value="#{administratorController.password}"
+							required="true" requiredMessage="La password e' obbligatoria!"
+							id="password" styleClass="form-control" />
+						<h:message for="password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-2">
+						<h:commandButton styleClass="btn btn-primary" id="accediAdmin"
+							value="Accedi"
+							action="#{administratorController.loginAdministrator}" />
+						<h:message for="accediAdmin" styleClass="error" />
+					</div>
+				</div>
+			</h:form>
+		</div>
 	</f:view>
 
 </body>
@@ -69,6 +65,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	
+
 </html>
 
