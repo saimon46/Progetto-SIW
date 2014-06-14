@@ -6,14 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<title>Login Utente</title>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Login cliente</title>
 </head>
 
 <body>
@@ -23,6 +17,7 @@
 		<!-- -------------- -->
 		<div align="center">
 			<h:form id="loginCustomer" styleClass="form-horizontal">
+				<h:message for="accedi" styleClass="error alert alert-danger" />
 				<div>
 					<h2>Login utente</h2>
 				</div>
@@ -36,7 +31,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="email" class="col-sm-1 control-label col-lg-offset-4">Password</label>
+					<label for="password" class="col-sm-1 control-label col-lg-offset-4">Password</label>
 					<div class="col-sm-2">
 						<h:inputSecret value="#{customerController.password}"
 							required="true" requiredMessage="La password e' obbligatoria!"
@@ -48,7 +43,6 @@
 					<div class="col-sm-offset-5 col-sm-2">
 						<h:commandButton styleClass="btn btn-primary" id="accedi"
 							value="Accedi" action="#{customerController.loginCustomer}" />
-						<h:message for="accedi" styleClass="error" />
 					</div>
 				</div>
 				<div>

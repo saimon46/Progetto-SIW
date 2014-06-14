@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class AdministratorController {
-	
+
 	/*Dati per la registrazione di un nuovo utente da parte dell'amministratore */
 	private String firstName, lastName, passwordCustomer, email, phoneNumber, street, city, state, zipcode, country;
 	private Date dateOfBirth;
@@ -35,6 +35,8 @@ public class AdministratorController {
 	private String nickname;
 	private String password;
 	private Administrator currentAdministrator;
+	
+	private String message;
 	
 	private List<Order> orders;
 
@@ -74,13 +76,13 @@ public class AdministratorController {
 			}
 			else{
 				// Password Errata
-				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato!"));
+				FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato! Nickname o password non inseriti correttamente!"));
 				return "loginAdministrator";
 			}
 		}
 		catch (Exception e) {
 			// Amministratore non trovato
-			FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato!"));
+			FacesContext.getCurrentInstance().addMessage("loginAdministrator:accediAdmin", new FacesMessage("Login Errato! Nickname o password non inseriti correttamente!"));
 			return "loginAdministrator";
 		}
 	}
@@ -91,7 +93,7 @@ public class AdministratorController {
 			this.registrationDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
 			FacesContext.getCurrentInstance().addMessage("registrationCustomerByAdmin:signinCustomerByAdmin", new FacesMessage("Registrazione Utente effettuata!"));
-			return "customerRegistrationByAdmin";
+			return "registrationDone";
 		}catch(Exception e){
 			/*Utente già registrato*/
 			this.resetCustomer();
@@ -103,14 +105,14 @@ public class AdministratorController {
 	public String deleteCustomer() {
 		try{
 			customerFacade.deleteCustomerByEmail(email);
-			FacesContext.getCurrentInstance().addMessage("deletingCustomer:deleteCustomer", new FacesMessage("Operazione effettuata!"));
-			return "deleteCustomer";
+			this.message = "Cliente cancellato correttamente!";
+			return "administratorPage";
 		}catch(Exception e){
 			FacesContext.getCurrentInstance().addMessage("deletingCustomer:deleteCustomer", new FacesMessage("Utente inesistente!"));
 			return "deleteCustomer";
 		}
 	}
-	
+
 	public String listClosedOrders() {
 		this.orders = orderFacade.getAllOrderClosed();
 		return "administratorOrders";
@@ -303,5 +305,13 @@ public class AdministratorController {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+	
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

@@ -6,14 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Bootstrap -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
-<title>Login Amministrazione</title>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Login amministrazione</title>
 </head>
 
 <body>
@@ -22,8 +16,11 @@
 		<jsp:include page="header.jsp" />
 		<!-- -------------- -->
 		<div align="center">
-			<h1>Sezione Amministrazione</h1>
 			<h:form id="loginAdministrator" styleClass="form-horizontal">
+				<h:message for="accediAdmin" styleClass="error alert alert-danger" />
+				<div>
+					<h1>Sezione Amministrazione</h1>
+				</div>
 				<div>
 					<h2>Login Amministratore</h2>
 				</div>
@@ -51,7 +48,6 @@
 						<h:commandButton styleClass="btn btn-primary" id="accediAdmin"
 							value="Accedi"
 							action="#{administratorController.loginAdministrator}" />
-						<h:message for="accediAdmin" styleClass="error" />
 					</div>
 				</div>
 			</h:form>

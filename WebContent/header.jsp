@@ -18,8 +18,9 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="/faces/index.jsp">Home</a>
 			</div>
@@ -28,9 +29,27 @@
 				<ul class="nav navbar-nav">
 					<li><h:commandLink action="#{productController.listProducts}"
 							value="Catalogo prodotti" /></li>
+
 					<!-- Menu a tendina amministratore -->
 					<c:if
 						test="${administratorController.currentAdministrator != null}">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Clienti<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><h:commandLink
+										action="#{customerController.listCustomers}"
+										value="Clienti registrati" /></li>
+								<li><h:commandLink
+										action="#{administratorController.newCustomer}"
+										value="Registra un nuovo cliente" /></li>
+								<li><a href='<c:url value="/faces/deleteCustomer.jsp" />'>Elimina
+										un cliente registrato</a></li>
+								<li class="divider"></li>
+								<li><h:commandLink
+										action="#{administratorController.listClosedOrders}"
+										value="Ordini da evadere" /></li>
+							</ul></li>
+
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Operazioni amministrazione<b
 								class="caret"></b></a>
@@ -41,9 +60,6 @@
 								<li><h:commandLink
 										action="#{administratorController.newProvider}"
 										value="Inserisci un nuovo fornitore" /></li>
-								<li><h:commandLink
-										action="#{administratorController.newCustomer}"
-										value="Registra un nuovo utente" /></li>
 							</ul></li>
 					</c:if>
 
@@ -59,6 +75,11 @@
 										action="#{customerController.listOrders}"
 										value="Lista ordini già effettuati" /></li>
 							</ul></li>
+						<c:if test="${currentOrder != null}">
+							<li><a href='<c:url value="/faces/order.jsp" />'>Torna
+									all'ordine corrente n° ${currentOrder.id}</a></li>
+							<p>
+						</c:if>
 					</c:if>
 				</ul>
 
@@ -67,7 +88,7 @@
 					<c:if
 						test="${administratorController.currentAdministrator != null}">
 						<li><a href='<c:url value="/faces/administratorPage.jsp" />'>Il
-								mio profilo: <b>${administratorController.currentAdministrator.nickname}</b>
+								mio profilo: <strong>${administratorController.currentAdministrator.nickname}</strong>
 						</a></li>
 						<li><h:commandLink value="Logout"
 								action="#{administratorController.logoutAdministrator}" /></li>

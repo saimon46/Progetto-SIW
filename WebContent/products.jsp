@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Catalogo Prodotti</title>
+<title>Catalogo prodotti</title>
 </head>
 <body>
 	<f:view>
@@ -31,14 +31,6 @@
 					</c:forEach>
 				</table>
 			</h:form>
-
-			<br>
-			<c:if test="${orderController.currentOrder != null}">
-				<p>
-					<a href='<c:url value="/faces/order.jsp" />'><c:out
-							value="Torna all'ordine" /></a>
-				<p>
-			</c:if>
 		</div>
 	</f:view>
 </body>

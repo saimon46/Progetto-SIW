@@ -2,137 +2,124 @@
 	pageEncoding="US-ASCII"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="t" uri="http://myfaces.apache.org/tomahawk" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="t" uri="http://myfaces.apache.org/tomahawk"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Nuovo Utente</title>
+<title>Nuovo cliente</title>
 </head>
 <body>
-<f:view>
-<jsp:include page="header.jsp"/>
-<h:form id="registrationCustomerByAdmin">
-<table border="2">
-	<tr>
-		<td><h2> Registrazione UTENTE</h2></td> 
-	</tr>
-	<tr>	
-		<td>
-			<div>Nome: <h:inputText value="#{administratorController.firstName}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="firstName"/> <h:message for="firstName" />
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div>Cognome: <h:inputText value="#{administratorController.lastName}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="lastName"/> <h:message for="lastName" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>E-mail: <h:inputText value="#{administratorController.email}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="email"/> <h:message for="email" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Password: <h:inputSecret value="#{administratorController.passwordCustomer}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="passwordCustomer"/> <h:message for="passwordCustomer" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Data di Nascita: <t:inputDate value="#{administratorController.dateOfBirth}" 
-                     required="true"
-					 requiredMessage="*"
-                     id="dateOfBirth"/> <h:message for="dateOfBirth" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Telefono: <h:inputText value="#{administratorController.phoneNumber}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="phoneNumber"/> <h:message for="phoneNumber" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Via/Piazza: <h:inputText value="#{administratorController.street}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_street"/> <h:message for="address_street" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>CAP: <h:inputText value="#{administratorController.zipcode}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_zipcode"/> <h:message for="address_zipcode" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Citta': <h:inputText value="#{administratorController.city}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_city"/> <h:message for="address_city" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Provincia: <h:inputText value="#{administratorController.country}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_country"/> <h:message for="address_country" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Nazione: <h:inputText value="#{administratorController.state}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_state"/> <h:message for="address_state" />
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div>
-			<h:commandButton id="signinCustomerByAdmin" value="Registra"
-				action="#{administratorController.createCustomer}"/>
-			<h:message for="signinCustomerByAdmin" styleClass="error"/>
-			</div>
-		</td>
-	</tr>
-</table>
-</h:form>
-
-	<ul>
-			<li><a href='<c:url value="/faces/administratorPage.jsp" />'>Torna alla Pagina d'Amministrazione</a></li>
-	</ul>	
-</f:view>		
+	<f:view>
+		<!-- Menù di testa -->
+		<jsp:include page="header.jsp" />
+		<!-- -------------- -->
+		<div align="center">
+			<h:form id="registrationCustomerByAdmin" styleClass="form-horizontal">
+				<h:message for="signinCustomerByAdmin" styleClass="error alert alert-danger" />
+				<div>
+					<h2>Registrazione utente</h2>
+				</div>
+				<div class="form-group">
+					<label for="firstName"
+						class="col-sm-1 control-label col-lg-offset-3">Nome</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.firstName}"
+							required="true" requiredMessage="Campo Obbligatorio" id="firstName"
+							styleClass="form-control" />
+						<h:message for="firstName" style="color:red" />
+					</div>
+					<label for="lastName" class="col-sm-1 control-label">Cognome</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.lastName}"
+							required="true" requiredMessage="Campo Obbligatorio" id="lastName"
+							styleClass="form-control" />
+						<h:message for="lastName" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-sm-1 control-label col-lg-offset-3">E-mail</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.email}" required="true"
+							requiredMessage="Campo Obbligatorio" id="email" styleClass="form-control" />
+						<h:message for="email" style="color:red" />
+					</div>
+					<label for="password" class="col-sm-1 control-label">Password</label>
+					<div class="col-sm-2">
+						<h:inputSecret value="#{administratorController.password}"
+							required="true" requiredMessage="Campo Obbligatorio" id="password"
+							styleClass="form-control" />
+						<h:message for="password" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="dateOfBirth"
+						class="col-sm-1 control-label col-lg-offset-3">Data di
+						Nascita</label>
+					<div class="col-sm-2">
+						<t:inputDate value="#{administratorController.dateOfBirth}"
+							required="true" requiredMessage="Campo Obbligatorio" id="dateOfBirth"
+							styleClass="form-control" />
+						<h:message for="dateOfBirth" style="color:red" />
+					</div>
+					<label for="phoneNumber" class="col-sm-1 control-label">Telefono</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.phoneNumber}"
+							required="true" requiredMessage="Campo Obbligatorio" id="phoneNumber"
+							styleClass="form-control" />
+						<h:message for="phoneNumber" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="street" class="col-sm-1 control-label col-lg-offset-3">Via/Piazza</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.street}" required="true"
+							requiredMessage="Campo Obbligatorio" id="address_street" styleClass="form-control" />
+						<h:message for="address_street" style="color:red" />
+					</div>
+					<label for="zipcode" class="col-sm-1 control-label">CAP</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.zipcode}" required="true"
+							requiredMessage="Campo Obbligatorio" id="address_zipcode"
+							styleClass="form-control" />
+						<h:message for="address_zipcode" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_city"
+						class="col-sm-1 control-label col-lg-offset-3">Citta'</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.city}" required="true"
+							requiredMessage="Campo Obbligatorio" id="address_city" styleClass="form-control" />
+						<h:message for="address_city" style="color:red" />
+					</div>
+					<label for="address_country" class="col-sm-1 control-label">Provincia</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.country}" required="true"
+							requiredMessage="Campo Obbligatorio" id="address_country"
+							styleClass="form-control" />
+						<h:message for="address_country" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_state"
+						class="col-sm-1 control-label col-lg-offset-3">Nazione</label>
+					<div class="col-sm-2">
+						<h:inputText value="#{administratorController.state}" required="true"
+							requiredMessage="Campo Obbligatorio" id="address_state" styleClass="form-control" />
+						<h:message for="address_state" style="color:red" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-3">
+						<h:commandButton styleClass="btn btn-primary" id="signinCustomerByAdmin"
+							value="Registrati" action="#{administratorController.createCustomer}" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</f:view>
 </body>
 </html>

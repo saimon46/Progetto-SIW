@@ -83,10 +83,10 @@ public class ProductController {
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("providersProduct", this.providers);
 		// ************************************************
 	}
-
+	
 	public String deleteProduct(){
 		this.productFacade.deleteProduct(product.getId());
-		return "deletedProduct";
+		return "administratorPage";
 	}
 	
 	public Long getId() {

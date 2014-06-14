@@ -63,14 +63,14 @@ public class CustomerController {
 			}
 			else{
 				// Password Errata
-				FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato!"));
-				return "index";
+				FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato! Email o password non inseriti correttamente!"));
+				return "login";
 			}
 		}
 		catch (Exception e) {
 			// Cliente non trovato
-			FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato!"));
-			return "index";
+			FacesContext.getCurrentInstance().addMessage("loginCustomer:accedi", new FacesMessage("Login Errato! Email o password non inseriti correttamente!"));
+			return "login";
 		}
 	}
 

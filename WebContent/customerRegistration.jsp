@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Nuovo Utente</title>
+<title>Nuovo cliente</title>
 </head>
 <body>
 	<f:view>
@@ -18,6 +18,7 @@
 		<!-- -------------- -->
 		<div align="center">
 			<h:form id="registrationCustomer" styleClass="form-horizontal">
+				<h:message for="signinCustomer" styleClass="error alert alert-danger" />
 				<div>
 					<h2>Registrazione utente</h2>
 				</div>
@@ -26,31 +27,31 @@
 						class="col-sm-1 control-label col-lg-offset-3">Nome</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.firstName}"
-							required="true" requiredMessage="*" id="firstName"
+							required="true" requiredMessage="Campo Obbligatorio" id="firstName"
 							styleClass="form-control" />
-						<h:message for="firstName" />
+						<h:message for="firstName" style="color:red" />
 					</div>
 					<label for="lastName" class="col-sm-1 control-label">Cognome</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.lastName}"
-							required="true" requiredMessage="*" id="lastName"
+							required="true" requiredMessage="Campo Obbligatorio" id="lastName"
 							styleClass="form-control" />
-						<h:message for="lastName" />
+						<h:message for="lastName" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="email" class="col-sm-1 control-label col-lg-offset-3">E-mail</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.email}" required="true"
-							requiredMessage="*" id="email" styleClass="form-control" />
-						<h:message for="email" />
+							requiredMessage="Campo Obbligatorio" id="email" styleClass="form-control" />
+						<h:message for="email" style="color:red" />
 					</div>
 					<label for="password" class="col-sm-1 control-label">Password</label>
 					<div class="col-sm-2">
 						<h:inputSecret value="#{customerController.password}"
-							required="true" requiredMessage="*" id="password"
+							required="true" requiredMessage="Campo Obbligatorio" id="password"
 							styleClass="form-control" />
-						<h:message for="password" />
+						<h:message for="password" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -59,31 +60,31 @@
 						Nascita</label>
 					<div class="col-sm-2">
 						<t:inputDate value="#{customerController.dateOfBirth}"
-							required="true" requiredMessage="*" id="dateOfBirth"
+							required="true" requiredMessage="Campo Obbligatorio" id="dateOfBirth"
 							styleClass="form-control" />
-						<h:message for="dateOfBirth" />
+						<h:message for="dateOfBirth" style="color:red" />
 					</div>
 					<label for="phoneNumber" class="col-sm-1 control-label">Telefono</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.phoneNumber}"
-							required="true" requiredMessage="*" id="phoneNumber"
+							required="true" requiredMessage="Campo Obbligatorio" id="phoneNumber"
 							styleClass="form-control" />
-						<h:message for="phoneNumber" />
+						<h:message for="phoneNumber" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="street" class="col-sm-1 control-label col-lg-offset-3">Via/Piazza</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.street}" required="true"
-							requiredMessage="*" id="address_street" styleClass="form-control" />
-						<h:message for="address_street" />
+							requiredMessage="Campo Obbligatorio" id="address_street" styleClass="form-control" />
+						<h:message for="address_street" style="color:red" />
 					</div>
 					<label for="zipcode" class="col-sm-1 control-label">CAP</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.zipcode}" required="true"
-							requiredMessage="*" id="address_zipcode"
+							requiredMessage="Campo Obbligatorio" id="address_zipcode"
 							styleClass="form-control" />
-						<h:message for="address_zipcode" />
+						<h:message for="address_zipcode" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -91,15 +92,15 @@
 						class="col-sm-1 control-label col-lg-offset-3">Citta'</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.city}" required="true"
-							requiredMessage="*" id="address_city" styleClass="form-control" />
-						<h:message for="address_city" />
+							requiredMessage="Campo Obbligatorio" id="address_city" styleClass="form-control" />
+						<h:message for="address_city" style="color:red" />
 					</div>
 					<label for="address_country" class="col-sm-1 control-label">Provincia</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.country}" required="true"
-							requiredMessage="*" id="address_country"
+							requiredMessage="Campo Obbligatorio" id="address_country"
 							styleClass="form-control" />
-						<h:message for="address_country" />
+						<h:message for="address_country" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -107,15 +108,14 @@
 						class="col-sm-1 control-label col-lg-offset-3">Nazione</label>
 					<div class="col-sm-2">
 						<h:inputText value="#{customerController.state}" required="true"
-							requiredMessage="*" id="address_state" styleClass="form-control" />
-						<h:message for="address_state" />
+							requiredMessage="Campo Obbligatorio" id="address_state" styleClass="form-control" />
+						<h:message for="address_state" style="color:red" />
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-5 col-sm-3">
 						<h:commandButton styleClass="btn btn-primary" id="signinCustomer"
 							value="Registrati" action="#{customerController.createCustomer}" />
-						<h:message for="signinCustomer" styleClass="error" />
 					</div>
 				</div>
 			</h:form>

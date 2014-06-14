@@ -5,65 +5,64 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Lista Prodotti</title>
+<title>Ordini da evadere</title>
 </head>
 <body>
 	<f:view>
-		<jsp:include page="header.jsp" />
-		<h1>Lista ordini:</h1>
-		<h:form>
-			<table>
-				<tr>
-					<th>ID-Ordine</th>
-					<th>Cliente-Associato</th>
-					<th>Data-Creazione</th>
-					<th>Stato</th>
-					<th>Data-Completamento</th>
-					<th>Evaso</th>
-					<th>Data-Evasione</th>
-				</tr>
-				<c:forEach var="order" items="#{administratorController.orders}">
-					<tr>
-						<td><h:commandLink action="#{orderController.findOrderByAdministrator}"
-								value="#{order.id}">
-								<f:param name="id" value="#{order.id}" />
-							</h:commandLink></td>
-							
-						<td>${order.customer.email}</td>
+				<jsp:include page="header.jsp" />
+				<div align="center">
+					<h1>Ordini</h1>
+					<h:form>
+						<table class="table">
+							<tr>
+								<th>ID-Ordine</th>
+								<th>Cliente-Associato</th>
+								<th>Data-Creazione</th>
+								<th>Stato</th>
+								<th>Data-Completamento</th>
+								<th>Data-Evasione</th>
+							</tr>
+							<c:forEach var="order" items="#{administratorController.orders}">
+								<tr>
+									<td><h:commandLink
+											action="#{orderController.findOrderByAdministrator}"
+											value="#{order.id}">
+											<f:param name="id" value="#{order.id}" />
+										</h:commandLink></td>
 
-						<td><h:outputText value="#{order.creationTime.time}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
-							</h:outputText></td>
+									<td>${order.customer.email}</td>
 
-						<td><c:choose>
-								<c:when test="${order.chiuso == false}">Aperto</c:when>
-								<c:otherwise>
-								Completato
-								</c:otherwise>
-							</c:choose></td>
+									<td><h:outputText value="#{order.creationTime.time}">
+											<f:convertDateTime dateStyle="medium" locale="it_IT"
+												type="both" timeZone="Europe/Rome" />
+										</h:outputText></td>
 
-						<td><h:outputText value="#{order.completedTime.time}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
-							</h:outputText></td>
+									<td><c:if test="${order.chiuso == false}">
+											<span class="label label-danger">Aperto</span>
+										</c:if> <c:choose>
+											<c:when test="${order.evaso == true}">
+												<span class="label label-success">Evaso</span>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${order.chiuso == true}">
+													<span class="label label-warning">Completato</span>
+												</c:if>
+											</c:otherwise>
+										</c:choose></td>
 
-						<td><c:choose>
-								<c:when test="${order.evaso == false}">NO</c:when>
-								<c:otherwise>
-							SI
-							</c:otherwise>
-							</c:choose></td>
+									<td><h:outputText value="#{order.completedTime.time}">
+											<f:convertDateTime dateStyle="medium" locale="it_IT"
+												type="both" timeZone="Europe/Rome" />
+										</h:outputText></td>
 
-						<td><h:outputText value="#{order.processedTime.time}">
-								<f:convertDateTime dateStyle="medium" locale="it_IT" type="both" timeZone="Europe/Rome" />
-							</h:outputText></td>
-				</c:forEach>
-			</table>
-		</h:form>
-
-		<br>
-
-		<a href='<c:url value="/faces/index.jsp" />'>Vai alla HomePage</a>
-
+									<td><h:outputText value="#{order.processedTime.time}">
+											<f:convertDateTime dateStyle="medium" locale="it_IT"
+												type="both" timeZone="Europe/Rome" />
+										</h:outputText></td>
+							</c:forEach>
+						</table>
+					</h:form>
+				</div>
 	</f:view>
 </body>
 </html>

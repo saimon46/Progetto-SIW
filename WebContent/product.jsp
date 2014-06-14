@@ -6,76 +6,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Informazioni sul Prodotto</title>
+<title>Prodotto n° ${productController.product.code}</title>
 </head>
 <body>
 	<f:view>
 		<jsp:include page="header.jsp" />
-		<h1>${productController.product.name}</h1>
-		<h2>Dettagli</h2>
-		<div>Codice: ${productController.product.code}</div>
-		<div>Prezzo: ${productController.product.price}</div>
-		<div>Quantità: ${productController.product.quantity}</div>
-		<div>Descrizione: ${productController.product.description}</div>
 
-		<c:if test="${not empty productController.product.providers}">
-			<div>
-				Fornitore/i attuali:
-				<h:selectOneListbox id="listProvider">
-					<c:forEach var="provider"
-						items="#{productController.product.providers}">
-						<f:selectItem itemLabel="#{provider.name}" />
-					</c:forEach>
-				</h:selectOneListbox>
-			</div>
-		</c:if>
-		
-		<br>
-		<!-- Sono un cliente (posso vedere ciò quando c'è un ordine corrente "aperto"!)-->
-		<c:if test="${currentOrder != null && currentOrder.chiuso == false}">
-			<p>
-				<h:form>
-					<div>
-						Quantita' desiderata:
-						<h:inputText value="#{orderController.quantity}" required="true"
-							requiredMessage="La quantita' e' obbligatoria!"
-							validatorMessage="La quantita' non puo' esser negativa!"
-							converterMessage="La quantita' deve essere un numero!"
-							size = "2"
-							id="quantity" >
-							<f:validateLongRange minimum="1" />
-						</h:inputText>
-						<h:message for="quantity" />
+		<div align="center">
+			<h2>${productController.product.name}</h2>
+			<h3>Dettagli</h3>
+			<div>Codice: ${productController.product.code}</div>
+			<div>Prezzo: ${productController.product.price}</div>
+			<div>Quantità: ${productController.product.quantity}</div>
+			<div>Descrizione: ${productController.product.description}</div>
+
+			<c:if test="${not empty productController.product.providers}">
+				<div class="form-group">
+					<label for="listProvider"
+						class="col-sm-1 control-label col-lg-offset-4">Fornitore/i</label>
+					<div class="col-sm-2">
+						<h:selectOneListbox styleClass="form-control" id="listProvider">
+							<c:forEach var="provider"
+								items="#{productController.product.providers}">
+								<f:selectItem itemLabel="#{provider.name}" />
+							</c:forEach>
+						</h:selectOneListbox>
 					</div>
-					<h:commandButton action="#{orderController.addOrderLine}"
-						value="Aggiungi all'ordine corrente" />
+				</div>
+			</c:if>
+
+			<br> <br>
+			<!-- Sono un cliente (posso vedere ciò quando c'è un ordine corrente "aperto"!)-->
+			<c:if test="${currentOrder != null && currentOrder.chiuso == false}">
+				<h:form styleClass="form-horizontal">
+					<hr>
+					<div>
+						<h4>Aggiungi prodotto all'ordine corrente
+							n°${currentOrder.id}</h4>
+					</div>
+					<div class="form-group">
+						<label for="quantity"
+							class="col-sm-1 control-label col-lg-offset-4">Quantita'
+							desiderata </label>
+						<div class="col-sm-2">
+							<h:inputText styleClass="form-control"
+								value="#{orderController.quantity}" required="true"
+								requiredMessage="La quantita' e' obbligatoria!"
+								validatorMessage="La quantita' non puo' esser negativa!"
+								converterMessage="La quantita' deve essere un numero!"
+								id="quantity">
+								<f:validateLongRange minimum="1" />
+							</h:inputText>
+							<h:message for="quantity" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-5 col-sm-2">
+							<h:commandButton styleClass="btn btn-primary"
+								action="#{orderController.addOrderLine}"
+								value="Aggiungi all'ordine corrente" />
+						</div>
+					</div>
 				</h:form>
-			<p>
-		</c:if>
-		
-		<!-- Sono un amministratore -->
-		<c:if test="${administratorController.currentAdministrator != null}">
-			<p>
+			</c:if>
+
+			<!-- Sono un amministratore -->
+			<c:if test="${administratorController.currentAdministrator != null}">
 				<h:form>
-					<h:commandButton action="#{administratorController.modifyProduct}"
-						value="Modifica" />
+					<h:commandButton styleClass="btn btn-warning"
+						action="#{administratorController.modifyProduct}" value="Modifica" />
 				</h:form>
 				<br>
 				<h:form>
-					<h:commandButton action="#{productController.deleteProduct}"
-						value="Elimina" />
+					<h:commandButton styleClass="btn btn-danger"
+						action="#{productController.deleteProduct}" value="Elimina" />
 				</h:form>
-			<p>
-		</c:if>
-
-		<br>
-		<br>
-		<br>
-		<h:form>
-			<h:commandButton action="#{productController.listProducts}"
-				value="Ritorna al catalogo dei Prodotti" />
-		</h:form>
-
+			</c:if>
+		</div>
 	</f:view>
 </body>
 </html>

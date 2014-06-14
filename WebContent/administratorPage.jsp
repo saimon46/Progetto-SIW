@@ -4,85 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Amministratore Loggato</title>
+<title>Amministrazione</title>
 </head>
 <body>
 	<f:view>
 
 		<jsp:include page="header.jsp" />
-
-		<h:form>
-			<table border="2">
-				<tr>
-					<td>
-						<h4>Operazioni d'amministrazione disponibili</h4>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<ul>
-							<li><h:commandLink
-									action="#{productController.listProducts}"
-									value="CATALOGO Prodotti in Negozio" /></li>
-						</ul>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<ul>
-							<li><h:commandLink
-									action="#{administratorController.newProduct}"
-									value="Inserisci un Nuovo Prodotto" /></li>
-						</ul>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<ul>
-							<li><h:commandLink
-									action="#{administratorController.newProvider}"
-									value="Inserisci un Nuovo Fornitore" /></li>
-						</ul>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<ul>
-							<li><a
-								href='<c:url value="/faces/customerRegistrationByAdmin.jsp" />'>Registra
-									un Nuovo Utente</a></li>
-						</ul>
-						<ul>
-							<li><h:commandLink
-									action="#{customerController.listCustomers}"
-									value="Lista degli Utenti Registrati" /></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<ul>
-							<li><a href='<c:url value="/faces/deleteCustomer.jsp" />'>Elimina
-									un Utente esistente</a></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<ul>
-							<li><h:commandLink
-									action="#{administratorController.listClosedOrders}"
-									value="Lista ORDINI da evadere" /></li>
-						</ul>
-					</td>
-				</tr>
-			</table>
-			<br>
-		</h:form>
+		
+		<div align="center">
+			<h1>Pagina di amministrazione</h1>
+			
+			<c:if test="${administratorController.message != null}">
+				<span class="error alert alert-success">${administratorController.message }</span>
+			</c:if>
+		</div>
+		
 	</f:view>
 </body>
 </html>

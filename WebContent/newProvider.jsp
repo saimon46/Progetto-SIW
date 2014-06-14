@@ -1,116 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
-<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
-<%@ taglib prefix="h"  uri="http://java.sun.com/jsf/html"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Nuovo Fornitore</title>
+<title>Nuovo fornitore</title>
 </head>
 <body>
-<f:view>
-<h:form id="addingProvider">
-<table border="2">
-	<tr>
-		<td><h2> Inserimento FORNITORE nel DataBase</h2></td> 
-	</tr>
-	<tr>	
-		<td>
-			<div>Nome: <h:inputText value="#{providerController.name}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="name"/> <h:message for="name" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>E-mail: <h:inputText value="#{providerController.email}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="email"/> <h:message for="email" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Telefono: <h:inputText value="#{providerController.phoneNumber}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="phoneNumber"/> <h:message for="phoneNumber" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Partita IVA: <h:inputText value="#{providerController.vatin}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="vatin"/> <h:message for="vatin" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Via/Piazza: <h:inputText value="#{providerController.street}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_street"/> <h:message for="address_street" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>CAP: <h:inputText value="#{providerController.zipcode}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_zipcode"/> <h:message for="address_zipcode" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Citta': <h:inputText value="#{providerController.city}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_city"/> <h:message for="address_city" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Provincia: <h:inputText value="#{providerController.country}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_country"/> <h:message for="address_country" />
-			</div>
-		</td>
-	</tr>
-	<tr>	
-		<td>
-			<div>Nazione: <h:inputText value="#{providerController.state}" 
-                     required="true"
-                     requiredMessage="*"
-                     id="address_state"/> <h:message for="address_state" />
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div>
-			<h:commandButton id="addProvider" value="Salva"
-				action="#{providerController.createProvider}"/>
-			<h:message for="addProvider" styleClass="error"/>
-			</div>
-		</td>
-	</tr>
-</table>
-</h:form>
-	<ul>
-			<li><a href='<c:url value="/faces/index.jsp" />'>Torna alla Pagina Iniziale</a></li>
-	</ul>	
-</f:view>		
+	<f:view>
+		<jsp:include page="header.jsp" />
+
+		<div align="center">
+			<h1>Inserimento fornitore</h1>
+			<h:form id="addingProvider" styleClass="form-horizontal">
+				<div class="form-group">
+					<label for="name" class="col-sm-1 control-label col-lg-offset-3">Nome</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.name}" required="true"
+							requiredMessage="Campo obbligatorio" id="name" />
+						<h:message for="name" />
+					</div>
+					<label for="email" class="col-sm-1 control-label">Email</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.email}" required="true"
+							requiredMessage="Campo obbligatorio" id="email" />
+						<h:message for="email" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="phoneNumber"
+						class="col-sm-1 control-label col-lg-offset-3">Telefono</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.phoneNumber}" required="true"
+							requiredMessage="Campo obbligatorio" id="phoneNumber" />
+						<h:message for="phoneNumber" />
+					</div>
+					<label for="vatin" class="col-sm-1 control-label">Partita
+						IVA</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.vatin}" required="true"
+							requiredMessage="Campo obbligatorio" id="vatin" />
+						<h:message for="vatin" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_street"
+						class="col-sm-1 control-label col-lg-offset-3">Via/Piazza</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.street}" required="true"
+							requiredMessage="Campo obbligatorio" id="address_street" />
+						<h:message for="address_street" />
+					</div>
+					<label for="address_zipcode" class="col-sm-1 control-label">CAP</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.zipcode}" required="true"
+							requiredMessage="Campo obbligatorio" id="address_zipcode" />
+						<h:message for="address_zipcode" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_city"
+						class="col-sm-1 control-label col-lg-offset-3">Citta'</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.city}" required="true"
+							requiredMessage="Campo obbligatorio" id="address_city" />
+						<h:message for="address_city" />
+					</div>
+					<label for="address_country" class="col-sm-1 control-label">Provincia</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.country}" required="true"
+							requiredMessage="Campo obbligatorio" id="address_country" />
+						<h:message for="address_country" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="address_state"
+						class="col-sm-1 control-label col-lg-offset-3">Nazione</label>
+					<div class="col-sm-2">
+						<h:inputText styleClass="form-control"
+							value="#{providerController.state}" required="true"
+							requiredMessage="Campo obbligatorio" id="address_state" />
+						<h:message for="address_state" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-5 col-sm-2">
+						<h:commandButton styleClass="btn btn-primary" id="addProvider"
+							value="Salva" action="#{providerController.createProvider}" />
+						<h:message for="addProvider" styleClass="error" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</f:view>
 </body>
 </html>
