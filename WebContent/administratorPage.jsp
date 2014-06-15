@@ -12,11 +12,11 @@
 		<jsp:include page="header.jsp" />
 		
 		<div align="center">
-			<h1>Pagina di amministrazione</h1>
-			
 			<c:if test="${administratorController.message != null && administratorController.message != ''}">
 				<span class="error alert alert-success">${administratorController.message }</span>
 			</c:if>
+			<br>
+			<h1>Pagina di amministrazione</h1>
 			<h3><strong><em>Scegli un'operazione sulla barra superiore per iniziare!</em></strong></h3>
 		</div>
 	</f:view>

@@ -92,7 +92,7 @@ public class AdministratorController {
 			/*Genera automaticamente la data di oggi */
 			this.registrationDate = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"));
 			customerFacade.createCustomer(firstName, lastName, passwordCustomer, email, phoneNumber, dateOfBirth, street, city, state, zipcode, country, registrationDate);
-			FacesContext.getCurrentInstance().addMessage("registrationCustomerByAdmin:signinCustomerByAdmin", new FacesMessage("Registrazione Utente effettuata!"));
+			this.message = "Registrazione utente effettuata!";
 			return "registrationDone";
 		}catch(Exception e){
 			/*Utente già registrato*/

@@ -48,7 +48,7 @@
 					</div>
 					<label for="password" class="col-sm-1 control-label">Password</label>
 					<div class="col-sm-2">
-						<h:inputSecret value="#{administratorController.password}"
+						<h:inputSecret value="#{administratorController.passwordCustomer}"
 							required="true" requiredMessage="Campo Obbligatorio" id="password"
 							styleClass="form-control" />
 						<h:message for="password" style="color:red" />
