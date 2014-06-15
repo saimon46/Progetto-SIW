@@ -61,10 +61,10 @@
 				</div>
 			</c:if>
 			<br>
-			<c:if test="${currentOrder.prodottoCancellato == true && currentOrder.chiuso == true}">
+			<c:if test="${currentOrder.prodottoCancellato == true}">
 			<br>
 				<div>
-					Nota: Quest'ordine, ormai chiuso, conteneva uno o più prodotti non più disponibili! Verranno evasi solo
+					Nota: Quest'ordine, conteneva uno o più prodotti non più disponibili! Verranno evasi solo
 					quelli disponibili (visibili qui sotto)
 				</div>
 			</c:if>

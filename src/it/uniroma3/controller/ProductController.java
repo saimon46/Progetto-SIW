@@ -114,7 +114,7 @@ public class ProductController {
 	public String deleteProduct(){
 		/*se il prodotto è associato a qualche riga ordine di qualche ordine, va cancellata la riga d'ordine
 		 * altrimenti all'evasione ci sarà un prodotto non piu disponibile*/
-		List<Order> allOrders = this.orderFacade.getAllOrderClosed();
+		List<Order> allOrders = this.orderFacade.getAllOrder();
 		List<OrderLine> righe_ordini = new ArrayList<OrderLine>();
 		if(allOrders.size() != 0){
 		for(Order ordine: allOrders){

@@ -27,9 +27,8 @@ public class OrderFacade {
 	}
 	
 	public List<Order> getAllOrder() {
-        CriteriaQuery<Order> cq = em.getCriteriaBuilder().createQuery(Order.class);
-        cq.select(cq.from(Order.class));
-        List<Order> orders = em.createQuery(cq).getResultList();
+		Query q = em.createQuery("SELECT o FROM Order o ORDER BY o.id");
+		List<Order> orders = q.getResultList();
 		return orders;
 	}
 	
