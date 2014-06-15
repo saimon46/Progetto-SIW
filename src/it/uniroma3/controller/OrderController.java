@@ -143,7 +143,7 @@ public class OrderController {
 			if(this.currentOrder.isProdottoCancellato()){
 				this.message = "Ordine evaso correttamente, ma con un'avvertenza!";
 				this.message+= "\nAvvertenza: Uno o più prodotti di quest'ordine non sono più in magazzino e non verranno evasi!";
-				this.message+= "\nCome vedi non sono più presenti tra le righe d'ordine";
+				this.message+= "\nCome vedi non sono più presenti tra le righe d'ordine!";
 			}else{
 				this.message = "Ordine evaso correttamente!";
 			}

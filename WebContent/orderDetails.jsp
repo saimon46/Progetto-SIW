@@ -93,10 +93,9 @@
 			<c:if test="${currentOrder.prodottoCancellato == true}">
 			<br>
 				<div>
-					Nota: Quest'ordine conteneva uno o più prodotti non più disponibili
+					<span class="error alert alert-warning">Nota: Quest'ordine conteneva uno o più prodotti non più disponibili!</span>
 				</div>
 			</c:if>
-			
 
 			<c:if test="${not empty currentOrder.orderLines}">
 				<h3>Prodotti in ordine</h3>

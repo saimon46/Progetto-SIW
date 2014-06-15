@@ -49,7 +49,7 @@
 				<h:form styleClass="form-horizontal">
 					<div>
 						<h4>Aggiungi prodotto all'ordine corrente
-							nÂ°${currentOrder.id}</h4>
+							n°${currentOrder.id}</h4>
 					</div>
 					<div class="form-group">
 						<label for="quantity"

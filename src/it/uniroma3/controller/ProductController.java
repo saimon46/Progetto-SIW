@@ -61,7 +61,7 @@ public class ProductController {
 		}catch(Exception e){
 			/*Codice prodotto gia esistente nel DB*/
 			this.resetProduct();
-			FacesContext.getCurrentInstance().addMessage("newProduct:createProduct", new FacesMessage("Codice Prodotto gia esistente!"));
+			FacesContext.getCurrentInstance().addMessage("newProduct:createProduct", new FacesMessage("Codice prodotto gia' esistente!"));
 			return "newProduct";
 		}
 	}

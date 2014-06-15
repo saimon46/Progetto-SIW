@@ -64,8 +64,8 @@
 			<c:if test="${currentOrder.prodottoCancellato == true}">
 			<br>
 				<div>
-					Nota: Quest'ordine, conteneva uno o più prodotti non più disponibili! Verranno evasi solo
-					quelli disponibili (visibili qui sotto)
+					<span class="error alert alert-warning">Nota: Quest'ordine, conteneva uno o più prodotti non più disponibili! Verranno evasi solo
+					quelli disponibili (visibili qui sotto)!</span>
 				</div>
 			</c:if>
 			<br>
