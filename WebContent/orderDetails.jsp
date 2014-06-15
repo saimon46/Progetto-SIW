@@ -80,7 +80,7 @@
 					</h:outputText>
 				</div>
 			</c:if>
-
+			
 			<c:if test="${currentOrder.processedTime != null }">
 				<div>
 					Data Spedizione:
@@ -89,6 +89,14 @@
 					</h:outputText>
 				</div>
 			</c:if>
+			
+			<c:if test="${currentOrder.prodottoCancellato == true}">
+			<br>
+				<div>
+					Nota: Quest'ordine conteneva uno o più prodotti non più disponibili
+				</div>
+			</c:if>
+			
 
 			<c:if test="${not empty currentOrder.orderLines}">
 				<h3>Prodotti in ordine</h3>

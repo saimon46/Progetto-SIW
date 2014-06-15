@@ -3,6 +3,10 @@ package it.uniroma3.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniroma3.model.Order;
+import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.OrderLine;
+import it.uniroma3.model.OrderLineFacade;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
 import it.uniroma3.model.Provider;
@@ -40,6 +44,12 @@ public class ProductController {
 	
 	@EJB(beanName="providerFacade")
 	private ProviderFacade providerFacade;
+	
+	@EJB(beanName="orderFacade")
+	private OrderFacade orderFacade;
+	
+	@EJB(beanName="orderLineFacade")
+	private OrderLineFacade orderLineFacade;
 	
 	public String createProduct() {
 		try{
@@ -102,6 +112,26 @@ public class ProductController {
 	}
 	
 	public String deleteProduct(){
+		/*se il prodotto è associato a qualche riga ordine di qualche ordine, va cancellata la riga d'ordine
+		 * altrimenti all'evasione ci sarà un prodotto non piu disponibile*/
+		List<Order> allOrders = this.orderFacade.getAllOrderClosed();
+		List<OrderLine> righe_ordini = new ArrayList<OrderLine>();
+		if(allOrders.size() != 0){
+		for(Order ordine: allOrders){
+			 righe_ordini.clear();
+			 righe_ordini = ordine.getOrderLines();
+				if(righe_ordini.size() != 0){
+					for(OrderLine rigaordine: righe_ordini){
+						if (rigaordine.getProduct().getId().equals(product.getId())){
+							this.orderLineFacade.deleteOrderLine(rigaordine.getId());
+							ordine.setProdottoCancellato(true);
+							this.orderFacade.updateOrder(ordine);
+						}
+					}
+				}
+			}
+		}
+		
 		this.productFacade.deleteProduct(product.getId());
 		return "administratorPage";
 	}

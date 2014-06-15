@@ -140,7 +140,13 @@ public class OrderController {
 			this.currentOrder.setEvaso();
 			orderFacade.updateOrder(currentOrder);
 			customerFacade.updateCustomer(currentCustomer);
-			this.message = "Ordine evaso correttamente!";
+			if(this.currentOrder.isProdottoCancellato()){
+				this.message = "Ordine evaso correttamente, ma con un'avvertenza!";
+				this.message+= "\nAvvertenza: Uno o più prodotti di quest'ordine non sono più in magazzino e non verranno evasi!";
+				this.message+= "\nCome vedi non sono più presenti tra le righe d'ordine";
+			}else{
+				this.message = "Ordine evaso correttamente!";
+			}
 		} else {
 			this.message = "Ordine non evaso correttamente! Uno o più prodotti non sono disponibili nelle"
 			+ " quantita' scelte! \nCodice Prodotti in righe d'ordine non evadibili: "+this.codiceProdottiRigheOrdine.toString();

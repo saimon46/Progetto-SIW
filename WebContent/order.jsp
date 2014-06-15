@@ -61,6 +61,14 @@
 				</div>
 			</c:if>
 			<br>
+			<c:if test="${currentOrder.prodottoCancellato == true && currentOrder.chiuso == true}">
+			<br>
+				<div>
+					Nota: Quest'ordine, ormai chiuso, conteneva uno o più prodotti non più disponibili! Verranno evasi solo
+					quelli disponibili (visibili qui sotto)
+				</div>
+			</c:if>
+			<br>
 			<c:if test="${currentOrder.chiuso == false}">
 				<h4>Per aggiungere prodotti all'ordine vai al catalogo
 					prodotti!</h4>
