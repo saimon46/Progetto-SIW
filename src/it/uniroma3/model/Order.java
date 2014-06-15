@@ -21,6 +21,11 @@ public class Order {
 	private boolean evaso; //Stato evaso dell'ordine
 	
 	@Column
+	private boolean prodottoCancellato; /*Check: Se un admin cancella un prodotto che è anche associato
+						in quest'ordine, allora va cancellato anche la riga d'ordine del prodotto in
+							quest'ordine */
+	
+	@Column
 	@Temporal (TemporalType.TIMESTAMP)
 	private Calendar creationTime; //data di creazione dell'ordine
 	
@@ -43,6 +48,7 @@ public class Order {
     	this.creationTime = creationTime;
     	this.customer = customer;
     	this.chiuso = false; //Alla creazione, l'ordine è ancora aperto
+    	this.prodottoCancellato = false;
     	this.orderLines = new ArrayList<OrderLine>();
     }
 	
@@ -123,6 +129,14 @@ public class Order {
 
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
+	}
+	
+	public boolean isProdottoCancellato() {
+		return prodottoCancellato;
+	}
+
+	public void setProdottoCancellato(boolean prodottoCancellato) {
+		this.prodottoCancellato = prodottoCancellato;
 	}
 	
 	// metodo per trovare una riga d'ordine in base al prodotto
