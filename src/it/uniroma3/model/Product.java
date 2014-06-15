@@ -28,7 +28,7 @@ import javax.persistence.*;
 	@Column(nullable = false)
 	private int quantity; //quantità in magazzino
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Provider> providers;
 	
 	public Product() {

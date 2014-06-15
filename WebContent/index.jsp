@@ -16,7 +16,7 @@
 		<div align="center">
 			<h1>Benvenuto nel nostro negozio di acquisti di giochi di ogni genere!</h1>
 			<h2>Approfitta delle nostre offerte e acquista da ForeverFun!</h2>
-			<h3>Per iniziare registrati, oppure dai un'occhiata subito al nostro catalogo!</h3>
+			<h3>Per iniziare registrati, oppure dai un'occhiata subito al nostro catalogo.</h3>
 		</div>
 		<div class="text-right col-md-6 col-md-offset-6">
 			<h5><em>Sito creato da:</em></h5>
