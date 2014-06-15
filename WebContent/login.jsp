@@ -12,7 +12,7 @@
 
 <body>
 	<f:view>
-		<!-- Menù di testa -->
+		<!-- Menu' di testa -->
 		<jsp:include page="header.jsp" />
 		<!-- -------------- -->
 		<div align="center">

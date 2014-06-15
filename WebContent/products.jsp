@@ -17,7 +17,7 @@
 					<tr>
 						<th>Nome</th>
 						<th>Prezzo</th>
-						<th>Quantità</th>
+						<th>Quantita'</th>
 					</tr>
 					<c:forEach var="product" items="#{productController.products}">
 						<tr>
@@ -25,7 +25,10 @@
 									value="#{product.name}">
 									<f:param name="id" value="#{product.id}" />
 								</h:commandLink></td>
-							<td>${product.price}</td>
+							<td><h:outputText id="price" value="#{product.price}">
+									<f:convertNumber currencyCode="EUR" groupingUsed="true"
+										maxFractionDigits="2" type="currency" />
+								</h:outputText></td>
 							<td>${product.quantity}</td>
 						</tr>
 					</c:forEach>

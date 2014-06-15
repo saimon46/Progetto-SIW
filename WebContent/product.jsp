@@ -16,8 +16,14 @@
 			<h2>${productController.product.name}</h2>
 			<h3>Dettagli</h3>
 			<div>Codice: ${productController.product.code}</div>
-			<div>Prezzo: ${productController.product.price}</div>
-			<div>Quantità: ${productController.product.quantity}</div>
+			<div>
+				Prezzo:
+				<h:outputText id="price" value="#{productController.product.price}">
+					<f:convertNumber currencyCode="EUR" groupingUsed="true"
+						maxFractionDigits="2" type="currency" />
+				</h:outputText>
+			</div>
+			<div>Quantita': ${productController.product.quantity}</div>
 			<div>Descrizione: ${productController.product.description}</div>
 
 			<c:if test="${not empty productController.product.providers}">
@@ -37,13 +43,13 @@
 				<br>
 				<hr>
 			</c:if>
-			
+
 			<!-- Sono un cliente (posso vedere ciò quando c'è un ordine corrente "aperto"!)-->
 			<c:if test="${currentOrder != null && currentOrder.chiuso == false}">
 				<h:form styleClass="form-horizontal">
 					<div>
 						<h4>Aggiungi prodotto all'ordine corrente
-							n°${currentOrder.id}</h4>
+							nÂ°${currentOrder.id}</h4>
 					</div>
 					<div class="form-group">
 						<label for="quantity"
@@ -70,7 +76,7 @@
 					</div>
 				</h:form>
 			</c:if>
-			
+
 			<!-- Sono un amministratore -->
 			<c:if test="${administratorController.currentAdministrator != null}">
 				<h:form styleClass="form-horizontal">

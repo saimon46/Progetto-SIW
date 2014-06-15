@@ -110,7 +110,7 @@
 				<c:if test="${not empty currentOrder.orderLines}">
 					<h:form styleClass="form-horizontal">
 						<div>
-							<h4>Modifica Quantita' Prodotti:</h4>
+							<h4>Modifica quantita' prodotti:</h4>
 						</div>
 						<div class="form-group">
 							<label for="codeProduct"

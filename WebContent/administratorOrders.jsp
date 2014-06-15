@@ -15,12 +15,12 @@
 					<h:form>
 						<table class="table">
 							<tr>
-								<th>ID-Ordine</th>
-								<th>Cliente-Associato</th>
-								<th>Data-Creazione</th>
+								<th>Codice</th>
+								<th>Cliente associato</th>
+								<th>Data creazione</th>
 								<th>Stato</th>
-								<th>Data-Completamento</th>
-								<th>Data-Evasione</th>
+								<th>Data completamento</th>
+								<th>Data evasione</th>
 							</tr>
 							<c:forEach var="order" items="#{administratorController.orders}">
 								<tr>

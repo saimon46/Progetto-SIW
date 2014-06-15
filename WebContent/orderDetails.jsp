@@ -13,11 +13,11 @@
 		<jsp:include page="header.jsp" />
 		<div align="center">
 			<c:if test="${orderController.message != null}">
-				<span class="error alert alert-success">${orderController.message}</span>
+				<span class="error alert alert-info">${orderController.message}</span>
 				<br>
 			</c:if>
 			
-			<h1>Dettagli Completi ordine n° ${currentOrder.id }</h1>
+			<h1>Dettagli completi ordine n° ${currentOrder.id }</h1>
 
 			<h3>Cliente</h3>
 

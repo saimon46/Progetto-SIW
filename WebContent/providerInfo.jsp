@@ -18,7 +18,7 @@
 			<div>Partita IVA: ${providerController.provider.vatin}</div>
 			<div>CAP: ${providerController.provider.address.zipcode}</div>
 			<div>Via/Piazza: ${providerController.provider.address.street}</div>
-			<div>Città: ${providerController.provider.address.city}</div>
+			<div>Citta': ${providerController.provider.address.city}</div>
 			<div>Provincia: ${providerController.provider.address.country}</div>
 			<div>Stato: ${providerController.provider.address.state}</div>
 		</div>
